@@ -11,9 +11,12 @@ LABEL="dev.interlude.generate"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG_DIR="$PROJECT_DIR/data/logs"
 
-# 02:00 by default: the rolling five-hour usage window has reset long before
-# the working day starts, so generation never competes with real work.
-RUN_HOUR="${INTERLUDE_RUN_HOUR:-2}"
+# 23:00 by default. launchd does not wake a sleeping Mac — a missed run fires
+# whenever the machine next wakes, which for a 02:00 schedule is usually the
+# moment the working day starts. At 23:00 the laptop is typically still awake,
+# so the run actually happens on schedule, and the rolling five-hour usage
+# window has reset well before morning either way.
+RUN_HOUR="${INTERLUDE_RUN_HOUR:-23}"
 
 mkdir -p "$HOME/Library/LaunchAgents" "$LOG_DIR"
 

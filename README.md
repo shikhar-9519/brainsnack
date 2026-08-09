@@ -177,7 +177,7 @@ bar, where `$(sync~spin)` genuinely spins, plus a badge on the icon.
 ## Content pipeline
 
 ```
-launchd (02:00 daily)
+launchd (23:00 daily)
    ↓
 generator ────── dedups against every id ever seen
    ↓
@@ -308,13 +308,16 @@ your seat allowance.
 npm run schedule:install
 ```
 
-Installs a launchd agent running once daily at 02:00 (override with
+Installs a launchd agent running once daily at 23:00 (override with
 `INTERLUDE_RUN_HOUR`). launchd rather than cron: `StartCalendarInterval` fires a
-missed run when the Mac wakes, whereas cron skips it — and a laptop closed at
-the scheduled hour is the normal case.
+missed run when the Mac wakes, whereas cron skips it entirely.
 
-02:00 is deliberate: the rolling five-hour usage window resets long before the
-working day, so generation never competes with real work.
+23:00 rather than something later is deliberate. launchd does **not** wake a
+sleeping Mac, so a 02:00 schedule on a closed laptop fires whenever you next
+open it — usually the start of the working day, which is exactly when you do
+not want six Claude calls drawing on the same seat allowance. At 23:00 the
+machine is typically still awake, so the run happens on time, and the rolling
+five-hour window resets long before morning.
 
 No API key is needed — the wrapper checks for the `claude` CLI instead, and the
 plist puts both node and claude on PATH since launchd inherits no shell
