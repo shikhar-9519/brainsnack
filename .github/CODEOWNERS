@@ -1,0 +1,7 @@
+# The published feed is generated and reviewed locally, never contributed.
+# Any pull request touching it requires an explicit review from the owner —
+# a PR that quietly edits feed.json is the one real way bad content could
+# reach readers, and this makes that impossible to merge by accident.
+/data/                      @shikhar-9519
+/.github/workflows/         @shikhar-9519
+/generator/                 @shikhar-9519
