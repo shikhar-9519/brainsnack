@@ -1,0 +1,893 @@
+{
+  "generatedAt": "2026-08-09T14:05:50.347Z",
+  "cards": [
+    {
+      "title": "npm worm injects self-propagating backdoor into hundreds of packages including keyv",
+      "summary": "A supply-chain worm has compromised packages with hundreds of millions of weekly downloads by autonomously spreading to dependents—audit your lockfile for affected versions and rotate any secrets that may have been exfiltrated. This is not a theoretical risk; the payload is live in the wild.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "npm",
+        "supply-chain"
+      ],
+      "type": "ai_news",
+      "sourceName": "Datadog Security Labs",
+      "sourceUrl": "https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/",
+      "id": "04d67ed9a7bb",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Anthropic experimental prompt tool APIs retire August 17",
+      "summary": "The three `/v1/experimental/*_prompt` endpoints and the legacy Workbench UI are being removed in nine days; any automated prompt-engineering pipelines hitting these endpoints will start returning errors after that date. Migrate now—there is no grace period extension.",
+      "estimatedReadSeconds": 35,
+      "difficulty": "intermediate",
+      "tags": [
+        "anthropic",
+        "api",
+        "deprecation"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
+      "id": "d5943532c474",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "OpenAI Assistants API shuts down August 26 — migrate to Responses API",
+      "summary": "All `/v1/assistants`, `/v1/threads`, and `/v1/runs` endpoints go dark on August 26 with no further extensions; the migration maps Assistants→Prompts, Threads→Conversations, Runs→Responses. Azure OpenAI Assistants follows the same cutover date via Microsoft Foundry Agents.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "api",
+        "deprecation"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+      "id": "030e2a9af640",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Ollama v0.32.6 streaming format now matches OpenAI wire spec exactly — breaking change",
+      "summary": "The `/v1/chat/completions` streaming layout changed: `role` appears only on the first chunk, `finish_reason` on its own final chunk, and `usage` requires `stream_options.include_usage`. Any client that parsed Ollama's previous non-standard chunk shape will break and needs updating.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "ollama",
+        "breaking-change",
+        "streaming"
+      ],
+      "type": "ai_news",
+      "sourceName": "Ollama",
+      "sourceUrl": "https://github.com/ollama/ollama/releases",
+      "id": "042773c9f03e",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Node.js patches four HIGH severity issues across 22.x, 24.x, and 26.x",
+      "summary": "The July 29 security release fixes an HTTP/2 header block that bypasses `maxSessionMemory` (no workaround exists), a `dns.resolveAny()` crash on large responses, a stale SQLite iterator that executes post-reset, and an incomplete TLS hostname-verification fix. Update all active Node lines immediately.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "nodejs",
+        "security",
+        "http2"
+      ],
+      "type": "ai_news",
+      "sourceName": "Node.js",
+      "sourceUrl": "https://nodejs.org/en/blog/vulnerability/july-2026-security-releases",
+      "id": "31f8fcfa7669",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Anthropic ships mid-conversation system messages as GA on Claude Fable 5, Mythos 5, and Opus 4.8",
+      "summary": "System messages can now be inserted at any turn index in the conversation array, not just turn 0, enabling mid-thread persona or instruction switching without resetting context. This directly unblocks multi-agent handoff patterns where a routing agent needs to inject instructions before passing control.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "advanced",
+      "tags": [
+        "anthropic",
+        "multi-agent",
+        "api"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
+      "id": "d3b5215a3622",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "CSS `gap` Applies to Flex Containers Even When Items Don't Wrap",
+      "summary": "The `gap` property on a flex container adds space between items regardless of wrapping. Developers often assume it only matters in grid or multi-line flex layouts, then get burned when a single-row flex row has unexpected spacing that `margin` hacks can't cleanly override.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "layout",
+        "flexbox"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Unlike margins, `gap` is owned by the container and distributes space strictly *between* items — never on the outer edges. This means you cannot accidentally create a leading or trailing gap, which is the exact bug that `* + * { margin-left }` tricks introduce. The catch: `gap` doesn't collapse with sibling margins the way block margins do, so mixing the two in the same axis produces additive spacing that's hard to debug. Profile the layout in DevTools with flex overlays before reaching for margin at all.",
+      "code": "/* Classic trap: margin + gap double-spacing */\n.nav {\n  display: flex;\n  gap: 12px;\n}\n\n/* WRONG — adds 12px on top of the 12px gap */\n.nav a {\n  margin-left: 12px;\n}\n\n/* RIGHT — let gap do all the work */\n.nav a {\n  margin-left: 0;\n}",
+      "id": "7ab925c23462",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "TypeScript Narrows Discriminated Unions at Assignment, Not at Declaration",
+      "summary": "TypeScript's control-flow narrowing resets to the full union type after any assignment to a variable, even if the assignment is inside a branch that already proved a narrower type. This causes \"type was already narrowed but the error still appears\" confusion in production code that mutates locals inside async callbacks.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "typescript",
+        "async",
+        "type-narrowing"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you assign to a variable that TypeScript has already narrowed, the compiler conservatively widens it back to the declared union because the new value could be anything assignable to that union. This is especially painful across `await` boundaries: the type is narrow before the await, but any code path that could assign to the variable after the await forces the compiler to assume the widest possible type again. The fix is to capture the narrowed value in a `const` before the await — `const` variables cannot be reassigned, so narrowing is permanent for their lifetime. This isn't a TypeScript bug; it's correct behaviour given that `let` variables are mutable.",
+      "code": "type State = { status: 'ok'; data: string } | { status: 'err' };\n\nasync function process(s: State) {\n  if (s.status !== 'ok') return;\n\n  // s is narrowed to { status: 'ok'; data: string } here\n  await fetch('/log');\n\n  // ❌ Error: s.data doesn't exist on full union\n  // (await resets narrowing for reassignable bindings)\n  console.log(s.data);\n\n  // ✅ Capture before the await\n  const ok = s; // const = narrowing preserved\n  await fetch('/log');\n  console.log(ok.data); // fine\n}",
+      "id": "6f2eeb275eb3",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Async Route Handlers Silently Swallow Errors in Express 4",
+      "summary": "Express 4's router is synchronous internally, so a rejected promise from an async handler never reaches your error middleware—it becomes an unhandledRejection instead. Every async route needs explicit forwarding to next(err), or a wrapper that does it automatically.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "express",
+        "async",
+        "error-handling"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "Express 4 invokes route handlers synchronously and has no mechanism to intercept a rejected promise. When an async handler throws, Node emits an unhandledRejection event and your (err, req, res, next) error middleware is never called—the request hangs or gets no response. A one-liner wrap utility that calls .catch(next) is the minimal fix. Express 5 finally handles this natively, but most production codebases are still on v4.",
+      "code": "// Unhandled rejection — error middleware never fires\napp.get('/user/:id', async (req, res) => {\n  const user = await db.findUser(req.params.id);\n  res.json(user);\n});\n\n// Fix: wrapper forwards rejections to next()\nconst wrap = fn => (req, res, next) =>\n  Promise.resolve(fn(req, res, next)).catch(next);\n\napp.get('/user/:id', wrap(async (req, res) => {\n  const user = await db.findUser(req.params.id);\n  res.json(user);\n}));",
+      "id": "67f65af305e5",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "SQLAlchemy Lazy Loading Is Illegal Inside AsyncSession",
+      "summary": "SQLAlchemy's default relationship strategy issues a new SELECT when you access a relationship attribute. In async mode that implicit IO is synchronous and illegal—it raises MissingGreenlet before any data is returned.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "sqlalchemy",
+        "asyncio",
+        "orm"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "The ORM's lazy='select' default works transparently in sync sessions because the attribute access can block. An AsyncSession cannot issue IO outside an awaited call, so touching user.orders raises MissingGreenlet at the attribute access site—not at the await, making the traceback confusing. The fix is declaring your loading strategy at query time with selectinload or joinedload so all required data arrives in one awaited round-trip.",
+      "code": "from sqlalchemy.orm import selectinload\nfrom sqlalchemy import select\n\n# Raises MissingGreenlet — .orders triggers implicit IO\nasync with AsyncSession(engine) as session:\n    user = await session.get(User, user_id)\n    print(user.orders)  # ← crash here\n\n# Fix: eager-load at query time\nasync with AsyncSession(engine) as session:\n    result = await session.execute(\n        select(User).options(selectinload(User.orders)).where(User.id == user_id)\n    )\n    user = result.scalar_one()\n    print(user.orders)  # all data arrived in one await",
+      "id": "16f94588cfc3",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "`Optional.orElse` Always Evaluates Its Argument",
+      "summary": "`orElse(T other)` takes a plain value, not a supplier, so Java evaluates the argument expression before checking whether the Optional is empty. Any method call passed to orElse always executes—even when the value is present.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "optional",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "Java evaluates method arguments eagerly before the call is dispatched, so the expression inside orElse() runs unconditionally. This is invisible when the default is a constant, but causes wasted DB lookups, object allocations, or side effects whenever the Optional already holds a value. `orElseGet(Supplier<T>)` wraps the default in a lambda so it only runs on empty. Apply the same reasoning to `Map.getOrDefault`—same eager-evaluation trap.",
+      "code": "Optional<String> cached = Optional.of(\"alice\");\n\n// expensiveDbLookup() fires even though Optional is present\nString a = cached.orElse(expensiveDbLookup());\n\n// Supplier is only invoked when Optional is empty\nString b = cached.orElseGet(() -> expensiveDbLookup());\n\n// Same trap in Map\nmap.getOrDefault(key, buildDefault()); // buildDefault() always called\nmap.computeIfAbsent(key, k -> buildDefault()); // lazy, correct",
+      "id": "5d79a948d51b",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Deferred Calls Inside Loops Stack Until Function Return",
+      "summary": "`defer` is scoped to the enclosing function, not the current block or loop iteration. A loop that opens files and defers their close holds every file descriptor open simultaneously until the function exits.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "defer",
+        "resource-management"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "Go's defer statement pushes a call onto a per-function stack that drains when the function returns—not when the enclosing block ends. In a loop processing hundreds of paths, all file handles, DB connections, or mutex unlocks pile up and are released only at the end of the function, exhausting descriptors or connections long before the loop finishes. Wrapping the loop body in an anonymous function gives each iteration its own function scope, so the defer fires immediately at the end of each closure call.",
+      "code": "// BAD: all handles open until processAll returns\nfunc processAll(paths []string) {\n    for _, p := range paths {\n        f, _ := os.Open(p)\n        defer f.Close() // ← stacks, not per-iteration\n        process(f)\n    }\n}\n\n// Fix: closure scopes defer to one iteration\nfunc processAll(paths []string) {\n    for _, p := range paths {\n        func() {\n            f, _ := os.Open(p)\n            defer f.Close() // ← runs when closure returns\n            process(f)\n        }()\n    }\n}",
+      "id": "8d1e0ed721c7",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Cache Stampede: Every Request Hits the DB When a Hot Key Expires",
+      "summary": "When a popular cache key expires, all concurrent requests miss simultaneously and query the database in parallel—multiplying DB load by your request rate for that key. The XFetch algorithm prevents this by probabilistically recomputing the value slightly before expiry, requiring no locks.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "caching",
+        "system-design",
+        "performance",
+        "distributed"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "Expiry is a hard boundary: one moment every request hits cache, the next they all miss. At 500 rps on a hot key, a single expiry event triggers 500 concurrent DB queries for identical data. Mutex-based solutions (one worker recomputes, others wait or return stale) add latency spikes. XFetch recomputes early with a probability that rises as TTL approaches, spreading load across time without coordination. The beta parameter controls aggressiveness; delta tracks how long the last recompute took so faster backends recompute less eagerly.",
+      "code": "import math, random, time\n\ndef xfetch(cache, key, ttl, beta=1.0):\n    value, expiry, delta = cache.get_with_meta(key)\n    # Probability of early recompute grows as expiry approaches\n    if time.monotonic() - beta * delta * math.log(random.random()) >= expiry:\n        t0 = time.monotonic()\n        value = db_fetch(key)\n        delta = time.monotonic() - t0\n        cache.set_with_meta(key, value, ttl=ttl, delta=delta)\n    return value",
+      "id": "ff655644d14d",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Oversizing the Connection Pool Degrades Database Throughput",
+      "summary": "Adding connections beyond a small multiple of the DB host's CPU cores increases context-switching overhead faster than it adds parallelism, and measured throughput drops. The HikariCP team benchmarks peak throughput at `(core_count × 2) + spindle_count` connections per app instance.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "database",
+        "connection-pool",
+        "system-design",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "A database server is a CPU-bound process: when active connections exceed what the OS can schedule concurrently, threads context-switch, TLB pressure rises, and throughput falls even as the connection count climbs. Most teams set max_connections to 100–500 assuming more is better, then scale out app instances without accounting for the total connection count hitting the DB. A pool of 9 on a 4-core SSD host often outperforms a pool of 100 in benchmarks—and horizontal app scaling must keep (pool_size × instance_count) under the DB's total connection budget.",
+      "code": "# HikariCP formula — conceptually valid for any pool driver\n# spindle_count = 1 for SSD, actual spindle count for HDD arrays\npool_size = (db_core_count * 2) + spindle_count\n# 4-core SSD DB host → pool_size = 9 per app instance\n# 5 app replicas → 45 total connections (well under pg default 100)\n\n# application.yml (Spring Boot)\nspring:\n  datasource:\n    hikari:\n      maximum-pool-size: 9\n      minimum-idle: 9\n      connection-timeout: 30000  # ms; fail fast, don't queue forever",
+      "id": "3b684aca1662",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "You're designing a notification system that must deliver at least once to 50M users within 5 minutes of a triggered event. Walk me through your architecture.",
+      "summary": "Tests whether the candidate can reason about fan-out at scale, choose between push and pull models, and handle partial failure without hand-waving.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "fan-out",
+        "at-least-once",
+        "queues",
+        "scalability"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "Start with an event ingress service that writes to a durable log (Kafka). A fan-out worker consumes events and resolves the audience via a pre-materialized subscription index, not a live DB query. Partition delivery workers by user-ID hash so each partition owns a deterministic slice. Use a two-phase approach: enqueue per-user delivery records into a sharded queue, then channel-specific workers (push, email, SMS) drain those queues with idempotent delivery and exponential back-off. At-least-once semantics come from not acknowledging the queue message until downstream confirms. Track delivery state in a lightweight store keyed by (event_id, user_id) so retries are cheap and dedup is possible on the read path. To hit the 5-minute SLA, auto-scale delivery workers on queue depth and pre-warm channel connections.",
+      "followUps": [
+        "How would you handle a channel provider (e.g., APNS) returning rate-limit 429s without violating the 5-minute SLA for other users?",
+        "If a single event targets 50M users but a second event targeting 1K VIP users arrives moments later, how do you prevent head-of-line blocking?"
+      ],
+      "id": "2320e1ac0f2b",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Explain how backpressure propagates through a Node.js Transform stream pipeline and what happens when you ignore it.",
+      "summary": "Probes understanding of the streams internal buffering model, highWaterMark, and the real-world consequences of unbounded memory growth.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "advanced",
+      "tags": [
+        "streams",
+        "backpressure",
+        "memory",
+        "node"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": true,
+      "body": "Every Readable and Writable stream has an internal buffer bounded by highWaterMark. When a downstream Writable's buffer fills, its write() returns false, which signals the upstream to stop pushing. In a pipeline created with stream.pipeline(), this signal propagates automatically: the Transform pauses its _read calls, which in turn stops pulling from the source Readable. If you ignore backpressure — say, by calling push() in a loop without checking the return value — the internal buffer grows without limit, heap usage climbs, and the process eventually OOMs or triggers excessive GC pauses that stall the event loop. A common real-world mistake is piping a fast database cursor into a slow HTTP response without respecting drain events. The fix is either to use pipeline() which wires up backpressure and error handling, or to manually listen for 'drain' on the writable side before resuming reads.",
+      "followUps": [
+        "How does objectMode change the meaning of highWaterMark, and why does that matter for memory?",
+        "If you need to fan out one Readable to two Writable destinations with different throughput, how do you manage backpressure without blocking the faster consumer?",
+        "How would you detect backpressure issues in production without adding stream-level instrumentation to every pipeline?"
+      ],
+      "id": "be0efea96fab",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Why can reading offsetHeight between DOM writes cause layout thrashing, and how does the browser's rendering pipeline make this expensive?",
+      "summary": "Tests knowledge of the browser's layout invalidation model and the real cost of synchronous reflow — not just the buzzword, but the mechanism.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "advanced",
+      "tags": [
+        "layout-thrashing",
+        "reflow",
+        "rendering-pipeline",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "The browser batches style and layout calculations and normally performs them once per frame during the rendering pipeline (Style → Layout → Paint → Composite). When JavaScript mutates a layout-affecting property (e.g., setting element.style.width), the layout is marked dirty but not immediately recalculated. However, reading a geometry property like offsetHeight forces the engine to synchronously compute layout right then so it can return a correct value. If you alternate writes and reads in a loop, each read triggers a full or partial layout recalculation — potentially O(n) reflows instead of one. This is layout thrashing. The fix is to batch all reads first (or cache them), then do all writes, which lets the browser coalesce into a single reflow. Libraries like fastdom formalize this read/write scheduling. In frameworks like React this is less common because the virtual DOM batches mutations, but it still appears in refs, imperative animation code, and third-party DOM libraries.",
+      "followUps": [
+        "How does contain: layout CSS property help limit the blast radius of a forced reflow?",
+        "In what scenarios can getComputedStyle trigger a style recalculation even without a layout reflow, and why is that distinction important?"
+      ],
+      "id": "bac5de102f8a",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "typeof null and equality",
+      "summary": "Tests understanding of the typeof null bug, loose vs strict equality between null and undefined.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "coercion",
+        "typeof"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "console.log(typeof null === \"object\");\nconsole.log(typeof undefined === \"undefined\");\nconsole.log(null == undefined);\nconsole.log(null === undefined);",
+      "options": [
+        {
+          "label": "true\ntrue\ntrue\ntrue"
+        },
+        {
+          "label": "true\ntrue\ntrue\nfalse"
+        },
+        {
+          "label": "false\ntrue\ntrue\nfalse"
+        },
+        {
+          "label": "false\ntrue\nfalse\nfalse"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "typeof null returns \"object\" due to a legacy spec bug, so the first comparison is true. typeof undefined is \"undefined\", making the second true. The spec defines null == undefined as true under abstract equality, but null === undefined is false because strict equality requires matching types.",
+      "id": "329555e43c56",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Python list comprehension scoping",
+      "summary": "Tests whether the loop variable in a Python 3 list comprehension leaks into the enclosing scope.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "scoping",
+        "comprehension"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "x = 10\nresult = [x for x in range(3)]\nprint(x)\nprint(result)",
+      "options": [
+        {
+          "label": "10\n[0, 1, 2]"
+        },
+        {
+          "label": "2\n[0, 1, 2]"
+        },
+        {
+          "label": "10\n[10, 10, 10]"
+        },
+        {
+          "label": "NameError: name 'x' is not defined"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "In Python 3, list comprehensions have their own implicit scope—the iteration variable x is local to the comprehension and does not overwrite the outer x. This differs from Python 2, where the loop variable leaked into the enclosing scope, which would leave x as 2. The outer x remains 10, and result is [0, 1, 2].",
+      "id": "94693ae2b174",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Go defer evaluation order",
+      "summary": "Tests knowledge of Go's defer LIFO execution order and eager argument evaluation.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "defer",
+        "lifo"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    for i := 0; i < 3; i++ {\n        defer fmt.Print(i)\n    }\n    fmt.Print(3)\n}",
+      "options": [
+        {
+          "label": "3210"
+        },
+        {
+          "label": "0123"
+        },
+        {
+          "label": "3012"
+        },
+        {
+          "label": "3333"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Deferred calls in Go execute in LIFO (last-in, first-out) order when the surrounding function returns. Crucially, the arguments to a deferred call are evaluated immediately at the defer statement, not when the deferred function executes. So the values 0, 1, 2 are captured in order, fmt.Print(3) runs first, then the defers unwind as 2, 1, 0—producing 3210.",
+      "id": "bafbed2d825a",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Java string interning and ==",
+      "summary": "Tests understanding of compile-time constant folding vs runtime string concatenation and reference equality.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "strings",
+        "interning"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        String a = \"hello\";\n        String b = \"hel\" + \"lo\";\n        String c = \"hel\";\n        String d = c + \"lo\";\n        System.out.println(a == b);\n        System.out.println(a == d);\n        System.out.println(a.equals(d));\n    }\n}",
+      "options": [
+        {
+          "label": "true\ntrue\ntrue"
+        },
+        {
+          "label": "true\nfalse\ntrue"
+        },
+        {
+          "label": "false\nfalse\ntrue"
+        },
+        {
+          "label": "false\ntrue\ntrue"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The expression \"hel\" + \"lo\" is a compile-time constant, so the compiler folds it to \"hello\" and interns it in the string pool—making a == b true. However, c + \"lo\" involves a non-constant variable c, so the JVM creates a new String object at runtime. This means a == d is false because they are different references, while a.equals(d) is true because the content matches.",
+      "id": "af955b4801ce",
+      "publishedAt": "2026-08-09T13:38:18.107Z"
+    },
+    {
+      "title": "Gemini image-generation models shut down August 17 — eight days to migrate",
+      "summary": "Imagen 4 and all Gemini 3 Image generation model endpoints stop returning responses on August 17 with no grace period. Any pipeline hitting these endpoints needs a hard cutover now, not a deprecation-warning handler.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "intermediate",
+      "tags": [
+        "gemini",
+        "breaking-change",
+        "image-generation",
+        "migration"
+      ],
+      "type": "ai_news",
+      "sourceName": "Google AI for Developers",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "id": "45d84adc1fb7",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "OpenAI Assistants API goes dark August 26 — threads and file attachments lost",
+      "summary": "All threads, runs, and attached files become permanently inaccessible after August 26; the migration target is the Responses API, or Foundry Agent Service for Azure customers. There is no read-only grace window, so data extraction must happen before the cutoff.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "breaking-change",
+        "assistants-api",
+        "migration"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+      "id": "5e3080f90671",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "OpenAI Codex removes `--full-auto` flag — replace with `--sandbox workspace-write`",
+      "summary": "The flag was already deprecated; it is now fully removed, so any CI script or agent runner passing `--full-auto` throws an unrecognised-argument error immediately. Swap in `--sandbox workspace-write` to restore equivalent behaviour.",
+      "estimatedReadSeconds": 35,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "codex",
+        "cli",
+        "breaking-change"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/changelog",
+      "id": "f2e0c9c458c5",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Gemini 3.6 Flash reaches GA; `temperature`, `top_p`, `top_k` deprecated across all Gemini models",
+      "summary": "The sampling parameter deprecation is the breaking part: callers that pass these fields will hit API errors at the next model version, so remove them proactively regardless of which Gemini model you target. 3.6 Flash itself is cheaper than 3.5 Flash with improved agentic planning.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "gemini",
+        "breaking-change",
+        "api",
+        "llm"
+      ],
+      "type": "ai_news",
+      "sourceName": "Google AI for Developers",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
+      "id": "4a0c956617a6",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Claude Code self-hosted environments enter public beta for Team and Enterprise",
+      "summary": "Sessions now run on your own compute with internal network access, custom tooling mounts, and compliance controls — no agent traffic routed through Anthropic infrastructure. Both fixed and on-demand runners are supported, which matters for air-gapped or VPC-locked environments.",
+      "estimatedReadSeconds": 55,
+      "difficulty": "advanced",
+      "tags": [
+        "claude-code",
+        "self-hosted",
+        "enterprise",
+        "devops"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://docs.anthropic.com/en/docs/claude-code/self-hosted",
+      "id": "d54b6ebfaeaa",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "LLM CLI v0.32 adds streamed reasoning traces, native Responses API, and server-side tools",
+      "summary": "You can now watch model reasoning stream in real time and call WebSearch or CodeInterpreter as server-side tools without client scaffolding — useful for scripting multi-step workflows. The content-addressed SQLite log store also deduplicates blobs, cutting disk usage on repeated runs.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "intermediate",
+      "tags": [
+        "llm-cli",
+        "python",
+        "tooling",
+        "openai"
+      ],
+      "type": "blog",
+      "sourceName": "Simon Willison",
+      "sourceUrl": "https://simonwillison.net/2026/Aug/4/new-release-of-llm/",
+      "id": "b8bc24057bb9",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "CSS Grid's `auto-fill` vs `auto-fit` Collapse Behaviour",
+      "summary": "`auto-fill` keeps empty column tracks alive, stretching existing items only when you use `minmax`. `auto-fit` collapses empty tracks to zero, letting filled items grow to fill the row — and the difference only becomes visible when items don't span the full container width.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "layout",
+        "grid"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you write `repeat(auto-fill, minmax(200px, 1fr))`, the browser creates as many 200px-minimum columns as fit, but empty tracks still occupy space — items won't stretch beyond their `1fr` share of the non-empty tracks. Switch to `auto-fit` and those ghost tracks collapse, so a single item in a 3-column grid expands to full width. This trips people up in responsive card grids where the last row has fewer items than expected and they wonder why the cards don't stretch. The distinction is invisible until the number of grid items is fewer than the maximum column count.",
+      "code": "/* auto-fill: empty tracks preserved, items stay ~200px */\n.grid-fill {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n}\n\n/* auto-fit: empty tracks collapse, lone item fills row */\n.grid-fit {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n}",
+      "id": "6b67b5506e47",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "TypeScript Narrows Union Types Inside Callbacks — But Loses It After an Await",
+      "summary": "TypeScript's control-flow narrowing does not survive across `await` boundaries because another microtask could theoretically mutate the binding between suspension points, so the compiler resets the type to its declared width after every `await`.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "advanced",
+      "tags": [
+        "typescript",
+        "async",
+        "type-narrowing"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "If you narrow a variable — say, checking `if (value !== null)` — TypeScript trusts that narrowing for the rest of the synchronous block. But the moment you `await` anything inside that block, the compiler discards the narrowed type on the original variable, even if you know nothing could have changed it. This is because `let` bindings are re-evaluated after each await point; the fix is to capture the narrowed value in a `const` before awaiting. The same issue silently appears with class property checks: narrowing `this.socket` to non-null doesn't survive an await inside the same method.",
+      "code": "async function send(value: string | null) {\n  if (!value) return;\n\n  // ❌ TypeScript error after await — value is string | null again\n  await flush();\n  console.log(value.toUpperCase()); // error: value possibly null\n\n  // ✅ Capture in const before awaiting\n  const safeValue = value; // type: string\n  await flush();\n  console.log(safeValue.toUpperCase()); // fine\n}",
+      "id": "f115b7eeec0c",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "process.nextTick Starves the I/O Queue",
+      "summary": "process.nextTick callbacks drain their entire queue before Node.js advances to any other event loop phase—including I/O and timers. A recursive nextTick loop will permanently block pending network or file callbacks.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "event-loop",
+        "async"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "The event loop has distinct phases: timers, pending callbacks, poll, check, and close. process.nextTick sits outside all of them in a special queue that must empty completely before the loop moves on. setImmediate runs in the check phase, after I/O, so it yields control between iterations. Swapping a recursive nextTick for setImmediate is the standard fix when you need to defer CPU work without starving the network stack.",
+      "code": "// Starves I/O — 'file read' never logs\nfunction recurse() {\n  process.nextTick(recurse);\n}\nrecurse();\nfs.readFile('data.txt', () => console.log('file read'));\n\n// Safe — yields to I/O between iterations\nfunction recurse() {\n  setImmediate(recurse);\n}",
+      "id": "9488de42a9de",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Unawaited asyncio Tasks Can Be Silently Garbage Collected",
+      "summary": "asyncio.create_task() schedules a coroutine on the event loop but the returned Task object is only weakly referenced internally. Drop the return value and the GC can cancel the task mid-execution.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "asyncio",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "Unlike directly awaiting a coroutine, create_task lets work run concurrently—but only while a strong reference to the Task exists somewhere. Python 3.12+ emits a warning when a task is destroyed before finishing; earlier versions discard it silently with no traceback. The idiomatic fix is a module-level set: add the task on creation, attach a done callback that discards it, and the reference lives exactly as long as the work does.",
+      "code": "import asyncio\n\n_tasks: set[asyncio.Task] = set()\n\ndef fire_and_forget(coro):\n    task = asyncio.create_task(coro)\n    _tasks.add(task)\n    task.add_done_callback(_tasks.discard)\n    return task",
+      "id": "88b11258a594",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "@Transactional Self-Calls Bypass the Spring Proxy",
+      "summary": "Spring's transaction support works through a proxy that wraps your bean at injection time. Calling a @Transactional method from another method on the same class goes through this, not the proxy, so no transaction is ever opened.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "spring",
+        "transactions"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "Spring AOP proxies only intercept calls that arrive from outside the bean—an internal this call reaches the real object directly and skips every piece of advice, including @Cacheable and @Async for the same reason. Private methods can never be intercepted regardless of what annotations they carry. The canonical fix is extracting the transactional method into a separate @Service bean and injecting it, so the call crosses a proxy boundary.",
+      "code": "@Service\npublic class OrderService {\n\n    // ❌ @Transactional ignored — called via 'this'\n    public void placeOrder(Order o) {\n        saveOrder(o); // no transaction starts\n    }\n\n    @Transactional\n    public void saveOrder(Order o) { /* ... */ }\n}",
+      "id": "02348f9d8d88",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Goroutine Closures Capture Loop Variables by Reference",
+      "summary": "Before Go 1.22, a range loop creates one variable that is mutated each iteration. Goroutines closed over it all see the final value, not the value at launch time.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "concurrency",
+        "closures"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "The classic symptom is N goroutines that all process the last element. Passing the value as a function argument creates a per-invocation copy—the pre-1.22 standard fix. Go 1.22 changed range semantics so each iteration binds its own variable, but this only applies when the go directive in go.mod is >= 1.22; older module configurations still have the bug even on a new toolchain.",
+      "code": "// Broken (go < 1.22): all goroutines see final id\nfor _, id := range ids {\n    go func() { process(id) }()\n}\n\n// Safe on any version: argument copied per call\nfor _, id := range ids {\n    go func(id string) { process(id) }(id)\n}",
+      "id": "7b43553aecfd",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Read Replicas Break Read-Your-Writes Consistency",
+      "summary": "Async replication means a replica can lag the primary by milliseconds to seconds. A user who writes and immediately reads may hit a replica that hasn't applied their write yet, making their own change appear missing—with no error raised.",
+      "estimatedReadSeconds": 115,
+      "difficulty": "intermediate",
+      "tags": [
+        "replication",
+        "consistency",
+        "databases"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "This failure mode is called read-your-writes (or monotonic reads) and it fails silently—the application gets stale data, not an exception. The cheapest mitigation is routing reads that follow a write back to the primary for the remainder of that request context. Alternatively, track the replication LSN after a write and block replica reads until they confirm they've replayed past that position—Postgres exposes this via pg_wal_lsn_diff.",
+      "code": "-- Check live replication lag across all replicas\nSELECT\n  client_addr,\n  state,\n  pg_wal_lsn_diff(\n    pg_current_wal_lsn(), sent_lsn\n  ) AS send_lag_bytes,\n  write_lag,\n  replay_lag\nFROM pg_stat_replication;",
+      "id": "ef085797675d",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "PgBouncer Transaction Mode Silently Breaks Session-Level Features",
+      "summary": "In transaction mode, PgBouncer assigns a backend connection per transaction, not per client session. Any feature that assumes a stable session—advisory locks, LISTEN, SET, named prepared statements—fails silently or bleeds state across clients.",
+      "estimatedReadSeconds": 130,
+      "difficulty": "advanced",
+      "tags": [
+        "postgresql",
+        "connection-pooling",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "pg_advisory_lock ties a lock to the backend PID; when PgBouncer reassigns that connection after the transaction ends, the lock releases or is now held under the wrong client's context. A session-level SET made by one client will persist on that backend and be visible to whichever client gets it next. Named prepared statements are stored per backend connection, so a client that prepares on one connection may attempt to execute on another that has never seen it. Session mode is safe but only multiplexes idle connections, sharply reducing the scalability benefit.",
+      "code": "# pgbouncer.ini\n[pgbouncer]\n# transaction mode: advisory locks, LISTEN, SET all unsafe\npool_mode = transaction\n\n# session mode: safe, but one server conn held per client\n# pool_mode = session\n\n# This silently misfires in transaction mode:\n# SELECT pg_advisory_lock(42);\n# -- connection returned to pool here --\n# SELECT pg_advisory_unlock(42); -- wrong backend",
+      "id": "a0847900642d",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "You're designing a notification system that must deliver to 50 million users within 5 minutes of a breaking-news event. Walk me through your architecture.",
+      "summary": "Tests whether you can reason about fan-out strategies, backpressure, and the trade-offs between push and pull at scale.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "system-design",
+        "fan-out",
+        "backpressure",
+        "scalability"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "Start with a topic-based pub/sub layer (e.g., SNS, Kafka) that decouples the editorial publish from delivery. Partition users into segments and fan out to per-channel workers — push notifications, WebSockets, email — each with its own queue and rate-limit contract with the downstream provider. Use consistent hashing to assign user segments to worker pools so you can scale horizontally and reason about per-partition throughput. For the 5-minute SLA, back-of-envelope: 50M / 300s ≈ 167K sends/sec, which means you need to parallel-dispatch across hundreds of workers and pre-compute device tokens in a read-optimized store. Add a dead-letter queue for transient failures and an idempotency key per (user, event) pair so retries don't double-deliver. Monitor p99 delivery latency per channel and auto-scale workers when queue depth crosses a threshold.",
+      "followUps": [
+        "How would you handle a user who is subscribed on three devices without sending duplicate visible notifications?",
+        "If your push-notification provider starts returning 429s mid-fan-out, how do you adapt without blowing the SLA?"
+      ],
+      "id": "95363120ed45",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Explain what happens inside the Node.js event loop when a resolved Promise callback and a setTimeout(fn, 0) are both pending. Which fires first, and why?",
+      "summary": "Tests understanding of the microtask queue vs. the macrotask (timer) phase — a mechanism that affects real-world ordering bugs in server code.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "advanced",
+      "tags": [
+        "node",
+        "event-loop",
+        "microtasks",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": true,
+      "body": "When the current execution context completes, the engine drains the microtask queue before the event loop advances to the next phase. Promise .then/.catch/await continuations are microtasks; setTimeout callbacks are macrotasks scheduled in the timers phase. So a resolved Promise callback always fires before a setTimeout(fn, 0) that was registered in the same tick. Internally, libuv's event loop has ordered phases — timers, pending callbacks, poll, check, close — and microtasks are flushed between every phase transition and after every macrotask. This means if a microtask enqueues another microtask, both run before any timer fires, which can starve I/O if you recurse. Node added process.nextTick before microtasks existed; nextTick callbacks also drain before Promises, giving it even higher priority. Understanding this hierarchy is essential for debugging subtle ordering issues in middleware chains and stream pipelines.",
+      "followUps": [
+        "What happens if a process.nextTick callback recursively schedules another nextTick — how does that affect I/O?",
+        "How does queueMicrotask differ from process.nextTick, and when would you choose one over the other?",
+        "In worker_threads, does each worker get its own event loop and microtask queue?"
+      ],
+      "id": "35191262ad9e",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "React 18 batches state updates inside event handlers. Describe a concrete scenario where this batching doesn't apply and what you'd do about it.",
+      "summary": "Tests whether you understand the boundaries of React's automatic batching and the async edge cases that trip up production code.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "advanced",
+      "tags": [
+        "react",
+        "batching",
+        "rendering",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "In React 17 and earlier, updates inside native async callbacks (setTimeout, fetch .then, addEventListener outside React) were not batched — each setState triggered a separate render. React 18's createRoot enables automatic batching everywhere, including Promises and timeouts. However, batching still breaks when you opt into synchronous flushing with flushSync: each flushSync(setState) forces an immediate render, which is sometimes needed when you must read the updated DOM before the next update (e.g., measuring an element's height to set a scroll position). Another edge case is updates from external stores (like a Redux middleware callback or a WebSocket message handler using the legacy ReactDOM.render root) — these may bypass batching if the root isn't created with createRoot. The practical fix is to ensure the app uses createRoot and avoid flushSync unless DOM measurement demands it. When you must call flushSync, isolate it and keep the synchronous update minimal to avoid layout thrashing.",
+      "followUps": [
+        "How does React decide when to flush a batch — is it a microtask, a MessageChannel callback, or something else?",
+        "If you wrap two setState calls in flushSync, do you get one render or two?"
+      ],
+      "id": "baab3ee051d0",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Python Mutable Default Arguments",
+      "summary": "Tests understanding of how mutable default arguments are shared across function calls in Python.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "functions",
+        "mutability"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "def append(val, lst=[]):\n    lst.append(val)\n    return lst\n\nprint(append(1))\nprint(append(2))",
+      "options": [
+        {
+          "label": "[1]\n[2]"
+        },
+        {
+          "label": "[1]\n[1, 2]"
+        },
+        {
+          "label": "[1, 2]\n[1, 2]"
+        },
+        {
+          "label": "TypeError"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "Python evaluates default arguments once at function definition time, not at each call. The list object bound to `lst` is shared across all calls that don't supply it. The first call mutates it to [1]; the second call finds [1] already there and appends 2, yielding [1, 2].",
+      "id": "c8a347365a06",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "JavaScript typeof Quirks",
+      "summary": "Probes knowledge of typeof's counterintuitive results for null, arrays, and NaN.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "typeof",
+        "coercion"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "console.log(typeof null);\nconsole.log(typeof [1, 2, 3]);\nconsole.log(typeof NaN);",
+      "options": [
+        {
+          "label": "null\narray\nNaN"
+        },
+        {
+          "label": "object\narray\nnumber"
+        },
+        {
+          "label": "object\nobject\nnumber"
+        },
+        {
+          "label": "object\nobject\nNaN"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "typeof null returns \"object\" due to a legacy bug in the original JS implementation where null's internal type tag was 0, the same as objects. Arrays are objects in JavaScript, so typeof returns \"object\" — there is no \"array\" type tag. NaN stands for Not-a-Number but is itself of type \"number\" per IEEE 754.",
+      "id": "790e3105f87a",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Go defer and LIFO Order",
+      "summary": "Tests whether the reader knows deferred calls execute in LIFO order and that arguments are evaluated eagerly.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "defer",
+        "control-flow"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    for i := 0; i < 3; i++ {\n        defer fmt.Print(i)\n    }\n    fmt.Print(3)\n}",
+      "options": [
+        {
+          "label": "0123"
+        },
+        {
+          "label": "3012"
+        },
+        {
+          "label": "3210"
+        },
+        {
+          "label": "3333"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "Deferred function calls in Go are pushed onto a stack and executed in LIFO order when the surrounding function returns. The argument to fmt.Print is evaluated at the time of the defer statement, not when it executes, so the values 0, 1, 2 are captured. After fmt.Print(3) runs, the defers fire in reverse: 2, 1, 0, producing \"3210\".",
+      "id": "aa3ccf314367",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    },
+    {
+      "title": "Java String Pool and == vs equals",
+      "summary": "Checks understanding of compile-time string constant folding versus runtime concatenation and reference equality.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "strings",
+        "equality"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        String a = \"hello\";\n        String b = \"hel\" + \"lo\";\n        String c = \"hel\";\n        c += \"lo\";\n        System.out.println(a == b);\n        System.out.println(a == c);\n        System.out.println(a.equals(c));\n    }\n}",
+      "options": [
+        {
+          "label": "true\ntrue\ntrue"
+        },
+        {
+          "label": "false\nfalse\ntrue"
+        },
+        {
+          "label": "true\nfalse\ntrue"
+        },
+        {
+          "label": "true\nfalse\nfalse"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "The javac compiler folds the compile-time constant expression \"hel\" + \"lo\" into \"hello\", which is interned in the string pool — so a == b is true. The += operator on c invokes StringBuilder at runtime, producing a new String object not in the pool, so a == c is false. The equals() method compares character content, so a.equals(c) is true.",
+      "id": "993ec9eb1cf1",
+      "publishedAt": "2026-08-09T13:31:13.540Z"
+    }
+  ]
+}
