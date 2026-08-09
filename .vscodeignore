@@ -1,0 +1,10 @@
+.vscode/**
+webview/**
+generator/**
+src/**
+node_modules/**
+tsconfig*.json
+vite.config.ts
+**/*.map
+.gitignore
+dev/**

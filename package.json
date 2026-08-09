@@ -1,0 +1,212 @@
+{
+  "name": "interlude",
+  "displayName": "Interlude",
+  "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
+  "version": "0.1.0",
+  "publisher": "shikhar",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/src/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "interlude",
+          "title": "Interlude",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "interlude": [
+        {
+          "id": "interlude.feed",
+          "name": "Feed",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "interlude.open",
+        "title": "Interlude: Open Feed"
+      },
+      {
+        "command": "interlude.openFocus",
+        "title": "Interlude: Open Focus Mode"
+      },
+      {
+        "command": "interlude.refresh",
+        "title": "Interlude: Refresh Feed"
+      },
+      {
+        "command": "interlude.installHooks",
+        "title": "Interlude: Install Claude Code Hooks"
+      },
+      {
+        "command": "interlude.uninstallHooks",
+        "title": "Interlude: Remove Claude Code Hooks"
+      },
+      {
+        "command": "interlude.testSound",
+        "title": "Interlude: Test Notification Sound"
+      },
+      {
+        "command": "interlude.showStatus",
+        "title": "Interlude: Show Status (Diagnose Hooks)"
+      }
+    ],
+    "configuration": {
+      "title": "Interlude",
+      "properties": {
+        "interlude.feedUrl": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "URL of a published `feed.json`. Defaults to the project's own feed. Point it at your own if you run the generator yourself, or leave it empty to use only the content bundled with the extension."
+        },
+        "interlude.autoOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open the Interlude sidebar automatically when Claude starts working. Never steals keyboard focus."
+        },
+        "interlude.interests": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ai_news",
+              "blog",
+              "learn",
+              "output_question"
+            ]
+          },
+          "default": [
+            "ai_news",
+            "blog",
+            "learn",
+            "output_question"
+          ],
+          "description": "Card types to include in the feed."
+        },
+        "interlude.tracks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "frontend",
+              "node",
+              "python",
+              "java",
+              "go",
+              "system_design",
+              "misc"
+            ]
+          },
+          "default": [
+            "frontend",
+            "node",
+            "python",
+            "java",
+            "go",
+            "system_design",
+            "misc"
+          ],
+          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track \u2014 news and blogs are always shown. Narrow this to the areas you actually work in."
+        },
+        "interlude.maxCards": {
+          "type": "number",
+          "default": 60,
+          "description": "Maximum number of cards kept in the feed."
+        },
+        "interlude.removeAnsweredAfterSeconds": {
+          "type": "number",
+          "default": 10,
+          "description": "Seconds an answered output-based question stays on screen before clearing itself. Saving it cancels the removal. Set to 0 to keep answered cards. Only applies to output questions."
+        },
+        "interlude.refreshMinutes": {
+          "type": "number",
+          "default": 15,
+          "description": "How often to re-fetch the feed, in minutes. Set to 0 to disable."
+        },
+        "interlude.sound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play a sound when Claude needs input or finishes."
+        },
+        "interlude.sound.onWaiting": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute path to a sound file played when Claude needs input. Leave empty for the platform default."
+        },
+        "interlude.sound.onFinished": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute path to a sound file played when Claude finishes. Leave empty for the platform default."
+        },
+        "interlude.statusBar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a spinning status bar item while Claude is working."
+        },
+        "interlude.hookPort": {
+          "type": "number",
+          "default": 43117,
+          "description": "Localhost port the extension listens on for Claude Code hook events. Re-run the install command after changing this."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run build:webview && npm run build:ext",
+    "build:ext": "tsc -p ./tsconfig.json",
+    "build:webview": "vite build",
+    "watch": "tsc -watch -p ./tsconfig.json",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit && tsc -p ./tsconfig.webview.json && tsc -p ./tsconfig.generator.json && tsc -p ./tsconfig.admin.json",
+    "generate": "tsx generator/generate.ts",
+    "admin": "npm run admin:build && tsx admin/server.ts",
+    "admin:build": "vite build --config vite.admin.config.ts",
+    "admin:dev": "vite --config vite.admin.config.ts",
+    "admin:demo": "node -e \"const f=require('./content/seed-feed.json');require('fs').mkdirSync('data',{recursive:true});require('fs').writeFileSync('data/queue.json',JSON.stringify(f.cards,null,2));console.log('Queued '+f.cards.length+' demo cards. Run: npm run admin')\"",
+    "schedule:install": "sh scripts/install-schedule.sh",
+    "publish": "sh scripts/publish-feed.sh",
+    "set-feed-url": "sh scripts/set-feed-url.sh",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/vscode": "^1.90.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-serif": "^5.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "agent",
+    "productivity",
+    "learning",
+    "focus"
+  ]
+}

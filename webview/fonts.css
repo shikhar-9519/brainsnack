@@ -1,0 +1,22 @@
+/*
+ * Latin-only subsets. Fontsource's default entrypoints pull every subset
+ * (cyrillic, greek, vietnamese, latin-ext) plus italics — 52 font files, which
+ * Vite inlines into the stylesheet in library mode.
+ */
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-serif/latin-600.css';
+
+/*
+ * The variable package ships no latin-only entrypoint, so the single face is
+ * declared by hand against the one file we actually want.
+ */
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+    format('woff2-variations');
+}

@@ -1,0 +1,287 @@
+/* Reuses the product's design tokens so the console feels like the same tool. */
+@import '../../webview/theme.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: var(--font-code);
+}
+
+.admin {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: var(--s-5) var(--s-4) var(--s-7);
+}
+
+.admin__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.brand__accent {
+  color: var(--accent);
+}
+
+.admin__label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.header__spacer {
+  flex: 1;
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  padding: 5px var(--s-3);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  color: var(--text-faint);
+  background: transparent;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.tab--active {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+/* Selection bar */
+
+.selection {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  gap: var(--s-2);
+  padding: var(--s-3) 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.action {
+  padding: 6px var(--s-4);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  color: var(--text-dim);
+  background: transparent;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.action:hover:enabled {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.action:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.action--primary {
+  color: var(--bg);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.action--primary:hover:enabled {
+  color: var(--bg);
+  background: var(--accent);
+  filter: brightness(1.08);
+}
+
+/* Notices */
+
+.notice {
+  margin: var(--s-3) 0 0;
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--fs-sm);
+  border-radius: var(--r-md);
+}
+
+.notice--error {
+  color: var(--wrong);
+  border: 1px solid var(--wrong);
+  background: var(--wrong-soft);
+}
+
+.empty__body {
+  margin: var(--s-7) 0;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+/* Review cards */
+
+.admin__body {
+  padding-top: var(--s-4);
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.review {
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.review--on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.review__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  cursor: pointer;
+}
+
+.review__type {
+  flex: none;
+  padding: 2px var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.review__track {
+  flex: none;
+  padding: 2px var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  color: var(--text-dim);
+}
+
+.review__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: var(--lh-tight);
+}
+
+.review__summary {
+  margin: var(--s-2) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+}
+
+.review__detail {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+}
+
+.review__code {
+  margin: 0 0 var(--s-3);
+  padding: var(--s-3);
+  overflow-x: auto;
+  font-family: var(--font-code);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.review__options {
+  margin: 0 0 var(--s-3);
+  padding-left: var(--s-5);
+}
+
+.review__option {
+  padding: 2px 0;
+  color: var(--text-dim);
+}
+
+/* The whole point of review: the answer key must be obvious at a glance. */
+.review__option--correct {
+  font-weight: 600;
+  color: var(--correct);
+}
+
+.review__option--correct::marker {
+  color: var(--correct);
+}
+
+.review__explanation {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--text-dim);
+}
+
+.review__link {
+  font-size: var(--fs-sm);
+  color: var(--accent);
+  word-break: break-all;
+}

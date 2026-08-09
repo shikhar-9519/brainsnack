@@ -1,0 +1,124 @@
+/*
+ * Interlude design tokens.
+ *
+ * Fully branded: none of these derive from VS Code's theme variables. The only
+ * thing we take from the editor is whether it is light or dark (VS Code puts
+ * `vscode-light` / `vscode-dark` / `vscode-high-contrast` on <body>), because a
+ * dark panel dropped into a light editor reads as broken no matter how good it
+ * looks on its own.
+ */
+
+:root {
+  /* Type ------------------------------------------------------------------ */
+  --font-display: 'IBM Plex Serif', Georgia, serif;
+  --font-ui: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-code: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+
+  --fs-xs: 10.5px;
+  --fs-sm: 12px;
+  --fs-base: 13px;
+  --fs-lg: 15px;
+  --fs-xl: 19px;
+
+  --lh-tight: 1.28;
+  --lh-snug: 1.45;
+  --lh-body: 1.62;
+
+  --tracking-caps: 0.08em;
+
+  /* Space ----------------------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  /* Shape ----------------------------------------------------------------- */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* Motion ---------------------------------------------------------------- */
+  --dur-fast: 140ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+  --z-sticky: 20;
+}
+
+/* Dark is the default — it is what most editors are set to. */
+:root,
+body.vscode-dark,
+body.vscode-high-contrast {
+  --bg: #0c0f13;
+  --surface: #141920;
+  --surface-2: #1b2129;
+  --border: #232b35;
+  --border-strong: #33404e;
+
+  --text: #e9e6e0;
+  --text-dim: #98a2ae;
+  --text-faint: #6b7683;
+
+  --accent: #e3a857;
+  --accent-soft: rgba(227, 168, 87, 0.14);
+  --accent-line: rgba(227, 168, 87, 0.35);
+
+  --correct: #62c08a;
+  --correct-soft: rgba(98, 192, 138, 0.14);
+  --wrong: #e8705c;
+  --wrong-soft: rgba(232, 112, 92, 0.14);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+body.vscode-light,
+body.vscode-high-contrast-light {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --surface-2: #f4f1ea;
+  --border: #e4dfd4;
+  --border-strong: #cfc8b8;
+
+  --text: #171a1e;
+  --text-dim: #565e68;
+  --text-faint: #8a929b;
+
+  --accent: #9a5f13;
+  --accent-soft: rgba(154, 95, 19, 0.1);
+  --accent-line: rgba(154, 95, 19, 0.3);
+
+  --correct: #2c7a50;
+  --correct-soft: rgba(44, 122, 80, 0.1);
+  --wrong: #b23b26;
+  --wrong-soft: rgba(178, 59, 38, 0.1);
+
+  --shadow-card: 0 1px 2px rgba(23, 26, 30, 0.06);
+  --shadow-lift: 0 8px 28px rgba(23, 26, 30, 0.12);
+}
+
+/*
+ * Focus mode is a full editor tab, so it gets a reading type scale rather than
+ * the dense sidebar one. 13px is right in a 350px rail and wrong at 900px.
+ */
+body[data-surface='focus'] {
+  --fs-xs: 11.5px;
+  --fs-sm: 13.5px;
+  --fs-base: 16px;
+  --fs-lg: 22px;
+  --fs-xl: 34px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}

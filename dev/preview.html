@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interlude — design preview</title>
+    <link href="../media/webview.css" rel="stylesheet" />
+    <style>
+      /* Harness chrome only — not part of the extension UI. */
+      html,
+      body {
+        height: 100%;
+      }
+      #controls {
+        position: fixed;
+        z-index: 999;
+        right: 12px;
+        bottom: 12px;
+        display: flex;
+        gap: 6px;
+        font: 12px system-ui;
+      }
+      #controls button {
+        padding: 6px 10px;
+        border: 1px solid #8888;
+        border-radius: 6px;
+        background: #8882;
+        color: inherit;
+        cursor: pointer;
+      }
+      body[data-surface='sidebar'] #root {
+        width: 350px;
+        height: 100vh;
+        border-right: 1px solid #8883;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="vscode-dark" data-surface="sidebar">
+    <div id="root"></div>
+
+    <div id="controls">
+      <button data-act="theme">Light / Dark</button>
+      <button data-act="surface">Sidebar / Focus</button>
+      <button data-act="working">working</button>
+      <button data-act="waiting">waiting</button>
+      <button data-act="idle">idle</button>
+    </div>
+
+    <script>
+      // Stand in for the VS Code webview API so the real bundle runs unmodified.
+      let saved = {};
+      window.acquireVsCodeApi = () => ({
+        postMessage: m => console.log('[webview -> host]', m),
+        getState: () => saved,
+        setState: s => (saved = s),
+      });
+    </script>
+
+    <script src="../media/webview.js"></script>
+
+    <script>
+      async function boot() {
+        // Cache-bust: a stale copy of the feed makes schema changes look broken.
+        const feed = await fetch(
+          `../content/seed-feed.json?t=${Date.now()}`,
+        ).then(r => r.json());
+
+        window.postMessage(
+          {
+            type: 'init',
+            payload: {
+              cards: feed.cards,
+              savedIds: [feed.cards[5]?.id].filter(Boolean),
+              readIds: [feed.cards[8]?.id].filter(Boolean),
+              interests: [
+                'ai_news',
+                'blog',
+                'learn',
+                'output_question',
+              ],
+              tracks: ['frontend', 'node', 'python', 'java', 'go', 'misc'],
+              removeAfterSeconds: 10,
+              agentState: 'working',
+            },
+          },
+          '*',
+        );
+      }
+
+      document.getElementById('controls').addEventListener('click', event => {
+        const act = event.target.dataset.act;
+        const body = document.body;
+
+        if (act === 'theme') {
+          body.classList.toggle('vscode-dark');
+          body.classList.toggle('vscode-light');
+          return;
+        }
+
+        if (act === 'surface') {
+          body.dataset.surface =
+            body.dataset.surface === 'focus' ? 'sidebar' : 'focus';
+          return;
+        }
+
+        window.postMessage({ type: 'agentState', payload: act }, '*');
+      });
+
+      setTimeout(boot, 60);
+    </script>
+  </body>
+</html>

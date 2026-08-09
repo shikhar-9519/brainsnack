@@ -1,0 +1,284 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { Card } from '../../src/types';
+import { AdminAction, fetchState, runAction } from './api';
+import type { AdminState } from './api';
+import { ReviewCard } from './components/ReviewCard';
+
+const Tab = {
+  QUEUE: 'queue',
+  LIVE: 'live',
+} as const;
+
+type Tab = (typeof Tab)[keyof typeof Tab];
+
+function EmptyPane({ tab }: { tab: Tab }) {
+  if (tab === Tab.QUEUE) {
+    return (
+      <p className="empty__body">
+        Queue is empty. Run <code>npm run generate</code> to produce cards.
+      </p>
+    );
+  }
+
+  return <p className="empty__body">Nothing published yet.</p>;
+}
+
+function CardPane({
+  cards,
+  tab,
+  selected,
+  onToggle,
+}: {
+  cards: Card[];
+  tab: Tab;
+  selected: Set<string>;
+  onToggle: (id: string) => void;
+}) {
+  if (cards.length === 0) {
+    return <EmptyPane tab={tab} />;
+  }
+
+  return (
+    <div className="review-list">
+      {cards.map(card => (
+        <ReviewCard
+          key={card.id}
+          card={card}
+          isSelected={selected.has(card.id)}
+          onToggle={onToggle}
+        />
+      ))}
+    </div>
+  );
+}
+
+function QueueActions({
+  count,
+  busy,
+  onApprove,
+  onReject,
+}: {
+  count: number;
+  busy: boolean;
+  onApprove: () => void;
+  onReject: () => void;
+}) {
+  return (
+    <>
+      <button
+        type="button"
+        className="action action--primary"
+        onClick={onApprove}
+        disabled={busy}
+      >
+        Publish {count}
+      </button>
+
+      <button
+        type="button"
+        className="action"
+        onClick={onReject}
+        disabled={busy}
+      >
+        Reject {count}
+      </button>
+    </>
+  );
+}
+
+function LiveActions({
+  count,
+  busy,
+  onRemove,
+}: {
+  count: number;
+  busy: boolean;
+  onRemove: () => void;
+}) {
+  return (
+    <button type="button" className="action" onClick={onRemove} disabled={busy}>
+      Remove {count} from feed
+    </button>
+  );
+}
+
+function SelectionBar({
+  tab,
+  count,
+  busy,
+  onApprove,
+  onReject,
+  onRemove,
+  onClear,
+}: {
+  tab: Tab;
+  count: number;
+  busy: boolean;
+  onApprove: () => void;
+  onReject: () => void;
+  onRemove: () => void;
+  onClear: () => void;
+}) {
+  if (count === 0) {
+    return null;
+  }
+
+  if (tab === Tab.QUEUE) {
+    return (
+      <div className="selection">
+        <QueueActions
+          count={count}
+          busy={busy}
+          onApprove={onApprove}
+          onReject={onReject}
+        />
+
+        <button type="button" className="action" onClick={onClear}>
+          Clear
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="selection">
+      <LiveActions count={count} busy={busy} onRemove={onRemove} />
+
+      <button type="button" className="action" onClick={onClear}>
+        Clear
+      </button>
+    </div>
+  );
+}
+
+function ErrorNotice({ message }: { message: string | undefined }) {
+  if (!message) {
+    return null;
+  }
+
+  return <p className="notice notice--error">{message}</p>;
+}
+
+export function App() {
+  const [state, setState] = useState<AdminState | undefined>(undefined);
+  const [tab, setTab] = useState<Tab>(Tab.QUEUE);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
+
+  const load = useCallback(async () => {
+    try {
+      setState(await fetchState());
+      setError(undefined);
+    } catch (caught) {
+      setError(String(caught));
+    }
+  }, []);
+
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  const cards = useMemo(() => {
+    if (!state) {
+      return [];
+    }
+
+    return tab === Tab.QUEUE ? state.queue : state.feed;
+  }, [state, tab]);
+
+  function toggle(id: string) {
+    setSelected(previous => {
+      const next = new Set(previous);
+
+      if (!next.delete(id)) {
+        next.add(id);
+      }
+
+      return next;
+    });
+  }
+
+  function selectAll() {
+    setSelected(new Set(cards.map(card => card.id)));
+  }
+
+  async function apply(action: AdminAction) {
+    setBusy(true);
+
+    try {
+      await runAction(action, [...selected]);
+
+      setSelected(new Set());
+
+      await load();
+    } catch (caught) {
+      setError(String(caught));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="admin">
+      <header className="admin__head">
+        <span className="brand">
+          Inter<span className="brand__accent">lude</span>
+        </span>
+
+        <span className="admin__label">admin</span>
+
+        <span className="header__spacer" />
+
+        <button type="button" className="action" onClick={() => void load()}>
+          Reload
+        </button>
+      </header>
+
+      <nav className="tabs">
+        <button
+          type="button"
+          className={tab === Tab.QUEUE ? 'tab tab--active' : 'tab'}
+          onClick={() => setTab(Tab.QUEUE)}
+        >
+          Pending {state?.queue.length ?? 0}
+        </button>
+
+        <button
+          type="button"
+          className={tab === Tab.LIVE ? 'tab tab--active' : 'tab'}
+          onClick={() => setTab(Tab.LIVE)}
+        >
+          Live {state?.feed.length ?? 0}
+        </button>
+
+        <span className="header__spacer" />
+
+        <button type="button" className="tab" onClick={selectAll}>
+          Select all
+        </button>
+      </nav>
+
+      <ErrorNotice message={error} />
+
+      <SelectionBar
+        tab={tab}
+        count={selected.size}
+        busy={busy}
+        onApprove={() => void apply(AdminAction.APPROVE)}
+        onReject={() => void apply(AdminAction.REJECT)}
+        onRemove={() => void apply(AdminAction.REMOVE)}
+        onClear={() => setSelected(new Set())}
+      />
+
+      <main className="admin__body">
+        <CardPane
+          cards={cards}
+          tab={tab}
+          selected={selected}
+          onToggle={toggle}
+        />
+      </main>
+    </div>
+  );
+}

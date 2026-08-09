@@ -1,0 +1,322 @@
+{
+  "generatedAt": "2026-08-07T00:00:00.000Z",
+  "cards": [
+    {
+      "id": "seed-oq-var-closure",
+      "type": "output_question",
+      "title": "What does this loop log?",
+      "summary": "The classic var-in-a-loop closure trap, still worth being able to explain out loud.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "closures",
+        "scope"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "language": "javascript",
+      "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
+      "options": [
+        {
+          "label": "3 3 3"
+        },
+        {
+          "label": "0 1 2"
+        },
+        {
+          "label": "0 0 0"
+        },
+        {
+          "label": "2 2 2"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "var is function-scoped, so all three callbacks close over the same binding. The loop finishes before any timeout fires, leaving i at 3. Swapping var for let creates a fresh binding per iteration and logs 0 1 2.",
+      "track": "frontend"
+    },
+    {
+      "id": "seed-oq-event-loop-order",
+      "type": "output_question",
+      "title": "In what order do these four lines print?",
+      "summary": "Microtasks versus macrotasks \u2014 the ordering that explains most 'why did this run late' bugs.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "event-loop",
+        "async"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "language": "javascript",
+      "code": "console.log('a');\nsetTimeout(() => console.log('b'), 0);\nPromise.resolve().then(() => console.log('c'));\nconsole.log('d');",
+      "options": [
+        {
+          "label": "a d c b"
+        },
+        {
+          "label": "a b c d"
+        },
+        {
+          "label": "a d b c"
+        },
+        {
+          "label": "a c d b"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Synchronous code runs first, so a and d print immediately. The promise callback is a microtask and drains as soon as the call stack empties. setTimeout schedules a macrotask, which only runs after the microtask queue is empty \u2014 so c beats b even at 0ms.",
+      "track": "frontend"
+    },
+    {
+      "id": "seed-oq-map-parseint",
+      "type": "output_question",
+      "title": "What does map(parseInt) produce?",
+      "summary": "A reminder that map passes three arguments, and parseInt happily accepts a second one.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "arrays",
+        "coercion"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "language": "javascript",
+      "code": "console.log(['1', '7', '11'].map(parseInt));",
+      "options": [
+        {
+          "label": "[1, NaN, 3]"
+        },
+        {
+          "label": "[1, 7, 11]"
+        },
+        {
+          "label": "[1, NaN, NaN]"
+        },
+        {
+          "label": "[NaN, NaN, NaN]"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "map calls the callback with (value, index, array), so parseInt receives the index as its radix. parseInt('1', 0) falls back to base 10 and gives 1; radix 1 is invalid so parseInt('7', 1) is NaN; parseInt('11', 2) reads binary and gives 3.",
+      "track": "frontend"
+    },
+    {
+      "id": "seed-oq-tdz-typeof",
+      "type": "output_question",
+      "title": "What happens when typeof meets the temporal dead zone?",
+      "summary": "typeof is famously safe on undeclared variables \u2014 but not on let bindings before initialisation.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "advanced",
+      "tags": [
+        "javascript",
+        "scope",
+        "hoisting"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "language": "javascript",
+      "code": "function f() {\n  console.log(typeof x);\n  let x = 1;\n}\n\nf();",
+      "options": [
+        {
+          "label": "ReferenceError: Cannot access 'x' before initialization"
+        },
+        {
+          "label": "undefined"
+        },
+        {
+          "label": "number"
+        },
+        {
+          "label": "null"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "let and const bindings are hoisted but stay uninitialised until the declaration is evaluated. Any access in that temporal dead zone throws \u2014 and typeof does not get an exemption here, unlike with a completely undeclared identifier where it returns 'undefined'.",
+      "track": "frontend"
+    },
+    {
+      "id": "seed-oq-float-and-max",
+      "type": "output_question",
+      "title": "What does this comparison and bare Math.max() print?",
+      "summary": "Two small facts that show up in real bugs: float precision and the identity value of Math.max.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "numbers",
+        "math"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "language": "javascript",
+      "code": "console.log(0.1 + 0.2 === 0.3, Math.max());",
+      "options": [
+        {
+          "label": "false -Infinity"
+        },
+        {
+          "label": "true 0"
+        },
+        {
+          "label": "false Infinity"
+        },
+        {
+          "label": "true -Infinity"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "IEEE 754 doubles cannot represent 0.1 or 0.2 exactly, so the sum is 0.30000000000000004 and the strict comparison fails. Math.max() with no arguments returns -Infinity, its identity element, so that any real value passed later compares greater.",
+      "track": "frontend"
+    },
+    {
+      "id": "seed-react-usememo-components",
+      "type": "learn",
+      "title": "useMemo does not stop a child from re-rendering",
+      "summary": "Memoising the element does nothing on its own \u2014 the child re-renders unless it is wrapped in React.memo.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "performance",
+        "memoization"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "body": "useMemo caches a value, and a JSX element is just a value. Caching the element object means React receives the same reference, and React does bail out of re-rendering when the element is referentially identical \u2014 but only if you actually pass that memoised element through as a child or prop. Recreating the JSX inline in the parent's render, even alongside a useMemo elsewhere, produces a new element every time. If your goal is to stop a component from re-rendering when its props are unchanged, React.memo on the component is the tool that expresses that directly.",
+      "code": "// Does nothing useful \u2014 new element every render.\nfunction Parent({ count }) {\n  const memo = useMemo(() => compute(), []);\n  return <Child data={memo} />;\n}\n\n// Child now skips re-render when props are shallow-equal.\nconst Child = React.memo(function Child({ data }) {\n  return <div>{data}</div>;\n});",
+      "track": "frontend",
+      "isQuestion": false
+    },
+    {
+      "id": "seed-react-stale-closure",
+      "type": "learn",
+      "title": "An interval that reads state will read it forever from the first render",
+      "summary": "Empty dependency arrays freeze the closure. The functional updater form is the fix, not a wider dep array.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "hooks",
+        "closures"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "body": "With an empty dependency array the effect body runs once, and the closure it created captures the state value from that first render. The interval keeps firing, but it keeps seeing the original value. Adding count to the deps does fix correctness, at the cost of tearing down and recreating the interval on every tick. The functional updater sidesteps the capture entirely: React hands the callback the current value, so the closure never needs to know it.",
+      "code": "// Stuck at 1 forever.\nuseEffect(() => {\n  const id = setInterval(() => setCount(count + 1), 1000);\n  return () => clearInterval(id);\n}, []);\n\n// Correct, and the interval survives.\nuseEffect(() => {\n  const id = setInterval(() => setCount(c => c + 1), 1000);\n  return () => clearInterval(id);\n}, []);",
+      "track": "frontend",
+      "isQuestion": false
+    },
+    {
+      "id": "seed-react-effect-cleanup",
+      "type": "learn",
+      "title": "Effect cleanup runs on every dependency change, not just unmount",
+      "summary": "Treating cleanup as an unmount hook is why subscriptions leak and stale responses overwrite fresh ones.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "hooks",
+        "effects"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "body": "Before React runs an effect again, it runs the previous effect's cleanup. So the sequence for a changing dependency is cleanup, then effect \u2014 every time, not only when the component goes away. This is exactly what makes race-condition guards work: an in-flight fetch from the previous dependency value gets marked stale before the new one starts, so a slow earlier response cannot overwrite a fast later one.",
+      "code": "useEffect(() => {\n  let cancelled = false;\n\n  fetchUser(id).then(data => {\n    if (!cancelled) setUser(data);\n  });\n\n  return () => {\n    cancelled = true;\n  };\n}, [id]);",
+      "track": "frontend",
+      "isQuestion": false
+    },
+    {
+      "id": "seed-interview-batching",
+      "type": "learn",
+      "title": "Why did React 18 change how state updates batch inside promise callbacks?",
+      "summary": "Tests whether the candidate understands rendering as scheduled work rather than a synchronous side effect.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "react",
+        "rendering",
+        "concurrency"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "followUps": [
+        "When is flushSync actually the right call, and what does it cost?",
+        "How does useTransition change which updates get interrupted?",
+        "What does tearing mean in this context, and how does useSyncExternalStore prevent it?"
+      ],
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "Before React 18, batching was tied to React's own synthetic event handlers \u2014 updates inside those were grouped into one re-render, but updates in promise callbacks, setTimeout, or native event handlers each triggered their own render pass. React 18 introduced automatic batching, which groups updates by the surrounding task rather than by the call site, so multiple setState calls in a .then() now produce a single render. The motivation is concurrent rendering: once React can interrupt and resume work, rendering has to be schedulable rather than an immediate consequence of calling a setter. The practical impact is fewer intermediate renders and fewer states the UI can be caught in. Code that relied on reading updated DOM between two setState calls in an async callback needs flushSync to opt out."
+    },
+    {
+      "id": "seed-interview-infinite-scroll",
+      "type": "learn",
+      "title": "Design an infinite-scroll feed that stays smooth at ten thousand items.",
+      "summary": "Tests whether the candidate reaches for windowing and measurement rather than more memoisation.",
+      "estimatedReadSeconds": 130,
+      "difficulty": "advanced",
+      "tags": [
+        "frontend",
+        "performance",
+        "system-design"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "followUps": [
+        "How do you preserve scroll position when items above the viewport change height?",
+        "What breaks if you use offset pagination with a feed that receives new items at the top?",
+        "How would you make this accessible to a screen reader?"
+      ],
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "The dominant cost is DOM nodes, not React, so the first move is virtualisation: render only the visible window plus a small overscan buffer, and keep total nodes roughly constant regardless of list length. Fetching should be cursor-based rather than offset-based, so newly inserted items do not shift pages and cause duplicates or gaps. Use IntersectionObserver on a sentinel element rather than scroll listeners, since it does not run work on every scroll frame. Variable-height rows need measurement and a cached height map, with a resize observer to correct estimates as content settles. For the data layer, keep pages in a normalised cache so scrolling back up is instant, and cap retained pages if memory is a concern. Finally, measure: a long-task profile will show whether the bottleneck is layout, paint, or your own render work, and those have completely different fixes."
+    },
+    {
+      "id": "seed-interview-bundle-cost",
+      "type": "learn",
+      "title": "A page's bundle grew 400KB after a feature merge. Walk me through diagnosing it.",
+      "summary": "Tests systematic debugging and knowledge of the build pipeline, not memorised optimisation tips.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "frontend",
+        "tooling",
+        "performance"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "followUps": [
+        "Why can a CommonJS dependency defeat tree-shaking even with a modern bundler?",
+        "When is a dynamic import the wrong fix?",
+        "How would you set a size budget that does not produce constant false alarms?"
+      ],
+      "track": "misc",
+      "isQuestion": true,
+      "body": "Start by making the change visible rather than guessing: build both commits and diff the bundle analyser output so you know which modules actually grew. The usual culprits are a barrel-file import that pulls a whole library instead of one function, a dependency that ships only a CommonJS build and therefore cannot be tree-shaken, a duplicated transitive dependency at two different versions, or a moment-style library that bundles all locales by default. Check whether the new code landed in a shared chunk that every route loads, since that turns a feature-local cost into a global one. The fixes follow from the cause: import paths directly, add a resolution to dedupe versions, swap the dependency, or move the feature behind a dynamic import so it splits into its own chunk. Then add a bundle-size budget to CI so the next regression is caught before merge rather than after."
+    },
+    {
+      "id": "seed-link-vscode-updates",
+      "type": "ai_news",
+      "title": "VS Code monthly release notes",
+      "summary": "The changelog for the editor you are sitting in. Skimming the highlights section takes under a minute and regularly surfaces features that replace an extension you installed.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "vscode",
+        "tooling",
+        "devtools"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "sourceName": "Visual Studio Code",
+      "sourceUrl": "https://code.visualstudio.com/updates"
+    },
+    {
+      "id": "seed-link-react-blog",
+      "type": "blog",
+      "title": "The React blog",
+      "summary": "Where the React team announces releases, RFC outcomes, and the reasoning behind API changes. Better signal than following the discourse about React.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "frontend",
+        "releases"
+      ],
+      "publishedAt": "2026-08-07T00:00:00.000Z",
+      "sourceName": "react.dev",
+      "sourceUrl": "https://react.dev/blog"
+    }
+  ]
+}

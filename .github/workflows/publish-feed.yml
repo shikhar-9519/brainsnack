@@ -1,0 +1,76 @@
+name: Publish feed
+
+# The generator runs on a laptop, not in CI — it drives the Claude CLI and
+# authenticates with a local subscription. This workflow only publishes the
+# reviewed result, so no credentials of any kind are needed here.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/feed.json'
+      - '.github/workflows/publish-feed.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A newer feed always wins; queued runs are pointless.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate the feed before publishing
+        run: |
+          test -f data/feed.json || { echo "data/feed.json is missing"; exit 1; }
+          node -e "
+            const feed = require('./data/feed.json');
+            if (!Array.isArray(feed.cards)) throw new Error('feed.cards is not an array');
+            if (feed.cards.length === 0) throw new Error('feed has no cards');
+            const missing = feed.cards.filter(c => !c.id || !c.type || !c.title);
+            if (missing.length) throw new Error(missing.length + ' cards missing required fields');
+            const ids = new Set(feed.cards.map(c => c.id));
+            if (ids.size !== feed.cards.length) throw new Error('duplicate card ids');
+            console.log('feed ok:', feed.cards.length, 'cards, generated', feed.generatedAt);
+          "
+
+      - name: Assemble the site
+        run: |
+          mkdir -p site
+          cp data/feed.json site/feed.json
+          node -e "
+            const feed = require('./data/feed.json');
+            const counts = {};
+            for (const c of feed.cards) counts[c.type] = (counts[c.type] || 0) + 1;
+            const rows = Object.entries(counts)
+              .map(([k, v]) => '<tr><td>' + k + '</td><td>' + v + '</td></tr>').join('');
+            require('fs').writeFileSync('site/index.html',
+              '<!doctype html><meta charset=utf-8><title>Interlude feed</title>' +
+              '<style>body{font:15px/1.6 system-ui;max-width:38rem;margin:4rem auto;padding:0 1rem}' +
+              'td{padding:2px 12px 2px 0}code{background:#eee;padding:2px 5px;border-radius:4px}</style>' +
+              '<h1>Interlude feed</h1>' +
+              '<p>Machine-readable feed for the Interlude VS Code extension.</p>' +
+              '<p><a href=\"./feed.json\">feed.json</a> — ' + feed.cards.length +
+              ' cards, generated ' + feed.generatedAt + '</p>' +
+              '<table>' + rows + '</table>' +
+              '<p>Point <code>interlude.feedUrl</code> at the JSON file above.</p>');
+          "
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
