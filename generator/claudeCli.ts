@@ -84,6 +84,10 @@ function baseArgs(options: CallOptions): string[] {
     ...(options.allowedTools?.length
       ? ['--allowed-tools', options.allowedTools.join(',')]
       : []),
+    // `--allowed-tools <tools...>` is variadic and will otherwise swallow the
+    // prompt as another tool name, leaving the CLI with no prompt at all.
+    // Unconditional so no future variadic option can reintroduce this.
+    '--',
     options.prompt,
   ];
 }

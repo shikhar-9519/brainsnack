@@ -20,10 +20,14 @@ if [ "$CARDS" -eq 0 ]; then
   exit 1
 fi
 
-if git diff --quiet -- data/feed.json 2>/dev/null && \
-   git diff --cached --quiet -- data/feed.json 2>/dev/null; then
-  echo "Feed unchanged since the last publish. Nothing to do."
-  exit 0
+# An untracked file produces no diff, so "no changes" would be indistinguishable
+# from "never published" and the first publish would silently no-op.
+if git ls-files --error-unmatch data/feed.json >/dev/null 2>&1; then
+  if git diff --quiet -- data/feed.json 2>/dev/null && \
+     git diff --cached --quiet -- data/feed.json 2>/dev/null; then
+    echo "Feed unchanged since the last publish. Nothing to do."
+    exit 0
+  fi
 fi
 
 git add data/feed.json

@@ -158,6 +158,12 @@ code {
   border-radius: var(--r-md);
 }
 
+.notice--info {
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+}
+
 .notice--error {
   color: var(--wrong);
   border: 1px solid var(--wrong);

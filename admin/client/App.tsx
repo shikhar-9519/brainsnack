@@ -20,7 +20,12 @@ function EmptyPane({ tab }: { tab: Tab }) {
     );
   }
 
-  return <p className="empty__body">Nothing published yet.</p>;
+  return (
+    <p className="empty__body">
+      Nothing approved yet. Approve cards from the Pending tab, then run{' '}
+      <code>npm run publish</code> to push them live.
+    </p>
+  );
 }
 
 function CardPane({
@@ -71,7 +76,7 @@ function QueueActions({
         onClick={onApprove}
         disabled={busy}
       >
-        Publish {count}
+        Approve {count}
       </button>
 
       <button
@@ -148,6 +153,25 @@ function SelectionBar({
         Clear
       </button>
     </div>
+  );
+}
+
+/**
+ * Approving only writes data/feed.json locally. Readers see nothing until it is
+ * pushed, which is a separate command — so say so rather than letting "approved"
+ * be mistaken for "live".
+ */
+function PublishHint({ count }: { count: number }) {
+  if (count === 0) {
+    return null;
+  }
+
+  return (
+    <p className="notice notice--info">
+      {count} approved card{count === 1 ? '' : 's'} are in your local feed. Run{' '}
+      <code>npm run publish</code> to push them live — approving alone does not
+      reach readers.
+    </p>
   );
 }
 
@@ -270,6 +294,8 @@ export function App() {
         onRemove={() => void apply(AdminAction.REMOVE)}
         onClear={() => setSelected(new Set())}
       />
+
+      <PublishHint count={state?.feed.length ?? 0} />
 
       <main className="admin__body">
         <CardPane
