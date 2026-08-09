@@ -1,20 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
   <!--
-    Marketplace icon. Drawn as rects rather than text so rasterising does not
-    depend on IBM Plex Serif being installed on the converting machine.
-    A serif "I": the letterform sits between two rules, like an interlude sits
-    between two acts.
+    Marketplace icon, 128x128. A brain held between two pause bars: thinking,
+    during a pause. Drawn as paths rather than text so rasterising does not
+    depend on fonts being installed on the converting machine.
+
+    The bars are deliberately dimmed — they carry the meaning without competing
+    with the brain for attention at listing-thumbnail size.
   -->
   <rect width="128" height="128" rx="28" fill="#0c0f13"/>
 
-  <!-- upper rule -->
-  <rect x="30" y="30" width="68" height="3" rx="1.5" fill="#e3a857" opacity="0.35"/>
+  <rect x="16" y="40" width="10" height="48" rx="4" fill="#e3a857" opacity="0.45"/>
+  <rect x="102" y="40" width="10" height="48" rx="4" fill="#e3a857" opacity="0.45"/>
 
-  <!-- serif I -->
-  <rect x="42" y="48" width="44" height="7" rx="2" fill="#e3a857"/>
-  <rect x="58" y="48" width="12" height="34" fill="#e3a857"/>
-  <rect x="42" y="75" width="44" height="7" rx="2" fill="#e3a857"/>
-
-  <!-- lower rule -->
-  <rect x="30" y="96" width="68" height="3" rx="1.5" fill="#e3a857" opacity="0.35"/>
+  <g fill="none" stroke="#e3a857" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+     transform="translate(64 64) scale(0.78) translate(-64 -64)">
+    <path d="M64 34v60"/>
+    <path d="M64 40c-4-6-12-8-19-5s-11 10-9 17c-7 3-11 11-9 18s9 12 16 11c1 7 8 12 15 11s12-7 12-14"/>
+    <path d="M64 40c4-6 12-8 19-5s11 10 9 17c7 3 11 11 9 18s-9 12-16 11c-1 7-8 12-15 11"/>
+    <path d="M50 56c5 1 8 5 8 10"/>
+    <path d="M78 56c-5 1-8 5-8 10"/>
+  </g>
 </svg>
