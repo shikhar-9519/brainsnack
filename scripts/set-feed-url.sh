@@ -16,8 +16,13 @@ if [ -z "$REMOTE" ]; then
   exit 1
 fi
 
-# Handles both git@github.com:user/repo.git and https://github.com/user/repo.git
-PATH_PART=$(printf '%s' "$REMOTE" | sed -e 's#^git@github.com:##' -e 's#^https://github.com/##' -e 's#\.git$##')
+# Handles every remote form, including SSH host aliases from ~/.ssh/config
+# (git@github-personal:user/repo.git), which a literal github.com match misses.
+PATH_PART=$(printf '%s' "$REMOTE" \
+  | sed -e 's#^ssh://##' -e 's#^https\{0,1\}://##' \
+  | sed -e 's#^[^/]*@##' \
+  | sed -e 's#^[^/:]*[:/]##' \
+  | sed -e 's#\.git$##')
 OWNER=$(printf '%s' "$PATH_PART" | cut -d/ -f1)
 REPO=$(printf '%s' "$PATH_PART" | cut -d/ -f2)
 
