@@ -1,17 +1,40 @@
 {
   "name": "interlude",
   "displayName": "Interlude",
-  "description": "Turn AI-agent wait time into short, useful reading — without leaving VS Code.",
+  "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
   "version": "0.1.0",
   "publisher": "shikhar",
-  "private": true,
   "license": "MIT",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0c0f13",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
   "categories": [
+    "Education",
+    "AI",
     "Other"
   ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "agent",
+    "productivity",
+    "learning",
+    "focus"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shikhar-9519/interlude.git"
+  },
+  "homepage": "https://github.com/shikhar-9519/interlude#readme",
+  "bugs": {
+    "url": "https://github.com/shikhar-9519/interlude/issues"
+  },
   "main": "./out/src/extension.js",
   "activationEvents": [
     "onStartupFinished"
@@ -120,7 +143,7 @@
             "system_design",
             "misc"
           ],
-          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track — news and blogs are always shown. Narrow this to the areas you actually work in."
+          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track \u2014 news and blogs are always shown. Narrow this to the areas you actually work in."
         },
         "interlude.maxCards": {
           "type": "number",
@@ -199,22 +222,5 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zod": "^3.24.0"
-  },
-  "keywords": [
-    "claude",
-    "claude-code",
-    "ai",
-    "agent",
-    "productivity",
-    "learning",
-    "focus"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shikhar-9519/interlude.git"
-  },
-  "homepage": "https://github.com/shikhar-9519/interlude#readme",
-  "bugs": {
-    "url": "https://github.com/shikhar-9519/interlude/issues"
   }
 }

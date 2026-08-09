@@ -1,10 +1,41 @@
-.vscode/**
-webview/**
+# What ships is only what the extension host and webview load at runtime:
+# out/**, the built webview bundle, the seed feed, and the icons.
+#
+# Everything else in this repo — the generator, the review console, your local
+# content, the publishing scripts — is authoring tooling and has no business
+# inside a package other people install.
+
+# Secrets and local content. Never ship these.
+.env
+.env.*
+data/**
+
+# Authoring tooling
+admin/**
 generator/**
+lib/**
+scripts/**
+dev/**
+.github/**
+
+# Sources, compiled into out/ and media/
 src/**
-node_modules/**
+webview/**
+
+# Build config
 tsconfig*.json
 vite.config.ts
-**/*.map
+vite.admin.config.ts
+.vscode/**
 .gitignore
-dev/**
+.vscodeignore
+
+# Source art for the marketplace icon; icon.png is what ships
+media/icon-marketplace.svg
+
+# Dependencies are bundled or unused at runtime
+node_modules/**
+package-lock.json
+
+# Sourcemaps roughly double the package for no user benefit
+**/*.map

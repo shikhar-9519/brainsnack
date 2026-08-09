@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!--
+    Marketplace icon. Drawn as rects rather than text so rasterising does not
+    depend on IBM Plex Serif being installed on the converting machine.
+    A serif "I": the letterform sits between two rules, like an interlude sits
+    between two acts.
+  -->
+  <rect width="128" height="128" rx="28" fill="#0c0f13"/>
+
+  <!-- upper rule -->
+  <rect x="30" y="30" width="68" height="3" rx="1.5" fill="#e3a857" opacity="0.35"/>
+
+  <!-- serif I -->
+  <rect x="42" y="48" width="44" height="7" rx="2" fill="#e3a857"/>
+  <rect x="58" y="48" width="12" height="34" fill="#e3a857"/>
+  <rect x="42" y="75" width="44" height="7" rx="2" fill="#e3a857"/>
+
+  <!-- lower rule -->
+  <rect x="30" y="96" width="68" height="3" rx="1.5" fill="#e3a857" opacity="0.35"/>
+</svg>
