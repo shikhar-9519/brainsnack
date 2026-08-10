@@ -3,7 +3,7 @@
   "displayName": "Interlude",
   "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
   "version": "0.1.0",
-  "publisher": "shikhar",
+  "publisher": "shikhargupta",
   "license": "MIT",
   "icon": "media/icon.png",
   "galleryBanner": {
