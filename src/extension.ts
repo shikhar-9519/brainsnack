@@ -12,8 +12,36 @@ import { SoundPlayer, SoundEvent } from './sound';
 import { StatusBar } from './statusBar';
 import { Storage } from './storage';
 import { AgentState } from './types';
+import type { AboutInfo } from './types';
 
 const MINUTE_MS = 60_000;
+
+/**
+ * Everything the About panel shows comes from package.json, so there is one
+ * place to change the author link or the repo and no risk of the panel
+ * disagreeing with the manifest.
+ */
+function buildAbout(context: vscode.ExtensionContext): AboutInfo {
+  const pkg = context.extension.packageJSON as {
+    version?: string;
+    publisher?: string;
+    name?: string;
+    author?: { name?: string; url?: string };
+    repository?: { url?: string };
+    bugs?: { url?: string };
+  };
+
+  const repositoryUrl = (pkg.repository?.url ?? '').replace(/\.git$/, '');
+
+  return {
+    version: pkg.version ?? '0.0.0',
+    publisherId: `${pkg.publisher ?? ''}.${pkg.name ?? ''}`,
+    authorName: pkg.author?.name ?? '',
+    authorUrl: pkg.author?.url ?? '',
+    repositoryUrl,
+    issuesUrl: pkg.bugs?.url ?? `${repositoryUrl}/issues`,
+  };
+}
 
 function config(): vscode.WorkspaceConfiguration {
   return vscode.workspace.getConfiguration(EXTENSION_ID);
@@ -42,6 +70,7 @@ export async function activate(
   let focusPanel: FocusPanel | undefined;
 
   const deps: SessionDeps = {
+    about: buildAbout(context),
     loader,
     storage,
     agentState,

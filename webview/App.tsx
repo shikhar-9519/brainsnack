@@ -9,7 +9,13 @@ import {
   Surface,
 } from '../src/types';
 // CardType is imported above as a value; that import carries the type too.
-import type { Card, Track, WebviewInitPayload } from '../src/types';
+import type {
+  AboutInfo,
+  Card,
+  Track,
+  WebviewInitPayload,
+} from '../src/types';
+import { AboutPanel } from './components/AboutPanel';
 import { AgentBanner } from './components/AgentBanner';
 import { CardList } from './components/CardList';
 import { EmptyState } from './components/EmptyState';
@@ -62,6 +68,43 @@ function withoutKeys(
   return next;
 }
 
+interface FeedBodyProps {
+  showingAbout: boolean;
+  about: AboutInfo | undefined;
+  cardCount: number;
+  feedGeneratedAt: string;
+  onOpenExternal: (url: string) => void;
+  onOpenSettings: () => void;
+  children: React.ReactNode;
+}
+
+/** About replaces the feed rather than stacking on top of it. */
+function FeedBody({
+  showingAbout,
+  about,
+  cardCount,
+  feedGeneratedAt,
+  onOpenExternal,
+  onOpenSettings,
+  children,
+}: FeedBodyProps) {
+  if (!showingAbout || !about) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className="scroll">
+      <AboutPanel
+        about={about}
+        cardCount={cardCount}
+        feedGeneratedAt={feedGeneratedAt}
+        onOpenExternal={onOpenExternal}
+        onOpenSettings={onOpenSettings}
+      />
+    </div>
+  );
+}
+
 export function App() {
   const saved = restore<PersistedState>();
 
@@ -72,6 +115,9 @@ export function App() {
     saved?.interests ?? [...ALL_CARD_TYPES],
   );
   const [tracks, setTracks] = useState<Track[]>([...ALL_TRACKS]);
+  const [about, setAbout] = useState<AboutInfo | undefined>(undefined);
+  const [feedGeneratedAt, setFeedGeneratedAt] = useState('');
+  const [showingAbout, setShowingAbout] = useState(false);
   const [removeAfterSeconds, setRemoveAfterSeconds] = useState(10);
   const [agentState, setAgentState] = useState<AgentState>(AgentState.IDLE);
   const [activeTab, setActiveTab] = useState<string>(saved?.activeTab ?? ALL_TAB);
@@ -91,6 +137,8 @@ export function App() {
     setReadIds(new Set(payload.readIds));
     setInterests(payload.interests);
     setTracks(payload.tracks);
+    setAbout(payload.about);
+    setFeedGeneratedAt(payload.feedGeneratedAt);
     setRemoveAfterSeconds(payload.removeAfterSeconds);
     setAgentState(payload.agentState);
   }, []);
@@ -260,6 +308,10 @@ export function App() {
     }));
   }
 
+  function handleOpenExternal(url: string) {
+    send(InboundMessage.OPEN_EXTERNAL, { url });
+  }
+
   function handleTracksChange(next: Track[]) {
     setTracks(next);
 
@@ -279,10 +331,20 @@ export function App() {
     <div className="app">
       <Header
         surface={currentSurface()}
+        showingAbout={showingAbout}
         onOpenFocus={() => send(InboundMessage.OPEN_FOCUS)}
         onRefresh={() => send(InboundMessage.REFRESH)}
+        onToggleAbout={() => setShowingAbout(value => !value)}
       />
 
+      <FeedBody
+        showingAbout={showingAbout}
+        about={about}
+        cardCount={cards.length}
+        feedGeneratedAt={feedGeneratedAt}
+        onOpenExternal={handleOpenExternal}
+        onOpenSettings={() => send(InboundMessage.OPEN_SETTINGS)}
+      >
       <AgentBanner state={agentState} />
 
       <TabBar
@@ -316,7 +378,8 @@ export function App() {
           onOpen={handleOpen}
           onReveal={handleReveal}
         />
-      </div>
+        </div>
+      </FeedBody>
     </div>
   );
 }

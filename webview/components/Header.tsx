@@ -1,10 +1,53 @@
 import { Surface } from '../../src/types';
-import { ExpandIcon, RefreshIcon } from './Icons';
+import { ArrowLeftIcon, ExpandIcon, RefreshIcon, UserIcon } from './Icons';
 
 interface HeaderProps {
   surface: Surface;
+  showingAbout: boolean;
   onOpenFocus: () => void;
   onRefresh: () => void;
+  onToggleAbout: () => void;
+}
+
+/** Refresh and focus mode are meaningless while About is open. */
+function FeedActions({
+  surface,
+  showingAbout,
+  onOpenFocus,
+  onRefresh,
+}: {
+  surface: Surface;
+  showingAbout: boolean;
+  onOpenFocus: () => void;
+  onRefresh: () => void;
+}) {
+  if (showingAbout) {
+    return null;
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        className="icon-button"
+        onClick={onRefresh}
+        aria-label="Refresh feed"
+        title="Refresh feed"
+      >
+        <RefreshIcon />
+      </button>
+
+      <FocusButton surface={surface} onOpenFocus={onOpenFocus} />
+    </>
+  );
+}
+
+function AboutToggleIcon({ showingAbout }: { showingAbout: boolean }) {
+  if (showingAbout) {
+    return <ArrowLeftIcon />;
+  }
+
+  return <UserIcon />;
 }
 
 /** Focus mode is already the wide surface, so it does not offer itself. */
@@ -32,7 +75,13 @@ function FocusButton({
   );
 }
 
-export function Header({ surface, onOpenFocus, onRefresh }: HeaderProps) {
+export function Header({
+  surface,
+  showingAbout,
+  onOpenFocus,
+  onRefresh,
+  onToggleAbout,
+}: HeaderProps) {
   return (
     <header className="header">
       <span className="brand">
@@ -41,17 +90,23 @@ export function Header({ surface, onOpenFocus, onRefresh }: HeaderProps) {
 
       <span className="header__spacer" />
 
+      <FeedActions
+        surface={surface}
+        showingAbout={showingAbout}
+        onOpenFocus={onOpenFocus}
+        onRefresh={onRefresh}
+      />
+
       <button
         type="button"
-        className="icon-button"
-        onClick={onRefresh}
-        aria-label="Refresh feed"
-        title="Refresh feed"
+        className={showingAbout ? 'icon-button icon-button--on' : 'icon-button'}
+        onClick={onToggleAbout}
+        aria-label={showingAbout ? 'Back to feed' : 'About Interlude'}
+        aria-pressed={showingAbout}
+        title={showingAbout ? 'Back to feed' : 'About Interlude'}
       >
-        <RefreshIcon />
+        <AboutToggleIcon showingAbout={showingAbout} />
       </button>
-
-      <FocusButton surface={surface} onOpenFocus={onOpenFocus} />
     </header>
   );
 }

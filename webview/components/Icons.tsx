@@ -93,6 +93,23 @@ export function RefreshIcon({ size }: IconProps) {
   );
 }
 
+export function UserIcon({ size }: IconProps) {
+  return (
+    <Svg size={size}>
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </Svg>
+  );
+}
+
+export function ArrowLeftIcon({ size }: IconProps) {
+  return (
+    <Svg size={size}>
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </Svg>
+  );
+}
+
 export function InboxIcon({ size = 32 }: IconProps) {
   return (
     <Svg size={size}>

@@ -7,6 +7,7 @@ import {
   OutboundMessage,
 } from './types';
 import type {
+  AboutInfo,
   AgentState,
   Card,
   CardType,
@@ -27,6 +28,7 @@ interface InboundPayload {
 }
 
 export interface SessionDeps {
+  about: AboutInfo;
   loader: FeedLoader;
   storage: Storage;
   agentState: AgentStateStore;
@@ -40,6 +42,8 @@ export interface SessionDeps {
  */
 export class FeedSession implements vscode.Disposable {
   private cards: Card[] = [];
+
+  private feedGeneratedAt = '';
 
   private readonly disposables: vscode.Disposable[] = [];
 
@@ -90,6 +94,8 @@ export class FeedSession implements vscode.Disposable {
         config.get<Track[]>(ConfigKey.TRACKS, [...ALL_TRACKS]),
         ALL_TRACKS,
       ),
+      about: this.deps.about,
+      feedGeneratedAt: this.feedGeneratedAt,
       removeAfterSeconds: config.get<number>(ConfigKey.REMOVE_AFTER_SECONDS, 10),
       agentState: this.deps.agentState.current,
     };
@@ -129,6 +135,15 @@ export class FeedSession implements vscode.Disposable {
 
       case InboundMessage.OPEN_FOCUS:
         openFocus();
+        return;
+
+      // Deep-links to the native settings editor rather than reimplementing
+      // it, so the two cannot drift apart.
+      case InboundMessage.OPEN_SETTINGS:
+        await vscode.commands.executeCommand(
+          'workbench.action.openSettings',
+          `@ext:${this.deps.about.publisherId}`,
+        );
         return;
 
       case InboundMessage.SET_INTERESTS:
@@ -188,6 +203,8 @@ export class FeedSession implements vscode.Disposable {
 
   async refresh(): Promise<void> {
     const feed = await this.deps.loader.load();
+
+    this.feedGeneratedAt = feed.generatedAt;
 
     this.cards = this.deps.loader.visibleCards(feed);
 

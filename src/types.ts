@@ -159,6 +159,7 @@ export const InboundMessage = {
   SET_TRACKS: 'setTracks',
   REFRESH: 'refresh',
   OPEN_FOCUS: 'openFocus',
+  OPEN_SETTINGS: 'openSettings',
 } as const;
 
 export const Surface = {
@@ -168,12 +169,25 @@ export const Surface = {
 
 export type Surface = (typeof Surface)[keyof typeof Surface];
 
+export interface AboutInfo {
+  version: string;
+  /** publisher.name — what the settings editor filters on. */
+  publisherId: string;
+  authorName: string;
+  authorUrl: string;
+  repositoryUrl: string;
+  issuesUrl: string;
+}
+
 export interface WebviewInitPayload {
   cards: Card[];
   savedIds: string[];
   readIds: string[];
   interests: CardType[];
   tracks: Track[];
+  about: AboutInfo;
+  /** When the feed was generated, so the reader can judge how fresh it is. */
+  feedGeneratedAt: string;
   /** Grace period before an answered card clears itself. 0 disables it. */
   removeAfterSeconds: number;
   agentState: AgentState;

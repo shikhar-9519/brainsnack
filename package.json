@@ -222,5 +222,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zod": "^3.24.0"
+  },
+  "author": {
+    "name": "Shikhar Gupta",
+    "url": "https://www.linkedin.com/in/shikhar-gupta"
   }
 }
