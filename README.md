@@ -107,6 +107,39 @@ local, so nothing reaches readers without passing review.
 The generator itself never runs in CI: it drives the Claude CLI against a local
 subscription, so there are no credentials in this repo or in any workflow.
 
+## Publishing the extension
+
+Two independent registries. The same `.vsix` goes to both, and publishing to
+one has no bearing on the other.
+
+**VS Code Marketplace** — the larger audience, but it requires an Azure DevOps
+organisation, which requires a Microsoft account with its own directory. An
+account whose only directory belongs to an employer cannot create one without
+that employer's tenant allowing it.
+
+```bash
+npx @vscode/vsce login shikhargupta   # PAT from dev.azure.com
+npm run publish:vsce
+```
+
+The PAT needs **Marketplace → Manage** scope and organisation set to **all
+accessible organizations**. Anything narrower authenticates and then fails at
+publish, which reads like a bad token rather than a bad scope.
+
+**Open VSX** — the registry used by Cursor, VSCodium, Gitpod and Theia. Worth
+publishing to regardless of the Marketplace: a large share of the people this
+extension is built for use Cursor, which cannot install from Microsoft's
+registry at all.
+
+```bash
+npx ovsx create-namespace shikhargupta -p <TOKEN>
+npm run publish:ovsx -- -p <TOKEN>
+```
+
+The token comes from open-vsx.org after logging in with GitHub, and requires an
+Eclipse account with a matching GitHub username plus a signed Publisher
+Agreement. Publishing before signing it fails without mentioning the agreement.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

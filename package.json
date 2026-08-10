@@ -202,7 +202,9 @@
     "schedule:install": "sh scripts/install-schedule.sh",
     "publish": "sh scripts/publish-feed.sh",
     "set-feed-url": "sh scripts/set-feed-url.sh",
-    "package": "npm run build && npx @vscode/vsce package --no-dependencies"
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies",
+    "publish:vsce": "npm run package && npx --yes @vscode/vsce publish --packagePath interlude-$npm_package_version.vsix",
+    "publish:ovsx": "npm run package && npx --yes ovsx publish interlude-$npm_package_version.vsix"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
