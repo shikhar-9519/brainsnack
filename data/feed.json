@@ -1,6 +1,449 @@
 {
-  "generatedAt": "2026-08-09T14:05:50.347Z",
+  "generatedAt": "2026-08-10T07:59:21.887Z",
   "cards": [
+    {
+      "title": "MCP 2026-07-28 spec removes session state — stateless HTTP is now the standard",
+      "summary": "Transport-level sessions are gone; servers must be fully stateless and work behind standard HTTP load balancers. The release also adds Multi Round-Trip Requests, header-based routing, cacheable list results, and a formal extensions framework — the largest revision since launch.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "mcp",
+        "api",
+        "architecture",
+        "breaking-change"
+      ],
+      "type": "blog",
+      "sourceName": "MCP project",
+      "sourceUrl": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "id": "49fcf4832a24",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "GitHub Models inference proxy is fully retired — calls fail now",
+      "summary": "Any code hitting GitHub's `/models` endpoint or calling `llm()` inside Spark now returns errors with no grace period. Teams using GitHub Models for prototyping, CI evals, or as a free inference tier need an alternative provider in place immediately.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "github",
+        "inference",
+        "migration"
+      ],
+      "type": "ai_news",
+      "sourceName": "GitHub",
+      "sourceUrl": "https://github.blog/changelog/2026-07-30-github-models-is-now-retired/",
+      "id": "a6efcaac9b7b",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Anthropic retires Opus 4.1 — migrate model strings to Opus 4.8",
+      "summary": "Opus 4.1 was removed on August 5; any integration still pinning `claude-opus-4-1` is already broken. The drop-in replacement is `claude-opus-4-8`.",
+      "estimatedReadSeconds": 35,
+      "difficulty": "intermediate",
+      "tags": [
+        "anthropic",
+        "claude",
+        "deprecation"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://docs.anthropic.com/en/release-notes/api",
+      "id": "c3946004fbc3",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Claude Sonnet 5 promotional pricing ends August 31 — rates rise 50%",
+      "summary": "Input/output costs move from $2/$10 to $3/$15 per million tokens on September 1; rate limits stay at their elevated launch levels. If your cost model was built on intro pricing, update budgets and usage alerts before the end of the month.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "intermediate",
+      "tags": [
+        "anthropic",
+        "claude",
+        "pricing"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://docs.anthropic.com/en/release-notes/api",
+      "id": "3595d739b878",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "GitHub Copilot drops several models September 1 — update policy configs now",
+      "summary": "Chat, inline edit, ask/agent modes, and completions all lose specific model options on September 1; Claude Sonnet 4.6 is exempt only for individual annual subscribers, not team or enterprise plans. Audit your Copilot policy YAML and any IDE model selections before the cutoff.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "github",
+        "copilot",
+        "deprecation",
+        "llm"
+      ],
+      "type": "ai_news",
+      "sourceName": "GitHub",
+      "sourceUrl": "https://github.blog/changelog/2026-07-31-upcoming-august-2026-model-deprecations-in-github-copilot/",
+      "id": "229f4d15f76e",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Go 1.27 ships generic methods, post-quantum crypto, new JSON engine, and UUID stdlib package",
+      "summary": "Generic methods are now first-class — no more wrapping them as package-level functions. The rewritten `encoding/json` engine and size-specialised malloc (up to 30% cheaper for allocations under 80 bytes) are transparent performance wins requiring no code changes.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "generics",
+        "performance",
+        "stdlib"
+      ],
+      "type": "blog",
+      "sourceName": "Go team",
+      "sourceUrl": "https://go.dev/doc/go1.27",
+      "id": "35defb89fede",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "position: sticky Breaks Silently When an Ancestor Has overflow: hidden",
+      "summary": "Any ancestor with overflow: hidden, auto, or scroll becomes a scroll container, constraining sticky positioning to that box — which is almost never what you want. Swapping to overflow: clip preserves visual clipping without creating a scroll container.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "layout",
+        "positioning"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Sticky positioning works by anchoring an element relative to its nearest scrollable ancestor. When a wrapper anywhere up the DOM tree has overflow: hidden, the browser silently promotes that element to the scroll container, so position: sticky is scoped to a box that may never scroll. The element doesn't warn you — it just behaves like position: relative. The fix is overflow: clip, which was designed exactly for this: it clips painted overflow without establishing a new scroll container, so sticky elements can find the real viewport scroller.",
+      "code": "/* ❌ .sidebar sticks to nothing — .wrapper is now the scroll container */\n.wrapper {\n  overflow: hidden;\n}\n.sidebar {\n  position: sticky;\n  top: 0; /* effectively position: relative */\n}\n\n/* ✅ Clips visually, but doesn't create a scroll container */\n.wrapper {\n  overflow: clip;\n}\n.sidebar {\n  position: sticky;\n  top: 0; /* works as expected */\n}",
+      "id": "022ca2d19da2",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Object.keys() Returns string[], Not (keyof T)[] — and That's Correct",
+      "summary": "TypeScript intentionally widens Object.keys() to string[] because structural typing lets objects carry undeclared properties at runtime, making a narrower return type unsound. A typed wrapper trades that soundness warning for ergonomics — know where you're accepting the risk.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "type-safety"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "TypeScript's type system is structural, not nominal: a value typed as { host: string; port: number } may at runtime have additional keys. Returning (keyof T)[] from Object.keys would imply you know every key, which TypeScript cannot guarantee. Casting through a typedKeys helper localises the unsoundness to one place rather than scattering as (keyof T) casts across the codebase. This pattern is safe for objects you construct and own; avoid it for function parameters where callers may pass supertypes.",
+      "code": "const config = { host: 'localhost', port: 3000 };\n\n// Object.keys returns string[] — indexing config errors\nObject.keys(config).forEach(k => {\n  console.log(config[k]); // ❌ Element implicitly has an 'any' type\n});\n\n// Centralise the cast in a utility\nfunction typedKeys<T extends object>(obj: T): (keyof T)[] {\n  return Object.keys(obj) as (keyof T)[];\n}\n\ntypedKeys(config).forEach(k => {\n  console.log(config[k]); // ✅ string | number\n});",
+      "id": "3605126399cb",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "`.pipe()` Silently Abandons Streams on Error",
+      "summary": "When a stage in a `.pipe()` chain emits an error, Node stops moving data but leaves every other stream open — file handles, sockets, and transform buffers all remain uncollected. `stream.pipeline` wires shared error listeners across every stage and calls `.destroy()` on all of them on the first failure.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "streams",
+        "error-handling"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "`.pipe()` listens only for the destination's `end` event and has no built-in error forwarding between stages. An error on a Transform propagates nowhere: the source readable stalls (not closed) and the destination writable stays open, leaking the underlying resource. `stream.pipeline` solves both issues by attaching error listeners to every stream in the chain and destroying all of them on any error. Use `require('stream/promises').pipeline` (Node 15+) to get a promise-returning version that also handles async generators cleanly.",
+      "code": "const { pipeline } = require('stream/promises');\nconst { createReadStream, createWriteStream } = require('fs');\nconst { createGzip } = require('zlib');\n\n// BAD: a zlib error leaves the file handle open, no rejection thrown\n// createReadStream('in.log').pipe(createGzip()).pipe(createWriteStream('out.gz'));\n\n// GOOD: all three streams are destroyed on any error\nawait pipeline(\n  createReadStream('in.log'),\n  createGzip(),\n  createWriteStream('out.gz')\n);",
+      "id": "af36767410a2",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "`@lru_cache` on Instance Methods Leaks Every Instance",
+      "summary": "`lru_cache` treats `self` as part of the cache key and holds a strong reference to it, so every object that ever calls the decorated method is pinned in memory for the cache's lifetime — the instance's `__del__` never fires and the GC cannot reclaim it.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "memory",
+        "caching"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "The decorator stores `(self, *args)` tuples in an internal dict, and dicts hold strong references. Because the cache lives on the class (not the instance), it remains reachable as long as the class itself is loaded — which in practice means forever. For per-instance memoization, `functools.cached_property` stores results directly in the instance's `__dict__`, so they are collected with the instance. For shared memoization, lift the computation to a module-level function that takes only primitive values and cache that instead.",
+      "code": "import functools\n\nclass DataLoader:\n    # BAD: cache holds a strong ref to every DataLoader ever created\n    @functools.lru_cache(maxsize=128)\n    def load(self, key: str) -> bytes: ...\n\nclass BetterLoader:\n    # GOOD: result lives in instance.__dict__; GC'd with the instance\n    @functools.cached_property\n    def config(self) -> dict:\n        return _fetch_config()\n\n# GOOD: module-level cache keyed on primitives only\n@functools.lru_cache(maxsize=128)\ndef load(key: str) -> bytes: ...",
+      "id": "9d9f3fd3192c",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "`synchronized` Pins Virtual Threads and Kills Loom's Scalability",
+      "summary": "When a virtual thread enters a `synchronized` block or method, the JVM pins it to its carrier (platform) thread — it cannot unmount even while blocking on I/O. Any blocking call inside a monitor holds a real OS thread, collapsing the scalability benefit of Project Loom.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "java",
+        "virtual-threads",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "Virtual threads gain their efficiency by unmounting from carrier threads during blocking operations so the carrier can run other virtual threads. `synchronized` uses JVM object monitors, which are bound to carrier-thread identity; the runtime cannot unmount a virtual thread that owns one. Old JDBC drivers, legacy crypto libraries, and any code with blocking I/O inside `synchronized` all trigger pinning. Replace monitors with `ReentrantLock`, which parks cooperatively and allows unmounting. On JDK 21+ you can detect pinning with `-Djdk.tracePinnedThreads=full` or by watching the `jdk.VirtualThreadPinned` JFR event.",
+      "code": "import java.util.concurrent.locks.ReentrantLock;\n\n// BAD: carrier thread is pinned while blocking on I/O inside the monitor\nsynchronized (this) {\n    jdbcConnection.executeQuery(sql);\n}\n\n// GOOD: virtual thread unmounts while waiting; carrier is free\nprivate final ReentrantLock lock = new ReentrantLock();\nlock.lock();\ntry {\n    jdbcConnection.executeQuery(sql);\n} finally {\n    lock.unlock();\n}",
+      "id": "04a5ee70d71c",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "`http.DefaultClient` Has No Timeout — Goroutines Block Forever",
+      "summary": "`http.DefaultClient` sets `Timeout` to zero, disabling all deadlines. A server that accepts the TCP connection but never sends a response holds your goroutine open indefinitely, and in a service under load this silently exhausts the goroutine pool or file-descriptor limit.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "http",
+        "reliability"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "`http.Client.Timeout` covers the entire round-trip: dial, TLS handshake, request write, redirect follows, and reading the full response body. Zero means no limit at any stage. The default client is a shared package-level variable used by `http.Get`, `http.Post`, and friends — one stalled upstream can starve unrelated calls that share the same transport's connection pool. Always construct a named `http.Client` with `Timeout` set. If you need finer control, configure `Transport.DialContext`, `ResponseHeaderTimeout`, and `IdleConnTimeout` separately.",
+      "code": "import (\n    \"net/http\"\n    \"time\"\n)\n\n// BAD: zero timeout — hangs forever on a slow or malicious server\nresp, err := http.DefaultClient.Get(\"https://api.example.com/data\")\n\n// GOOD: scoped client with an explicit deadline\nclient := &http.Client{\n    Timeout: 10 * time.Second,\n}\nresp, err := client.Get(\"https://api.example.com/data\")",
+      "id": "292679b6f159",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Write-Behind Caching Silently Loses Acknowledged Writes on Failure",
+      "summary": "Write-behind (write-back) caches acknowledge the client write immediately and flush to the database asynchronously — if the cache node crashes before the flush, those writes vanish with no error ever returned to the caller and no record in the DB.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "caching",
+        "durability",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The throughput appeal of write-behind is real: batching and coalescing writes before hitting durable storage reduces DB pressure dramatically. The hidden cost is that the cache becomes the system of record for all unflushed mutations, so its durability guarantees now matter as much as the database's. Redis with `appendfsync everysec` (the default AOF mode) can lose up to one second of writes on a crash — silently, because the client already received a success response. Mitigations include `appendfsync always` (serializes all writes through the OS, largely negating the throughput win), using a durable queue like Kafka as the write buffer instead of Redis alone, or reserving write-behind only for genuinely loss-tolerant data such as view counters.",
+      "code": "# redis.conf defaults — a crash can drop up to 1 second of acknowledged writes\nappendonly yes\nappendfsync everysec\n\n# Zero data-loss option — fsync on every write, but kills throughput\n# appendfsync always\n\n# Durable alternative: write to Kafka first, consume into DB async\n# Cache reflects the committed log, not unsynced memory",
+      "id": "f2972622b88d",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Modulo Sharding Remaps Nearly Every Key When You Rescale",
+      "summary": "With `hash(key) % N` sharding, adding one node changes N and therefore reassigns roughly `(N-1)/N` of all keys to different shards — invalidating your entire cache or forcing a full data migration. Consistent hashing limits remapping to approximately 1/N of keys.",
+      "estimatedReadSeconds": 150,
+      "difficulty": "intermediate",
+      "tags": [
+        "system-design",
+        "sharding",
+        "distributed-systems"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "In a 10-node modulo cluster, `hash(k) % 10` and `hash(k) % 11` agree only when both results happen to be equal, which is about 9% of keys — so a scale-out event silently invalidates ~91% of your cache and thunders those misses straight to the database. Consistent hashing places nodes and keys on a hash ring; adding a node only steals keys from the arc between it and its predecessor. Without virtual nodes, though, physical placement on the ring is uneven and one node may own a disproportionate arc. Assign each physical node V virtual positions (100–150 is common) to smooth the distribution — this is the basis of memcached's ketama, Cassandra's token ranges, and most modern distributed KV stores.",
+      "code": "# Naive modulo: scale from 10 to 11 nodes remaps ~91% of keys\ndef shard(key: str, n: int) -> int:\n    return hash(key) % n\n\nimport bisect, hashlib\n\nclass HashRing:\n    def __init__(self, nodes, vnodes=150):\n        self.ring, self.keys = {}, []\n        for node in nodes:\n            for i in range(vnodes):\n                h = int(hashlib.md5(f\"{node}:{i}\".encode()).hexdigest(), 16)\n                self.ring[h] = node\n                bisect.insort(self.keys, h)\n\n    def get(self, key: str) -> str:\n        h = int(hashlib.md5(key.encode()).hexdigest(), 16)\n        return self.ring[self.keys[bisect.bisect(self.keys, h) % len(self.keys)]]",
+      "id": "a9c38eb12e0c",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "You need to enforce a global rate limit of 10,000 req/s across 20 stateless API gateway instances. Walk me through your design and its failure modes.",
+      "summary": "Tests whether the candidate understands distributed counting, the consistency-latency tradeoff in shared state, and graceful degradation when the coordination layer fails.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "system-design",
+        "rate-limiting",
+        "distributed-systems",
+        "redis"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "The standard approach uses a centralized counter in Redis with a sliding-window algorithm—either a sorted set of timestamps or a fixed-window counter with interpolation between the current and previous window. Each gateway atomically increments via a Lua script and checks the result against the threshold. The critical failure mode is Redis going down: you need a fallback, typically a local token bucket per instance pre-loaded with its share of the global budget (500 req/s each). This sacrifices accuracy but prevents both open-flooding and hard-blocking all traffic. A subtler issue is burst traffic at window boundaries; the sliding-window-counter algorithm handles this by weighting the previous window's count, smoothing the edge. You must also address split-brain: if some gateways lose connectivity to Redis while others don't, enforcement becomes inconsistent. The design choice is whether to fail-open (risk over-admission) or fail-closed (risk dropping legitimate traffic), and that decision should be configurable per route.",
+      "followUps": [
+        "How would you handle a sudden failure where 15 of 20 instances go down and the surviving 5 inherit all traffic—does your rate limit still hold?",
+        "What's the memory and accuracy tradeoff between a sliding-window-log and a fixed-window-counter approach at high throughput?",
+        "How would you extend this to per-tenant limits with 100,000 tenants without exploding your Redis keyspace?"
+      ],
+      "id": "285a93e53626",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Explain how Go's runtime scheduler multiplexes goroutines onto OS threads and what happens when a goroutine makes a blocking system call.",
+      "summary": "Tests understanding of the GMP scheduling model, the hand-off mechanism for blocking syscalls, and how asynchronous preemption prevents compute-bound goroutines from monopolizing a thread.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "go",
+        "concurrency",
+        "scheduler",
+        "runtime"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": true,
+      "body": "Go uses an M:N scheduler built around three entities: G (goroutine), M (OS thread), and P (logical processor, capped at GOMAXPROCS). Each P owns a local run queue of runnable Gs. When a goroutine enters a blocking syscall, the runtime performs a hand-off: it detaches the P from the blocked M and assigns it to an idle or newly spawned M so other goroutines keep running. When the syscall returns, the M tries to reacquire a P; if none are free, its G goes to the global run queue and the M parks. For network I/O, the runtime avoids this entirely—the netpoller uses epoll/kqueue to multiplex socket readiness, so network-blocked goroutines never consume an OS thread. Since Go 1.14, the scheduler emits SIGURG-based asynchronous preemption signals, allowing it to pause goroutines stuck in tight compute loops that lack cooperative preemption points. Work stealing across P run queues and periodic checks of the global queue ensure load balance without a centralized lock.",
+      "followUps": [
+        "What class of bugs did non-preemptive scheduling cause before Go 1.14, and how does signal-based preemption solve them?",
+        "How does the netpoller integrate with the scheduler so that thousands of concurrent network connections don't each pin an OS thread?"
+      ],
+      "id": "d07e7d987d37",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Explain how the browser promotes an element to its own compositing layer, what will-change: transform actually does at the rendering pipeline level, and why over-promoting hurts performance.",
+      "summary": "Tests whether the candidate understands the paint-to-composite pipeline separation and can reason about GPU memory tradeoffs rather than blindly applying optimization hacks.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "frontend",
+        "browser-internals",
+        "compositing",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "After layout and paint, the compositor decides which subtrees to rasterize into separate GPU-backed textures called layers. Properties like transform, opacity, and filter can be animated entirely on the compositor thread—but only if the element already lives on its own layer. Declaring will-change: transform tells the browser to eagerly promote the element, allocating a dedicated texture and rasterizing it independently. Subsequent transform animations then only require the compositor to reposition the texture, never touching the main thread or triggering repaint. The cost is concrete: every layer consumes GPU memory proportional to its pixel dimensions times device pixel ratio, and the compositor must composite all layers each frame. Over-promoting dozens of elements can exhaust VRAM, trigger fallback to software rasterization, or inflate composite time beyond the frame budget. The correct pattern is to apply will-change shortly before an animation begins and remove it on transitionend or animationend, so layers exist only while they deliver value.",
+      "followUps": [
+        "How would you diagnose excessive layer promotion in DevTools, and which metrics tell you you've crossed the line?",
+        "Give an example of implicit layer promotion—where the browser creates a layer you didn't ask for—and explain why it happens.",
+        "Why can animating left or top never be compositor-only, even if the element is on its own layer?"
+      ],
+      "id": "fb680554fb95",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Closure Over `var` in a Loop",
+      "summary": "All three closures share the same function-scoped `var i`, which is 3 after the loop ends.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "closures",
+        "var-scoping",
+        "javascript"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "const funcs = [];\nfor (var i = 0; i < 3; i++) {\n  funcs.push(() => i);\n}\nconsole.log(funcs.map(f => f()).join(', '));",
+      "options": [
+        {
+          "label": "0, 1, 2"
+        },
+        {
+          "label": "3, 3, 3"
+        },
+        {
+          "label": "2, 2, 2"
+        },
+        {
+          "label": "undefined, undefined, undefined"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "Because `var` is function-scoped, there is a single `i` binding shared by all three closures. The loop exits when `i` reaches 3, so every closure returns 3. Using `let` instead would create a new binding per iteration, yielding 0, 1, 2.",
+      "id": "80bef599772b",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "List Repetition and Shared References",
+      "summary": "The `*` operator on a list of lists copies references, not the inner objects, so mutating one element affects all of them.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "references",
+        "shallow-copy"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "a = [[0]] * 3\na[0][0] = 1\nprint(a)",
+      "options": [
+        {
+          "label": "[[1], [0], [0]]"
+        },
+        {
+          "label": "[[1], [1], [1]]"
+        },
+        {
+          "label": "[[0], [0], [0]]"
+        },
+        {
+          "label": "[1, 1, 1]"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The expression `[[0]] * 3` creates a list containing three references to the same inner list object. Assigning `a[0][0] = 1` mutates that single inner list, and because all three slots point to it, the change is visible in every position. Use a list comprehension like `[[0] for _ in range(3)]` to get independent copies.",
+      "id": "5c0ddc20a85e",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Slice Append and Shared Backing Array",
+      "summary": "Appending to a sub-slice that still has capacity overwrites the original slice's backing array instead of allocating a new one.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "go",
+        "slices",
+        "append",
+        "capacity"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    s := []int{1, 2, 3}\n    a := s[:2]\n    a = append(a, 4)\n    fmt.Println(s)\n}",
+      "options": [
+        {
+          "label": "[1 2 3]"
+        },
+        {
+          "label": "[1 2 4]"
+        },
+        {
+          "label": "[1 2 3 4]"
+        },
+        {
+          "label": "[1 2]"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The slice literal `s` has len 3 and cap 3. The sub-slice `a = s[:2]` has len 2 but still cap 3, sharing the same backing array. Because there is remaining capacity, `append(a, 4)` writes 4 into the third position of that array, overwriting `s[2]`. A new backing array would only be allocated if `append` exceeded the capacity.",
+      "id": "1d3392883546",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
+    {
+      "title": "Integer Autoboxing Cache Boundary",
+      "summary": "Java caches `Integer` objects for values −128 to 127; `==` on autoboxed values outside that range compares distinct object references.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "autoboxing",
+        "integer-cache"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        Integer a = 127;\n        Integer b = 127;\n        Integer c = 128;\n        Integer d = 128;\n        System.out.println(a == b);\n        System.out.println(c == d);\n    }\n}",
+      "options": [
+        {
+          "label": "true\ntrue"
+        },
+        {
+          "label": "false\nfalse"
+        },
+        {
+          "label": "true\nfalse"
+        },
+        {
+          "label": "false\ntrue"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "The JLS requires `Integer.valueOf` to cache values from −128 to 127. Autoboxing 127 returns the same cached object for both `a` and `b`, so `==` is true. Autoboxing 128 creates two separate `Integer` objects, so `==` compares references and returns false. Use `.equals()` for reliable value comparison across the full range.",
+      "id": "bc26e1506e08",
+      "publishedAt": "2026-08-10T07:28:25.427Z"
+    },
     {
       "title": "npm worm injects self-propagating backdoor into hundreds of packages including keyv",
       "summary": "A supply-chain worm has compromised packages with hundreds of millions of weekly downloads by autonomously spreading to dependents—audit your lockfile for affected versions and rotate any secrets that may have been exfiltrated. This is not a theoretical risk; the payload is live in the wild.",
