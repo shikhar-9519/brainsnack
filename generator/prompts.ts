@@ -154,8 +154,8 @@ ${covered.join('\n') || '(nothing yet)'}
 
 export function outputQuestionPrompt(count: number, covered: string[]): string {
   return `
-Write ${count} output-based questions: a short code snippet, and four options
-for what it prints or evaluates to.
+Write ${count} output-based questions: type "output_question". A short code
+snippet, and four options for what it prints or evaluates to.
 
 Hard requirements:
 - code is self-contained, under 20 lines, and deterministic. No randomness, no

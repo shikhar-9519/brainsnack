@@ -232,6 +232,30 @@ function coveredTitles(
     .map(card => `- ${card.title}`);
 }
 
+const failed: string[] = [];
+
+/**
+ * A run makes five generation calls. Letting one rejection propagate threw away
+ * everything the other four produced — fifteen minutes of generation and seat
+ * allowance discarded because one category came back malformed. Each section is
+ * now independent: what succeeded gets queued, what failed is reported.
+ */
+async function section(
+  label: string,
+  run: () => Promise<{ cards: unknown[] }>,
+): Promise<unknown[]> {
+  try {
+    return (await run()).cards;
+  } catch (error) {
+    failed.push(label);
+
+    log(`  ${label} failed, continuing without it`);
+    log(`    ${String(error).slice(0, 200)}`);
+
+    return [];
+  }
+}
+
 async function main(): Promise<void> {
   const [feed, queue, seen] = await Promise.all([
     readFeed(),
@@ -249,7 +273,7 @@ async function main(): Promise<void> {
 
   const research = await researchNews();
 
-  const news = await generateBatch(
+  const news = await section('news', () => generateBatch(
     'news and blog cards',
     Model.FAST,
     Effort.LOW,
@@ -258,9 +282,9 @@ async function main(): Promise<void> {
       ...coveredTitles(history, CardType.AI_NEWS),
       ...coveredTitles(history, CardType.BLOG),
     ]),
-  );
+  ));
 
-  const frontend = await generateBatch(
+  const frontend = await section('frontend tips', () => generateBatch(
     'frontend tips',
     Model.FAST,
     Effort.LOW,
@@ -269,9 +293,9 @@ async function main(): Promise<void> {
       COUNTS.frontend,
       coveredTitles(history, CardType.LEARN, [Track.FRONTEND]),
     ),
-  );
+  ));
 
-  const backend = await generateBatch(
+  const backend = await section('backend tips', () => generateBatch(
     'backend tips',
     Model.FAST,
     Effort.MEDIUM,
@@ -287,9 +311,9 @@ async function main(): Promise<void> {
         Track.MISC,
       ]),
     ),
-  );
+  ));
 
-  const interview = await generateBatch(
+  const interview = await section('interview questions', () => generateBatch(
     'interview questions',
     Model.DEEP,
     Effort.HIGH,
@@ -298,9 +322,9 @@ async function main(): Promise<void> {
       COUNTS.interview,
       coveredTitles(history, CardType.LEARN),
     ),
-  );
+  ));
 
-  const outputQuestions = await generateBatch(
+  const outputQuestions = await section('output questions', () => generateBatch(
     'output-based questions',
     Model.DEEP,
     Effort.HIGH,
@@ -309,14 +333,14 @@ async function main(): Promise<void> {
       COUNTS.outputQuestions,
       coveredTitles(history, CardType.OUTPUT_QUESTION),
     ),
-  );
+  ));
 
   const drafts = [
-    ...news.cards,
-    ...frontend.cards,
-    ...backend.cards,
-    ...interview.cards,
-    ...outputQuestions.cards,
+    ...news,
+    ...frontend,
+    ...backend,
+    ...interview,
+    ...outputQuestions,
   ] as Draft[];
 
   const stamped = stamp(drafts, generatedAt);
@@ -334,8 +358,17 @@ async function main(): Promise<void> {
 
   await appendRunLog(added, generatedAt);
 
+  if (failed.length > 0) {
+    log('');
+    log(`Sections that failed: ${failed.join(', ')}`);
+  }
+
   log('');
   log('Review them with: npm run admin');
+
+  if (added === 0) {
+    throw new Error('No cards were queued — every section failed');
+  }
 }
 
 main().catch((error: unknown) => {
