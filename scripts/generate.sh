@@ -16,4 +16,11 @@ fi
 # Claude Code refuses to launch inside another Claude Code session.
 unset CLAUDECODE CLAUDE_CODE_ENTRYPOINT 2>/dev/null || true
 
-exec npx tsx generator/generate.ts
+# caffeinate -i holds off idle sleep for as long as the generator runs. Without
+# it the machine sleeps a minute after the 23:00 start, the claude process is
+# suspended mid-call, and the run dies on wake when the call timeout fires
+# against a clock that stopped counting.
+#
+# -i covers idle sleep only. Closing the lid still sleeps the machine, and no
+# amount of caffeinate prevents that.
+exec caffeinate -i npx tsx generator/generate.ts
