@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3
+
+- Removed the Advanced settings group. The hook port now walks forward to the
+  next free port on its own, so a clash no longer needs anyone to pick a number.
+- Sound settings now say which file formats work: `.wav` everywhere, with
+  macOS also accepting `.aiff`, `.mp3` and `.m4a`.
+
 ## 0.1.2
 
 - Settings are grouped into BrainSnack, Content, Sounds and Advanced instead of

@@ -94,8 +94,14 @@ Everything is under `brainsnack.*` in VS Code settings. The ones worth knowing:
 | `tracks` | all | Which technologies you want cards about |
 | `interests` | all | Which kinds of cards you want |
 
-Sound uses macOS system sounds by default. On Windows and Linux, set
-`sound.onWaiting` and `sound.onFinished` to a sound file path.
+### Custom sounds
+
+macOS plays a system sound by default. On **Windows and Linux there is no
+default**, so set `sound.onWaiting` and `sound.onFinished` to an absolute path.
+
+Use a **`.wav` file** — it is the only format that plays on all three
+platforms. macOS also accepts `.aiff`, `.mp3` and `.m4a`; Windows accepts
+nothing but `.wav`.
 
 ---
 

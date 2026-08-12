@@ -169,21 +169,39 @@ function openFeedIfEnabled(provider: FeedViewProvider): void {
   void provider.revealWithoutStealingFocus();
 }
 
+const PORT_ATTEMPTS = 8;
+
+/**
+ * Walks forward from the configured port until one binds. A port clash used to
+ * need the user to find a free number and re-run the install command, which is
+ * not a thing anyone should have to reason about — and the hook installer
+ * writes whichever port actually bound, so the two cannot disagree.
+ */
 async function startHookServer(
   hookServer: HookServer,
   output: Logger,
 ): Promise<void> {
-  const port = config().get<number>(ConfigKey.HOOK_PORT, 43117);
+  const first = config().get<number>(ConfigKey.HOOK_PORT, 43117);
 
-  try {
-    await hookServer.start(port);
-  } catch (error) {
-    output.log(`Could not bind hook port ${port}: ${String(error)}`);
+  for (let offset = 0; offset < PORT_ATTEMPTS; offset += 1) {
+    const port = first + offset;
 
-    void vscode.window.showWarningMessage(
-      `BrainSnack could not listen on port ${port}. Change brainsnack.hookPort and re-run "BrainSnack: Install Claude Code Hooks".`,
-    );
+    try {
+      await hookServer.start(port);
+
+      if (offset > 0) {
+        output.log(`Port ${first} was busy; listening on ${port} instead`);
+      }
+
+      return;
+    } catch (error) {
+      output.log(`Port ${port} unavailable: ${String(error)}`);
+    }
   }
+
+  void vscode.window.showWarningMessage(
+    `BrainSnack could not find a free port between ${first} and ${first + PORT_ATTEMPTS - 1}. Agent detection is off; everything else still works.`,
+  );
 }
 
 interface CommandDeps {

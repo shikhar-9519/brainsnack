@@ -33,11 +33,15 @@ fi
 
 URL="https://$OWNER.github.io/$REPO/feed.json"
 
+# The feed URL default lives in src/constants.ts, not the manifest.
 node -e "
   const fs = require('fs');
+  const c = fs.readFileSync('src/constants.ts', 'utf8');
+  fs.writeFileSync('src/constants.ts',
+    c.replace(/export const DEFAULT_FEED_URL =\\s*'[^']*';/,
+              \"export const DEFAULT_FEED_URL =\\n  '$URL';\"));
   const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   const props = pkg.contributes.configuration.properties;
-  props['brainsnack.feedUrl'].default = '$URL';
   pkg.repository = { type: 'git', url: 'https://github.com/$OWNER/$REPO.git' };
   pkg.homepage = 'https://github.com/$OWNER/$REPO#readme';
   pkg.bugs = { url: 'https://github.com/$OWNER/$REPO/issues' };

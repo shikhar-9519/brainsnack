@@ -44,3 +44,13 @@ export const HOOK_MARKER = '#brainsnack';
 export const LEGACY_HOOK_MARKERS = ['#idleflow', '#interlude'];
 
 export const HOOK_HOST = '127.0.0.1';
+
+/**
+ * Where cards come from unless overridden. Lives here rather than as a manifest
+ * default because the setting is not exposed in the settings UI — an undeclared
+ * property has no default, so getConfiguration() would hand back the empty
+ * fallback and every install would silently serve the bundled seed instead of
+ * the live feed. `npm run set-feed-url` rewrites this line.
+ */
+export const DEFAULT_FEED_URL =
+  'https://shikhar-9519.github.io/brainsnack/feed.json';

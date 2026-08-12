@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 import * as vscode from 'vscode';
-import { ConfigKey, EXTENSION_ID } from './constants';
+import { ConfigKey, DEFAULT_FEED_URL, EXTENSION_ID } from './constants';
 import { ALL_CARD_TYPES, ALL_TRACKS, CardType, Track } from './types';
 import type { Card, Feed } from './types';
 import type { Storage } from './storage';
@@ -62,7 +62,7 @@ export class FeedLoader {
   private configuredUrl(): string {
     return vscode.workspace
       .getConfiguration(EXTENSION_ID)
-      .get<string>(ConfigKey.FEED_URL, '')
+      .get<string>(ConfigKey.FEED_URL, DEFAULT_FEED_URL)
       .trim();
   }
 
