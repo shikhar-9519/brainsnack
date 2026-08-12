@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- Rewrote the Marketplace listing: what the extension does and how to set it
+  up, rather than how it is built. Implementation notes moved to
+  `docs/how-it-works.md`.
+- Simplified the icon so it stays legible at the size search results use.
+
 ## 0.1.0
 
 First release.

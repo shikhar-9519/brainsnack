@@ -16,6 +16,7 @@ generator/**
 lib/**
 scripts/**
 dev/**
+docs/**
 .github/**
 
 # Sources, compiled into out/ and media/
