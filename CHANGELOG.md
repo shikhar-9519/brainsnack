@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Fixed the icon, which was rendering as a small mark in the corner of a white
+  square instead of filling the tile.
+
 ## 0.1.1
 
 **Fixed: multiple VS Code windows.** If you had more than one window open, only

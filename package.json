@@ -2,7 +2,7 @@
   "name": "brainsnack",
   "displayName": "BrainSnack",
   "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "shikhargupta",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -213,7 +213,8 @@
     "set-feed-url": "sh scripts/set-feed-url.sh",
     "package": "npm run build && npx @vscode/vsce package --no-dependencies",
     "publish:vsce": "npm run package && npx --yes @vscode/vsce publish --packagePath brainsnack-$npm_package_version.vsix",
-    "publish:ovsx": "npm run package && npx --yes ovsx publish brainsnack-$npm_package_version.vsix"
+    "publish:ovsx": "npm run package && npx --yes ovsx publish brainsnack-$npm_package_version.vsix",
+    "build:icon": "node scripts/build-icon.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
@@ -223,7 +224,8 @@
     "@vitejs/plugin-react": "^4.3.4",
     "tsx": "^4.19.2",
     "typescript": "^5.7.0",
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "sharp": "^0.34.0"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
