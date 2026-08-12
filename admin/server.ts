@@ -16,7 +16,7 @@ import {
  * reachable from anywhere else.
  */
 const HOST = '127.0.0.1';
-const PORT = Number(process.env.INTERLUDE_ADMIN_PORT ?? 4319);
+const PORT = Number(process.env.BRAINSNACK_ADMIN_PORT ?? 4319);
 const CLIENT_DIR = path.resolve(process.cwd(), 'admin', 'dist');
 const MAX_BODY_BYTES = 256 * 1024;
 
@@ -174,5 +174,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  process.stdout.write(`Interlude admin: http://${HOST}:${PORT}\n`);
+  process.stdout.write(`BrainSnack admin: http://${HOST}:${PORT}\n`);
 });

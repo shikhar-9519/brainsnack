@@ -50,7 +50,7 @@ function config(): vscode.WorkspaceConfiguration {
 export async function activate(
   context: vscode.ExtensionContext,
 ): Promise<void> {
-  const output = new Logger('Interlude');
+  const output = new Logger('BrainSnack');
 
   const storage = new Storage(context.globalState);
   const agentState = new AgentStateStore();
@@ -153,7 +153,7 @@ export async function activate(
     }),
   );
 
-  output.log('Interlude activated');
+  output.log('BrainSnack activated');
 }
 
 /**
@@ -181,7 +181,7 @@ async function startHookServer(
     output.log(`Could not bind hook port ${port}: ${String(error)}`);
 
     void vscode.window.showWarningMessage(
-      `Interlude could not listen on port ${port}. Change interlude.hookPort and re-run "Interlude: Install Claude Code Hooks".`,
+      `BrainSnack could not listen on port ${port}. Change brainsnack.hookPort and re-run "BrainSnack: Install Claude Code Hooks".`,
     );
   }
 }
@@ -203,12 +203,12 @@ interface CommandDeps {
 async function buildStatusReport(deps: CommandDeps): Promise<string> {
   const { hookServer, agentState } = deps;
 
-  const lines: string[] = ['Interlude status', ''];
+  const lines: string[] = ['BrainSnack status', ''];
 
   lines.push(
     hookServer.isListening
       ? `Hook server:     listening on 127.0.0.1:${hookServer.activePort}`
-      : 'Hook server:     NOT LISTENING (port in use? change interlude.hookPort)',
+      : 'Hook server:     NOT LISTENING (port in use? change brainsnack.hookPort)',
   );
 
   try {
@@ -216,7 +216,7 @@ async function buildStatusReport(deps: CommandDeps): Promise<string> {
 
     if (events.length === 0) {
       lines.push(
-        'Hooks installed: NO — run "Interlude: Install Claude Code Hooks"',
+        'Hooks installed: NO — run "BrainSnack: Install Claude Code Hooks"',
       );
     } else {
       lines.push(`Hooks installed: ${events.join(', ')}`);
@@ -226,7 +226,7 @@ async function buildStatusReport(deps: CommandDeps): Promise<string> {
         lines.push(
           `  ! MISMATCH: hooks point at ${ports.join(', ')} but the server is on ${hookServer.activePort}.`,
         );
-        lines.push('    Re-run "Interlude: Install Claude Code Hooks".');
+        lines.push('    Re-run "BrainSnack: Install Claude Code Hooks".');
       }
     }
   } catch (error) {
@@ -266,7 +266,7 @@ function registerCommands(
       await provider.refresh();
       await focusPanel.refresh();
 
-      void vscode.window.showInformationMessage('Interlude feed refreshed.');
+      void vscode.window.showInformationMessage('BrainSnack feed refreshed.');
     }),
 
     vscode.commands.registerCommand(Command.INSTALL_HOOKS, async () => {
@@ -276,13 +276,13 @@ function registerCommands(
         const target = await installHooks(port);
 
         void vscode.window.showInformationMessage(
-          `Interlude hooks installed in ${target}. Restart Claude Code to pick them up.`,
+          `BrainSnack hooks installed in ${target}. Restart Claude Code to pick them up.`,
         );
       } catch (error) {
         output.log(`Hook install failed: ${String(error)}`);
 
         void vscode.window.showErrorMessage(
-          `Interlude could not write Claude settings: ${String(error)}`,
+          `BrainSnack could not write Claude settings: ${String(error)}`,
         );
       }
     }),
@@ -292,11 +292,11 @@ function registerCommands(
         const target = await uninstallHooks();
 
         void vscode.window.showInformationMessage(
-          `Interlude hooks removed from ${target}.`,
+          `BrainSnack hooks removed from ${target}.`,
         );
       } catch (error) {
         void vscode.window.showErrorMessage(
-          `Interlude could not update Claude settings: ${String(error)}`,
+          `BrainSnack could not update Claude settings: ${String(error)}`,
         );
       }
     }),

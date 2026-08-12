@@ -20,7 +20,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'webview/main.tsx'),
       formats: ['iife'],
-      name: 'Interlude',
+      name: 'BrainSnack',
       fileName: () => 'webview.js',
     },
     rollupOptions: {

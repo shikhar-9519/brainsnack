@@ -4,8 +4,8 @@ import { FeedSession } from './feedSession';
 import { buildWebviewHtml, webviewOptions } from './webviewHost';
 import type { SessionDeps } from './feedSession';
 
-const PANEL_TYPE = 'interlude.focus';
-const PANEL_TITLE = 'Interlude';
+const PANEL_TYPE = 'brainsnack.focus';
+const PANEL_TITLE = 'BrainSnack';
 
 /**
  * The wide surface: the same React app in a full editor tab, where the reading

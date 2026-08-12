@@ -85,7 +85,7 @@ export function Header({
   return (
     <header className="header">
       <span className="brand">
-        Inter<span className="brand__accent">lude</span>
+        Brain<span className="brand__accent">Snack</span>
       </span>
 
       <span className="header__spacer" />
@@ -101,9 +101,9 @@ export function Header({
         type="button"
         className={showingAbout ? 'icon-button icon-button--on' : 'icon-button'}
         onClick={onToggleAbout}
-        aria-label={showingAbout ? 'Back to feed' : 'About Interlude'}
+        aria-label={showingAbout ? 'Back to feed' : 'About BrainSnack'}
         aria-pressed={showingAbout}
-        title={showingAbout ? 'Back to feed' : 'About Interlude'}
+        title={showingAbout ? 'Back to feed' : 'About BrainSnack'}
       >
         <AboutToggleIcon showingAbout={showingAbout} />
       </button>

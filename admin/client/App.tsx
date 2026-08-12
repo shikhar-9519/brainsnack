@@ -247,7 +247,7 @@ export function App() {
     <div className="admin">
       <header className="admin__head">
         <span className="brand">
-          Inter<span className="brand__accent">lude</span>
+          Brain<span className="brand__accent">Snack</span>
         </span>
 
         <span className="admin__label">admin</span>

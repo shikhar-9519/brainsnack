@@ -55,15 +55,15 @@ jobs:
             const rows = Object.entries(counts)
               .map(([k, v]) => '<tr><td>' + k + '</td><td>' + v + '</td></tr>').join('');
             require('fs').writeFileSync('site/index.html',
-              '<!doctype html><meta charset=utf-8><title>Interlude feed</title>' +
+              '<!doctype html><meta charset=utf-8><title>BrainSnack feed</title>' +
               '<style>body{font:15px/1.6 system-ui;max-width:38rem;margin:4rem auto;padding:0 1rem}' +
               'td{padding:2px 12px 2px 0}code{background:#eee;padding:2px 5px;border-radius:4px}</style>' +
-              '<h1>Interlude feed</h1>' +
-              '<p>Machine-readable feed for the Interlude VS Code extension.</p>' +
+              '<h1>BrainSnack feed</h1>' +
+              '<p>Machine-readable feed for the BrainSnack VS Code extension.</p>' +
               '<p><a href=\"./feed.json\">feed.json</a> — ' + feed.cards.length +
               ' cards, generated ' + feed.generatedAt + '</p>' +
               '<table>' + rows + '</table>' +
-              '<p>Point <code>interlude.feedUrl</code> at the JSON file above.</p>');
+              '<p>Point <code>brainsnack.feedUrl</code> at the JSON file above.</p>');
           "
 
       - uses: actions/configure-pages@v5

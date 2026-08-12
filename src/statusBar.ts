@@ -19,7 +19,7 @@ interface StatusPresentation {
 const PRESENTATIONS: Record<AgentState, StatusPresentation | undefined> = {
   [AgentState.WORKING]: {
     text: '$(sync~spin) Claude working',
-    tooltip: 'Claude is working — open Interlude while you wait',
+    tooltip: 'Claude is working — open BrainSnack while you wait',
     warn: false,
   },
   [AgentState.WAITING]: {

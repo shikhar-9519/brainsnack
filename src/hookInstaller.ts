@@ -151,7 +151,7 @@ export async function installHooks(port: number): Promise<string> {
 }
 
 export interface HookInspection {
-  /** Claude Code events that currently carry an Interlude command. */
+  /** Claude Code events that currently carry an BrainSnack command. */
   events: string[];
   /** Ports referenced by those commands — a mismatch is a silent failure mode. */
   ports: number[];

@@ -1,6 +1,6 @@
 {
-  "name": "interlude",
-  "displayName": "Interlude",
+  "name": "brainsnack",
+  "displayName": "BrainSnack",
   "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
   "version": "0.1.0",
   "publisher": "shikhargupta",
@@ -29,11 +29,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shikhar-9519/interlude.git"
+    "url": "https://github.com/shikhar-9519/brainsnack.git"
   },
-  "homepage": "https://github.com/shikhar-9519/interlude#readme",
+  "homepage": "https://github.com/shikhar-9519/brainsnack#readme",
   "bugs": {
-    "url": "https://github.com/shikhar-9519/interlude/issues"
+    "url": "https://github.com/shikhar-9519/brainsnack/issues"
   },
   "main": "./out/src/extension.js",
   "activationEvents": [
@@ -43,16 +43,16 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "interlude",
-          "title": "Interlude",
+          "id": "brainsnack",
+          "title": "BrainSnack",
           "icon": "media/icon.svg"
         }
       ]
     },
     "views": {
-      "interlude": [
+      "brainsnack": [
         {
-          "id": "interlude.feed",
+          "id": "brainsnack.feed",
           "name": "Feed",
           "type": "webview"
         }
@@ -60,48 +60,48 @@
     },
     "commands": [
       {
-        "command": "interlude.open",
-        "title": "Interlude: Open Feed"
+        "command": "brainsnack.open",
+        "title": "BrainSnack: Open Feed"
       },
       {
-        "command": "interlude.openFocus",
-        "title": "Interlude: Open Focus Mode"
+        "command": "brainsnack.openFocus",
+        "title": "BrainSnack: Open Focus Mode"
       },
       {
-        "command": "interlude.refresh",
-        "title": "Interlude: Refresh Feed"
+        "command": "brainsnack.refresh",
+        "title": "BrainSnack: Refresh Feed"
       },
       {
-        "command": "interlude.installHooks",
-        "title": "Interlude: Install Claude Code Hooks"
+        "command": "brainsnack.installHooks",
+        "title": "BrainSnack: Install Claude Code Hooks"
       },
       {
-        "command": "interlude.uninstallHooks",
-        "title": "Interlude: Remove Claude Code Hooks"
+        "command": "brainsnack.uninstallHooks",
+        "title": "BrainSnack: Remove Claude Code Hooks"
       },
       {
-        "command": "interlude.testSound",
-        "title": "Interlude: Test Notification Sound"
+        "command": "brainsnack.testSound",
+        "title": "BrainSnack: Test Notification Sound"
       },
       {
-        "command": "interlude.showStatus",
-        "title": "Interlude: Show Status (Diagnose Hooks)"
+        "command": "brainsnack.showStatus",
+        "title": "BrainSnack: Show Status (Diagnose Hooks)"
       }
     ],
     "configuration": {
-      "title": "Interlude",
+      "title": "BrainSnack",
       "properties": {
-        "interlude.feedUrl": {
+        "brainsnack.feedUrl": {
           "type": "string",
-          "default": "https://shikhar-9519.github.io/interlude/feed.json",
+          "default": "https://shikhar-9519.github.io/brainsnack/feed.json",
           "markdownDescription": "URL of a published `feed.json`. Defaults to the project's own feed. Point it at your own if you run the generator yourself, or leave it empty to use only the content bundled with the extension."
         },
-        "interlude.autoOpen": {
+        "brainsnack.autoOpen": {
           "type": "boolean",
           "default": true,
-          "description": "Open the Interlude sidebar automatically when Claude starts working. Never steals keyboard focus."
+          "description": "Open the BrainSnack sidebar automatically when Claude starts working. Never steals keyboard focus."
         },
-        "interlude.interests": {
+        "brainsnack.interests": {
           "type": "array",
           "items": {
             "type": "string",
@@ -120,7 +120,7 @@
           ],
           "description": "Card types to include in the feed."
         },
-        "interlude.tracks": {
+        "brainsnack.tracks": {
           "type": "array",
           "items": {
             "type": "string",
@@ -145,42 +145,42 @@
           ],
           "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track \u2014 news and blogs are always shown. Narrow this to the areas you actually work in."
         },
-        "interlude.maxCards": {
+        "brainsnack.maxCards": {
           "type": "number",
           "default": 60,
           "description": "Maximum number of cards kept in the feed."
         },
-        "interlude.removeAnsweredAfterSeconds": {
+        "brainsnack.removeAnsweredAfterSeconds": {
           "type": "number",
           "default": 10,
           "description": "Seconds an answered output-based question stays on screen before clearing itself. Saving it cancels the removal. Set to 0 to keep answered cards. Only applies to output questions."
         },
-        "interlude.refreshMinutes": {
+        "brainsnack.refreshMinutes": {
           "type": "number",
           "default": 15,
           "description": "How often to re-fetch the feed, in minutes. Set to 0 to disable."
         },
-        "interlude.sound.enabled": {
+        "brainsnack.sound.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Play a sound when Claude needs input or finishes."
         },
-        "interlude.sound.onWaiting": {
+        "brainsnack.sound.onWaiting": {
           "type": "string",
           "default": "",
           "markdownDescription": "Absolute path to a sound file played when Claude needs input. Leave empty for the platform default."
         },
-        "interlude.sound.onFinished": {
+        "brainsnack.sound.onFinished": {
           "type": "string",
           "default": "",
           "markdownDescription": "Absolute path to a sound file played when Claude finishes. Leave empty for the platform default."
         },
-        "interlude.statusBar.enabled": {
+        "brainsnack.statusBar.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Show a spinning status bar item while Claude is working."
         },
-        "interlude.hookPort": {
+        "brainsnack.hookPort": {
           "type": "number",
           "default": 43117,
           "description": "Localhost port the extension listens on for Claude Code hook events. Re-run the install command after changing this."
@@ -203,8 +203,8 @@
     "publish": "sh scripts/publish-feed.sh",
     "set-feed-url": "sh scripts/set-feed-url.sh",
     "package": "npm run build && npx @vscode/vsce package --no-dependencies",
-    "publish:vsce": "npm run package && npx --yes @vscode/vsce publish --packagePath interlude-$npm_package_version.vsix",
-    "publish:ovsx": "npm run package && npx --yes ovsx publish interlude-$npm_package_version.vsix"
+    "publish:vsce": "npm run package && npx --yes @vscode/vsce publish --packagePath brainsnack-$npm_package_version.vsix",
+    "publish:ovsx": "npm run package && npx --yes ovsx publish brainsnack-$npm_package_version.vsix"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

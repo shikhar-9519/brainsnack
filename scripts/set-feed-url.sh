@@ -1,6 +1,6 @@
 #!/bin/sh
 # Derives the GitHub Pages URL from the git remote and writes it into
-# package.json as the default for interlude.feedUrl.
+# package.json as the default for brainsnack.feedUrl.
 #
 # Derived rather than hardcoded so the repo can be forked or renamed without
 # shipping someone else's feed URL to every user.
@@ -12,7 +12,7 @@ REMOTE=$(git remote get-url origin 2>/dev/null || true)
 
 if [ -z "$REMOTE" ]; then
   echo "No 'origin' remote. Add one first:" >&2
-  echo "  git remote add origin git@github.com:<you>/interlude.git" >&2
+  echo "  git remote add origin git@github.com:<you>/brainsnack.git" >&2
   exit 1
 fi
 
@@ -37,7 +37,7 @@ node -e "
   const fs = require('fs');
   const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   const props = pkg.contributes.configuration.properties;
-  props['interlude.feedUrl'].default = '$URL';
+  props['brainsnack.feedUrl'].default = '$URL';
   pkg.repository = { type: 'git', url: 'https://github.com/$OWNER/$REPO.git' };
   pkg.homepage = 'https://github.com/$OWNER/$REPO#readme';
   pkg.bugs = { url: 'https://github.com/$OWNER/$REPO/issues' };

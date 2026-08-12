@@ -43,7 +43,7 @@ export function buildWebviewHtml(
     <meta http-equiv="Content-Security-Policy" content="${csp}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${asset('webview.css')}" rel="stylesheet" />
-    <title>Interlude</title>
+    <title>BrainSnack</title>
   </head>
   <body data-surface="${surface}">
     <div id="root"></div>

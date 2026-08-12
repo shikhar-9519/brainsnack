@@ -1,11 +1,11 @@
-# Interlude
+# BrainSnack
 
 **A VS Code sidebar that fills the dead time while an AI coding agent works.**
 
 You ask Claude to do something. It thinks for ninety seconds. You open Instagram
 and come back four minutes later.
 
-Interlude puts short, useful cards in your sidebar instead — and it knows when
+BrainSnack puts short, useful cards in your sidebar instead — and it knows when
 the agent is working, so it opens by itself and plays a sound the moment Claude
 needs you back.
 
@@ -32,7 +32,7 @@ YouTube.
 Not on the Marketplace yet. Build it locally:
 
 ```bash
-git clone <this repo> && cd interlude
+git clone <this repo> && cd brainsnack
 npm install && npm run build
 ```
 
@@ -40,7 +40,7 @@ Open the folder in VS Code and press **F5** to launch a window with the
 extension loaded. Or `npm run package` to build a `.vsix` you can install with
 **Extensions: Install from VSIX…**.
 
-Then run **Interlude: Install Claude Code Hooks** from the command palette and
+Then run **BrainSnack: Install Claude Code Hooks** from the command palette and
 restart Claude Code. That is the whole setup.
 
 ## What it sends and where
@@ -50,12 +50,12 @@ Worth knowing before you install anything that runs in your editor:
 - **A localhost server** on port 43117 (configurable), bound to `127.0.0.1`
   only. Claude Code hooks POST agent state to it. Nothing off-machine can reach
   it, and it accepts nothing but a state string.
-- **One HTTPS request** every 15 minutes to `interlude.feedUrl` to fetch cards.
+- **One HTTPS request** every 15 minutes to `brainsnack.feedUrl` to fetch cards.
   No identifiers are sent — it is a plain GET of a static JSON file.
 - **No telemetry.** Saves, dismissals and read state live in VS Code's
   `globalState` on your machine and are never transmitted.
 - **Installing hooks writes to `~/.claude/settings.json`**, merging five
-  entries and preserving everything already there. **Interlude: Remove Claude
+  entries and preserving everything already there. **BrainSnack: Remove Claude
   Code Hooks** reverses it exactly.
 
 ## Where the content comes from
@@ -66,7 +66,7 @@ answer key, and a card that confidently teaches the wrong thing is worse than
 no card, so generation writes to a queue that a human approves from.
 
 The published feed lives on GitHub Pages. Run your own generator if you would
-rather — point `interlude.feedUrl` at your own published `feed.json`.
+rather — point `brainsnack.feedUrl` at your own published `feed.json`.
 
 ## Development
 
@@ -88,7 +88,7 @@ npm run build && python3 -m http.server 8791
 ## Publishing your own feed
 
 ```bash
-git remote add origin git@github.com:<you>/interlude.git
+git remote add origin git@github.com:<you>/brainsnack.git
 npm run set-feed-url        # derives the Pages URL, writes it into package.json
 ```
 
@@ -153,12 +153,12 @@ parts are the constraints rather than the code.
 
 ## Wire up Claude detection
 
-Run **Interlude: Install Claude Code Hooks** from the command palette, then
+Run **BrainSnack: Install Claude Code Hooks** from the command palette, then
 restart Claude Code.
 
 This merges eight entries into `~/.claude/settings.json` — it preserves anything
 already in that file, and running it twice does not duplicate entries.
-**Interlude: Remove Claude Code Hooks** reverses it, leaving your own hooks alone.
+**BrainSnack: Remove Claude Code Hooks** reverses it, leaving your own hooks alone.
 
 Each hook is a one-second `curl` to `127.0.0.1` that can never block or fail
 Claude (`-m 1 ... || true`).
@@ -182,14 +182,14 @@ fires *at* it — that's the one you want.
 Auto-open uses `WebviewView.show(true)`, which preserves keyboard focus — the
 panel appears without taking your cursor mid-keystroke. It fires only on the
 transition *into* working, so the many tool calls in one turn don't re-open it,
-and closing it mid-turn keeps it closed. Turn it off with `interlude.autoOpen`.
+and closing it mid-turn keeps it closed. Turn it off with `brainsnack.autoOpen`.
 
 ## When nothing happens
 
-Run **Interlude: Show Status (Diagnose Hooks)**. Every silent failure mode looks
+Run **BrainSnack: Show Status (Diagnose Hooks)**. Every silent failure mode looks
 identical from the outside, so the report separates them:
 
-- hook server not listening → port conflict, change `interlude.hookPort`
+- hook server not listening → port conflict, change `brainsnack.hookPort`
 - hooks not installed → run the install command
 - hooks installed but pointing at a different port → re-run the install command
 - installed, correct port, zero events received → **restart Claude Code**; it
@@ -267,7 +267,7 @@ border, and background fill — the border style carries the state without
 relying on colour, so no tick is needed. Turning every chip off restores them all rather
 than leaving a filtered-to-nothing feed with no way back.
 
-Selections write straight to `interlude.tracks`, so the sidebar and focus mode
+Selections write straight to `brainsnack.tracks`, so the sidebar and focus mode
 cannot drift apart and the choice survives a reload.
 [FeedSession](src/feedSession.ts) sanitises both settings on read: values
 retired from an enum survive in a user's config across upgrades and would
@@ -342,7 +342,7 @@ npm run schedule:install
 ```
 
 Installs a launchd agent running once daily at 23:00 (override with
-`INTERLUDE_RUN_HOUR`). launchd rather than cron: `StartCalendarInterval` fires a
+`BRAINSNACK_RUN_HOUR`). launchd rather than cron: `StartCalendarInterval` fires a
 missed run when the Mac wakes, whereas cron skips it entirely.
 
 23:00 rather than something later is deliberate. launchd does **not** wake a
@@ -380,8 +380,8 @@ npm run admin:demo
 
 ### Pointing the extension at the reviewed feed
 
-Set `interlude.feedUrl` to
-`file:///Users/you/Desktop/interlude/data/feed.json`. `fetch` does not implement
+Set `brainsnack.feedUrl` to
+`file:///Users/you/Desktop/brainsnack/data/feed.json`. `fetch` does not implement
 the `file:` scheme, so [FeedLoader](src/feedLoader.ts) reads local paths off
 disk directly.
 
@@ -418,7 +418,7 @@ have that beta enabled, delete the `betas` and `fallbacks` lines in
 The pipeline is deliberately serverless. When you want it running without your
 laptop, the same generator script runs unchanged in a GitHub Action on a cron —
 commit `data/queue.json`, review on pull, publish `data/feed.json` to a CDN or
-GitHub Pages, and point `interlude.feedUrl` at that URL. Only the trigger and
+GitHub Pages, and point `brainsnack.feedUrl` at that URL. Only the trigger and
 the feed URL change.
 
 ## Answered output questions clear themselves
@@ -432,7 +432,7 @@ there is nothing left in the card. Interview questions, blogs, AI news and React
 tips are never auto-removed — they are worth re-reading, and are only marked
 read (dimmed).
 
-Tune with `interlude.removeAnsweredAfterSeconds`; `0` keeps answered cards
+Tune with `brainsnack.removeAnsweredAfterSeconds`; `0` keeps answered cards
 forever.
 
 Saving outranks dismissal in `visibleCards`, so a card you keep still shows up
@@ -470,7 +470,7 @@ The same React app renders both, distinguished only by `data-surface` on
 | `focus` | 16px body, 34px display | Centred 820px reading column |
 
 Focus mode opens in a full editor tab — the expand icon in the header, or
-**Interlude: Open Focus Mode**. Both surfaces stay live and share one
+**BrainSnack: Open Focus Mode**. Both surfaces stay live and share one
 [FeedSession](src/feedSession.ts).
 
 ### Previewing the UI without launching the extension
@@ -486,7 +486,7 @@ design work.
 
 ## Settings
 
-All under `interlude.*`: `feedUrl`, `autoOpen`, `interests`, `maxCards`,
+All under `brainsnack.*`: `feedUrl`, `autoOpen`, `interests`, `maxCards`,
 `tracks`, `removeAnsweredAfterSeconds`, `refreshMinutes`, `sound.enabled`,
 `sound.onWaiting`, `sound.onFinished`, `statusBar.enabled`, `hookPort`.
 

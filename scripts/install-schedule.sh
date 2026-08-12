@@ -7,7 +7,7 @@
 set -eu
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-LABEL="dev.interlude.generate"
+LABEL="dev.brainsnack.generate"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG_DIR="$PROJECT_DIR/data/logs"
 
@@ -16,7 +16,7 @@ LOG_DIR="$PROJECT_DIR/data/logs"
 # moment the working day starts. At 23:00 the laptop is typically still awake,
 # so the run actually happens on schedule, and the rolling five-hour usage
 # window has reset well before morning either way.
-RUN_HOUR="${INTERLUDE_RUN_HOUR:-23}"
+RUN_HOUR="${BRAINSNACK_RUN_HOUR:-23}"
 
 mkdir -p "$HOME/Library/LaunchAgents" "$LOG_DIR"
 

@@ -1,5 +1,5 @@
 export const SHARED_RULES = `
-You are writing cards for Interlude, a VS Code sidebar a developer reads in the
+You are writing cards for BrainSnack, a VS Code sidebar a developer reads in the
 30-180 seconds while an AI coding agent is working. Constraints that follow from
 that context:
 

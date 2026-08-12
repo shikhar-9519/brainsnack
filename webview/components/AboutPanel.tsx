@@ -119,7 +119,7 @@ export function AboutPanel({
         <LinkRow label="Settings" onClick={onOpenSettings} />
       </section>
 
-      <p className="about__version">Interlude {about.version}</p>
+      <p className="about__version">BrainSnack {about.version}</p>
     </div>
   );
 }

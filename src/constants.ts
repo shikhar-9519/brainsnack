@@ -1,5 +1,5 @@
-export const EXTENSION_ID = 'interlude';
-export const VIEW_ID = 'interlude.feed';
+export const EXTENSION_ID = 'brainsnack';
+export const VIEW_ID = 'brainsnack.feed';
 
 export const ConfigKey = {
   FEED_URL: 'feedUrl',
@@ -17,30 +17,30 @@ export const ConfigKey = {
 } as const;
 
 export const StorageKey = {
-  SAVED_IDS: 'interlude.savedIds',
-  READ_IDS: 'interlude.readIds',
-  DISMISSED_IDS: 'interlude.dismissedIds',
-  CACHED_FEED: 'interlude.cachedFeed',
+  SAVED_IDS: 'brainsnack.savedIds',
+  READ_IDS: 'brainsnack.readIds',
+  DISMISSED_IDS: 'brainsnack.dismissedIds',
+  CACHED_FEED: 'brainsnack.cachedFeed',
 } as const;
 
 export const Command = {
-  OPEN: 'interlude.open',
-  REFRESH: 'interlude.refresh',
-  INSTALL_HOOKS: 'interlude.installHooks',
-  UNINSTALL_HOOKS: 'interlude.uninstallHooks',
-  TEST_SOUND: 'interlude.testSound',
-  SHOW_STATUS: 'interlude.showStatus',
-  OPEN_FOCUS: 'interlude.openFocus',
+  OPEN: 'brainsnack.open',
+  REFRESH: 'brainsnack.refresh',
+  INSTALL_HOOKS: 'brainsnack.installHooks',
+  UNINSTALL_HOOKS: 'brainsnack.uninstallHooks',
+  TEST_SOUND: 'brainsnack.testSound',
+  SHOW_STATUS: 'brainsnack.showStatus',
+  OPEN_FOCUS: 'brainsnack.openFocus',
 } as const;
 
 /** Marks hook entries this extension owns, so install/uninstall is idempotent. */
-export const HOOK_MARKER = '#interlude';
+export const HOOK_MARKER = '#brainsnack';
 
 /**
  * The marker used before the project was renamed. Still recognised on removal
  * so hooks installed under the old name can be cleaned up rather than
  * orphaned in settings.json forever.
  */
-export const LEGACY_HOOK_MARKERS = ['#idleflow'];
+export const LEGACY_HOOK_MARKERS = ['#idleflow', '#interlude'];
 
 export const HOOK_HOST = '127.0.0.1';
