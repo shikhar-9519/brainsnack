@@ -1,7 +1,7 @@
 {
   "name": "brainsnack",
   "displayName": "BrainSnack",
-  "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
+  "description": "Turn AI-agent wait time into short, useful reading — without leaving VS Code.",
   "version": "0.1.0",
   "publisher": "shikhargupta",
   "license": "MIT",
@@ -143,7 +143,7 @@
             "system_design",
             "misc"
           ],
-          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track \u2014 news and blogs are always shown. Narrow this to the areas you actually work in."
+          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track — news and blogs are always shown. Narrow this to the areas you actually work in."
         },
         "brainsnack.maxCards": {
           "type": "number",
