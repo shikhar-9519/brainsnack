@@ -27,8 +27,12 @@ machine rings the same bell:
 - Claude Code in iTerm, Terminal, Warp — any terminal window
 - The Claude Code extension
 
-Keep VS Code open and it notifies you regardless of where you actually typed
-the prompt.
+Keep your editor open and it notifies you regardless of where you actually
+typed the prompt. Works in Cursor and other VS Code forks too.
+
+> **Notifications need [Claude Code](https://claude.com/claude-code).** They are
+> driven by its hooks, so Cursor's own agent, Copilot and Codex do not trigger
+> them. The card feed works regardless of what you code with.
 
 ## And it gives you something worth reading meanwhile
 
