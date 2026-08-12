@@ -1,6 +1,457 @@
 {
-  "generatedAt": "2026-08-10T07:59:21.887Z",
+  "generatedAt": "2026-08-12T18:33:41.197Z",
   "cards": [
+    {
+      "title": "Rust 1.97.1 fixes LLVM miscompilation in release builds — rebuild anything shipped with 1.97.0",
+      "summary": "An LLVM optimization pass introduced in 1.97.0 silently miscompiles certain release-mode patterns; 1.97.1 reverts it. Any binary you shipped from a 1.97.0 toolchain should be rebuilt and re-released.",
+      "estimatedReadSeconds": 35,
+      "difficulty": "intermediate",
+      "tags": [
+        "rust",
+        "compiler",
+        "toolchain",
+        "security"
+      ],
+      "type": "blog",
+      "sourceName": "The Rust Project",
+      "sourceUrl": "https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/",
+      "id": "558b3531c5c6",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Langflow default installs have confirmed unauthenticated RCE actively exploited in the wild",
+      "summary": "CVE-2026-9198 allows a remote attacker to execute arbitrary code on a default Langflow deployment with no credentials; CISA has added it to KEV with a federal remediation deadline. Patch immediately or network-isolate any Langflow instance — default configurations are the attack surface.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "langflow",
+        "rce",
+        "ai-infrastructure"
+      ],
+      "type": "blog",
+      "sourceName": "CISA",
+      "sourceUrl": "https://www.cisa.gov/news-events/alerts/2026/08/04/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+      "id": "79ac5d98e3b6",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Claude Sonnet 5 price increase cancelled — $2/$10 per MTok is now the permanent rate",
+      "summary": "Anthropic has confirmed the previously announced September 1 hike to $3/$15 per MTok will not occur; $2/$10 is locked in. Revert any budget headroom or cost-model adjustments you made in anticipation of the increase.",
+      "estimatedReadSeconds": 30,
+      "difficulty": "intermediate",
+      "tags": [
+        "anthropic",
+        "pricing",
+        "claude"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://docs.anthropic.com/en/release-notes/api",
+      "id": "58c16de7704d",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "GPT-5.6 Fast mode now accepts prompts over 272K tokens with up to 2.5× throughput",
+      "summary": "Setting `service_tier: \"fast\"` on requests longer than 272K tokens now works, unlocking fast-mode pricing and throughput for large-document RAG and batch summarisation pipelines that were previously forced into Standard. The throughput gain versus Standard is up to 2.5× with the same latency trade-off that applies to shorter fast-mode requests.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "long-context",
+        "api",
+        "performance"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/guides/fast-mode",
+      "id": "339549cee5eb",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Meta ships Muse Code public beta — terminal coding agent with parallel sub-agents and worktree isolation",
+      "summary": "Muse Code runs parallel sub-agents, confines each to an isolated worktree, and writes all operations to a crash-safe event log designed for large-repo tasks. Public beta is open with API access; sub-agent orchestration APIs and the event-log schema are documented for tooling integration.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "intermediate",
+      "tags": [
+        "meta",
+        "coding-agent",
+        "api",
+        "agents"
+      ],
+      "type": "ai_news",
+      "sourceName": "Meta AI Research",
+      "sourceUrl": "https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2",
+      "id": "fe33cf3b3716",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "OpenAI sets December 11 hard removal date for o3 and older GPT-5 API snapshot strings",
+      "summary": "Named o3 and older GPT-5 snapshot model identifiers will return errors after December 11, 2026; the o3 model selector in ChatGPT disappears August 26. Audit evals, CI prompts, and any production integration pinned to specific snapshot strings and migrate to current aliases before the deadline.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "deprecation",
+        "api"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+      "id": "24355a2aacbe",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "CSS `transform` on an Ancestor Silently Breaks `position: fixed`",
+      "summary": "Adding a CSS transform to any ancestor element creates a new containing block, causing `position: fixed` children to position relative to that ancestor instead of the viewport — a spec-compliant behavior that routinely breaks modals and tooltips when animations are added later.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "layout",
+        "positioning",
+        "browser"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "The CSS spec defines that `transform`, `filter`, `perspective`, `backdrop-filter`, or `will-change` with any of those values causes an element to establish a containing block for all descendants — including fixed-positioned ones. This means a `position: fixed` tooltip inside an animated card wrapper is no longer anchored to the viewport at all. The bug typically surfaces when a designer adds a hover animation (`transform: scale(1.02)`) to a card that happens to contain a dropdown or tooltip, and those elements suddenly jump to wrong positions. The only reliable fix is to move fixed-positioned overlays outside the transformed subtree in the DOM, often via a portal.",
+      "code": "/* .card gets a hover animation — seems harmless */\n.card {\n  transition: transform 0.2s;\n}\n.card:hover {\n  transform: scale(1.02); /* now a containing block */\n}\n\n/* This tooltip is INSIDE .card in the DOM */\n.tooltip {\n  position: fixed;\n  top: 8px;\n  right: 8px;\n  /* ❌ Positioned relative to .card, not the viewport.\n     Moves and scales with the card on hover. */\n}",
+      "id": "ffc86f65ab51",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "TypeScript's Excess Property Check Is Bypassed by Intermediate Variables",
+      "summary": "TypeScript only runs excess property checking when an object literal is assigned directly to a typed target; assigning via an intermediate variable silently drops the check, meaning typo'd or unknown keys are accepted without error.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "type-safety",
+        "dx"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Excess property checking is a special syntactic rule that fires only on fresh object literals at the point of assignment — it is not part of structural type compatibility. When you store an object literal in an intermediate `const` first, TypeScript widens it to its inferred type and then checks structural compatibility only, which does not flag extra properties. This is why a misspelled option key (e.g., `retries` on a type that expects `retry`) can silently pass through and be ignored at runtime with zero compiler feedback. The practical implication: wrapper functions that accept `options: SomeConfig` will not catch extra keys if callers build their options object separately before passing it.",
+      "code": "type RequestConfig = { timeout: number; retry: number };\n\n// ✅ Caught — object literal assigned directly\nconst a: RequestConfig = {\n  timeout: 3000,\n  retries: 3, // Error: 'retries' does not exist\n};\n\n// ❌ Silent — intermediate variable bypasses excess check\nconst opts = { timeout: 3000, retries: 3 }; // inferred as { timeout: number; retries: number }\nconst b: RequestConfig = opts; // structurally OK, 'retries' silently ignored\n\nfetch('/api', b); // runtime: retries option is just discarded",
+      "id": "f33bbbd37f1d",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Node.js `cluster` Workers Have Independent Heaps — In-Process State Never Syncs",
+      "summary": "The `cluster` module forks OS processes, not threads, so every worker starts with a copy of the heap and then diverges. Any in-memory structure — rate-limit counters, feature flags, session maps — becomes silently per-worker, multiplying your effective limits by the worker count.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "concurrency",
+        "cluster",
+        "rate-limiting"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "Node's `cluster.fork()` calls `fork(2)` under the hood, giving each worker a private address space. A `Map` that tracks request counts will count independently in each of your four workers, so a rate limit of 100 will actually allow 400 requests before any single worker rejects. This is the same reason sticky sessions exist: load balancers that don't pin a client may route the same user to a worker with no session state. Any coordination — rate limiting, distributed locks, pub/sub fan-out — needs an external store like Redis.",
+      "code": "// Each worker has its own `hits` map — limit is per-process, not global\nconst hits = new Map();\n\napp.use((req, res, next) => {\n  const count = (hits.get(req.ip) ?? 0) + 1;\n  hits.set(req.ip, count);\n  if (count > 100) return res.status(429).send('Too Many Requests');\n  next();\n});\n// With 4 workers, each IP can make 400 requests before any worker blocks it",
+      "id": "50d69ed0e553",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "`multiprocessing` `fork` Copies Open DB Connections into Child Processes",
+      "summary": "On Linux, Python's default `fork` start method clones the parent including any open sockets and database connection pools. Both parent and child then race to use the same underlying TCP stream, causing protocol corruption or ghost queries with no exception raised.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "multiprocessing",
+        "database",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "When `multiprocessing.Pool` forks, the child process inherits file descriptors byte-for-byte, including SQLAlchemy engine pools, psycopg2 connections, and Redis sockets. The parent and child then both write to the same kernel socket buffer, interleaving protocol frames. The database sees malformed packets and may silently return wrong results, drop the connection, or deadlock. The safe fix is `multiprocessing.set_start_method('spawn')` (slower, clean slate) or disposing the engine in a pool initializer before any child work begins.",
+      "code": "import multiprocessing\nfrom sqlalchemy import create_engine, text\n\nengine = create_engine(\"postgresql+psycopg2://...\")  # opened at import time\n\ndef worker(item_id):\n    # engine's pool was copied from parent — parent and child share sockets\n    with engine.connect() as conn:  # silently reuses corrupted fd\n        return conn.execute(text(\"SELECT * FROM items WHERE id=:id\"), {\"id\": item_id}).fetchone()\n\nif __name__ == \"__main__\":\n    multiprocessing.set_start_method(\"spawn\")  # clean process, no inherited fds\n    with multiprocessing.Pool(4) as pool:\n        results = pool.map(worker, item_ids)",
+      "id": "930b0c748a74",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "`ThreadLocal` Values Persist Across Tasks in a Thread Pool",
+      "summary": "Thread pools reuse threads, so a `ThreadLocal` set during one task is still visible to the next task that runs on the same thread — potentially from a different user or tenant. The value is never cleared automatically; you must call `remove()` in a `finally` block.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "thread-pool",
+        "concurrency",
+        "security"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "`ThreadLocal` storage lives on the `Thread` object itself and has no concept of task boundaries. When a request sets a security context, database tenant ID, or trace ID into a `ThreadLocal` and the request handler returns without calling `remove()`, the next `Runnable` dequeued by that thread picks up a stale value. This is how tenant data bleeds across requests in shared-pool architectures. Frameworks like Spring's `RequestContextHolder` handle cleanup for you inside the servlet lifecycle, but code outside that lifecycle — async tasks, custom `ExecutorService` submissions — does not get the same treatment.",
+      "code": "static final ThreadLocal<String> tenantId = new ThreadLocal<>();\n\n// Submitted to an ExecutorService:\npublic void handle(HttpRequest req) {\n    tenantId.set(req.getHeader(\"X-Tenant-ID\"));\n    try {\n        processRequest();\n    } finally {\n        tenantId.remove(); // omit this and the next task sees a stale tenant\n    }\n}",
+      "id": "769fdb5b89d8",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "`time.After` Inside a Loop Leaks a New Timer on Every Iteration",
+      "summary": "`time.After` allocates a `time.Timer` internally each time it is called and that timer is not garbage-collected until it fires. In a `select` loop where another case regularly wins, you accumulate thousands of live timers that hold memory until their full duration elapses.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "memory",
+        "timers",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "The Go runtime parks each `time.After` channel in a min-heap until the deadline; it has no way to know you've moved on to the next loop iteration. In a high-throughput message loop with a five-second idle timeout, every message arrival that triggers the `msg` case leaves a five-second timer still ticking. Under load you can hold millions of goroutine-seconds of unreleased timers. The fix is to allocate one `time.NewTimer` before the loop and call `Reset` after each use, checking the channel drain requirement the Go docs spell out.",
+      "code": "// Leaks a timer each iteration when ch fires before the timeout\nfor {\n    select {\n    case msg := <-ch:\n        process(msg)\n    case <-time.After(5 * time.Second): // new allocation every loop\n        return\n    }\n}\n\n// Fix: reuse one timer\ntimer := time.NewTimer(5 * time.Second)\ndefer timer.Stop()\nfor {\n    select {\n    case msg := <-ch:\n        if !timer.Stop() { <-timer.C }\n        timer.Reset(5 * time.Second)\n        process(msg)\n    case <-timer.C:\n        return\n    }\n}",
+      "id": "165b6bae9c99",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Snapshot Isolation Allows Write Skew Even When Every Individual Read Looks Consistent",
+      "summary": "Under snapshot isolation (PostgreSQL's default), two concurrent transactions each see a consistent snapshot at their start time, so both can read the same rows, independently conclude an invariant holds, and each write different rows — with neither seeing the other's write. The invariant breaks at commit time.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "database",
+        "transactions",
+        "postgres",
+        "consistency"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "This anomaly is called write skew and it's distinct from a dirty read or non-repeatable read. The classic example: two transactions both check that at least one doctor is on call, each sees two doctors, and each removes one — leaving zero. Neither transaction did anything 'wrong' from its own snapshot's perspective. Preventing it requires `ISOLATION LEVEL SERIALIZABLE`, which adds predicate locking and rolls back one of the conflicting transactions with a serialization error you must retry. `REPEATABLE READ` in Postgres is snapshot isolation and does not prevent write skew.",
+      "code": "-- T1 and T2 run concurrently; both see alice=oncall, bob=oncall (count = 2)\n\n-- T1\nBEGIN; -- snapshot: alice ON, bob ON\nSELECT COUNT(*) FROM doctors WHERE oncall; -- 2, safe to remove one\nUPDATE doctors SET oncall = false WHERE name = 'alice';\nCOMMIT; -- succeeds\n\n-- T2 (concurrent)\nBEGIN; -- same snapshot: alice ON, bob ON\nSELECT COUNT(*) FROM doctors WHERE oncall; -- still 2 in its snapshot\nUPDATE doctors SET oncall = false WHERE name = 'bob';\nCOMMIT; -- also succeeds → 0 doctors on call\n\n-- Fix:\nBEGIN ISOLATION LEVEL SERIALIZABLE;\n-- one transaction will abort with SQLSTATE 40001; application must retry",
+      "id": "04860d2f4240",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Publishing to a Message Broker After `COMMIT` Creates an Invisible Split-Brain Window",
+      "summary": "Calling `kafka.send()` or `rabbitmq.publish()` immediately after a successful database commit looks safe but creates a gap: a crash, OOM kill, or network failure between the two writes leaves the DB updated with no event emitted and consumers permanently behind.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "advanced",
+      "tags": [
+        "system_design",
+        "messaging",
+        "kafka",
+        "reliability"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The two operations — database commit and broker publish — cannot be wrapped in a single distributed transaction without a two-phase commit coordinator, which almost no production stack uses. The transactional outbox pattern sidesteps this by inserting the event as a row in an `outbox` table inside the same local transaction as the business write. A separate relay process (Debezium reading the WAL, or a polling job) reads committed outbox rows and publishes them, delivering at-least-once guarantees. Consumers deduplicate on an `event_id`. The relay is the only component that needs to be reliable; the application itself stays simple.",
+      "code": "-- Application layer: one local transaction, two writes\nBEGIN;\n\nUPDATE orders SET status = 'confirmed' WHERE id = $1;\n\nINSERT INTO outbox (event_id, aggregate_id, event_type, payload, created_at)\nVALUES (gen_random_uuid(), $1, 'order.confirmed', $2, now());\n\nCOMMIT;\n-- Debezium tails the WAL and publishes outbox rows to Kafka.\n-- Crash before COMMIT → neither write lands. Crash after → relay retries publish.\n-- Downstream deduplicates on event_id.",
+      "id": "a8a199592b5a",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "A client retries a payment request after a network timeout, but the first request actually succeeded. How do you prevent the customer from being charged twice?",
+      "summary": "Tests whether the candidate treats idempotency as a first-class distributed-systems primitive — not just deduplication, but the storage, scoping, expiry, and concurrency tradeoffs of idempotency keys.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "idempotency",
+        "distributed-systems",
+        "payments",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "Assign every mutation a client-generated idempotency key (typically a UUID) and store it atomically alongside the result in the same database transaction that processes the payment. Before executing, look up the key: if it exists, return the stored response without re-executing. Keys must be scoped narrowly (e.g., per-account) for fast lookups and given a TTL so the key store doesn't grow unbounded. The critical detail is that the key write and the side-effecting write must share a transaction boundary — if they're in separate stores, a crash between them re-opens the double-charge window. For downstream exactly-once delivery, pair this with the transactional outbox pattern: write the event to an outbox table in the same commit, then relay it asynchronously via a change-data-capture process. This design makes retries safe at every layer — client, load balancer, and internal service calls.",
+      "followUps": [
+        "What happens if two retries carrying the same idempotency key arrive concurrently? How do you serialize them without a global lock?",
+        "How would you maintain idempotency guarantees across a saga that spans three independently-owned services?",
+        "If you use a TTL to expire idempotency keys, what specific failure mode does that reintroduce, and how do you mitigate it?"
+      ],
+      "id": "5fa044377d55",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Explain why adding threads to a CPU-bound Python workload can reduce throughput below single-threaded performance, and walk me through how you'd saturate all cores.",
+      "summary": "Tests whether the candidate understands the GIL's actual contention mechanics — the convoy effect, the switch interval, and the real-world alternatives — rather than just knowing the GIL exists.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "advanced",
+      "tags": [
+        "python",
+        "gil",
+        "concurrency",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": true,
+      "body": "CPython's Global Interpreter Lock permits only one thread to execute bytecode at a time. For CPU-bound work, multiple threads compete for the GIL every 5 ms (the default switch interval), and the overhead of releasing, signaling, and re-acquiring the lock creates a convoy effect that makes multi-threaded code measurably slower than a single thread. I/O-bound threads dodge this because they release the GIL before entering a blocking syscall. For true CPU parallelism you have three main options: multiprocessing (separate interpreters with separate GILs, at the cost of IPC serialization), C extensions that release the GIL explicitly (NumPy, Cython with nogil blocks), or a ProcessPoolExecutor that gives you a clean futures-based API over process-level parallelism. Python 3.13 shipped an experimental free-threaded build (PEP 703) that removes the GIL entirely, but every C extension must be audited for thread safety, so production adoption is still narrow.",
+      "followUps": [
+        "Why does the GIL not affect I/O-bound threads — what specific mechanism releases it during a socket read or file write?",
+        "What are the concrete tradeoffs between multiprocessing with shared memory, a ProcessPoolExecutor, and Cython nogil blocks for a NumPy-heavy pipeline?"
+      ],
+      "id": "7b7b395bacc9",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Explain what a happens-before relationship means in the Java Memory Model and why declaring a field volatile doesn't make check-then-act operations thread-safe.",
+      "summary": "Tests whether the candidate distinguishes visibility guarantees from atomicity — the exact confusion that produces the majority of Java concurrency bugs in production.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "java",
+        "concurrency",
+        "jmm",
+        "memory-model"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": true,
+      "body": "A happens-before relationship is a partial ordering guarantee: if action A happens-before action B, then A's memory effects are visible to B. Writing to a volatile field happens-before every subsequent read of that same field, which prevents both stale reads and compiler/CPU reordering across the volatile access. However, volatile provides visibility and ordering only — not atomicity of compound operations. A check-then-act sequence like `if (!flag) { flag = true; doWork(); }` is still a data race: two threads can both observe `false` before either completes the write. To make the compound operation indivisible you need a CAS-based atomic (AtomicBoolean.compareAndSet), a synchronized block, or a Lock. The broader principle is that the JMM defines when writes become visible, not when sequences of reads and writes are mutually exclusive — confusing these two properties is the root cause of most lock-free bugs.",
+      "followUps": [
+        "How does the happens-before chain extend through a ReentrantLock's lock and unlock versus a volatile read and write — are they equivalent in ordering strength?",
+        "Describe a realistic scenario where a non-volatile long field is torn on a 32-bit JVM, even though individual word-sized writes are atomic.",
+        "When would you prefer a plain volatile boolean over AtomicBoolean, and what do you lose by choosing it?"
+      ],
+      "id": "f7f2df60a617",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Python Short-Circuit Return Values",
+      "summary": "Python's `or` and `and` operators return the operand that determined the result, not a boolean.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "operators",
+        "short-circuit"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "a = 0 or \"\" or [] or \"hello\" or 42\nb = 1 and \"world\" and [] and \"foo\"\nprint(a, b)",
+      "options": [
+        {
+          "label": "hello []"
+        },
+        {
+          "label": "True True"
+        },
+        {
+          "label": "hello foo"
+        },
+        {
+          "label": "42 []"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Python's `or` returns the first truthy operand (or the last if all are falsy), while `and` returns the first falsy operand (or the last if all are truthy). For `a`, the chain skips 0, \"\", and [] (all falsy) and returns \"hello\" — the first truthy value — without ever reaching 42. For `b`, 1 and \"world\" are truthy, but [] is falsy, so `and` short-circuits and returns [].",
+      "id": "f8d7eaabf16e",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Array.sort Default Comparison",
+      "summary": "JavaScript's Array.sort without a comparator converts elements to strings and sorts lexicographically, not numerically.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "arrays",
+        "sort"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "const arr = [10, 9, 8, 100, 70];\narr.sort();\nconsole.log(arr.join(', '));",
+      "options": [
+        {
+          "label": "8, 9, 10, 70, 100"
+        },
+        {
+          "label": "10, 100, 70, 8, 9"
+        },
+        {
+          "label": "100, 70, 10, 9, 8"
+        },
+        {
+          "label": "9, 8, 70, 100, 10"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "When no comparator is supplied, Array.prototype.sort converts each element to a string and compares by UTF-16 code unit order. The string representations are \"10\", \"100\", \"70\", \"8\", and \"9\". Lexicographically, \"10\" < \"100\" < \"70\" < \"8\" < \"9\" because comparison proceeds character by character, and the code point for '1' is less than '7', which is less than '8'.",
+      "id": "9d81c9df8159",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Go iota with Blank Identifier",
+      "summary": "Using `_` in a Go const block with iota consumes the counter value without creating a named constant.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "iota",
+        "constants"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nconst (\n\tA = iota * 2\n\tB\n\tC\n\t_\n\tD\n)\n\nfunc main() {\n\tfmt.Println(A, B, C, D)\n}",
+      "options": [
+        {
+          "label": "0 2 4 8"
+        },
+        {
+          "label": "0 2 4 6"
+        },
+        {
+          "label": "0 1 2 3"
+        },
+        {
+          "label": "2 4 6 8"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "In a Go const block, iota increments by 1 for each constant specification regardless of whether the name is used or discarded. The expression `iota * 2` is implicitly repeated for every subsequent line. A = 0×2 = 0, B = 1×2 = 2, C = 2×2 = 4, the blank identifier _ consumes iota = 3 (value 6, discarded), and D gets iota = 4 so D = 4×2 = 8.",
+      "id": "4742d8f48b88",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
+    {
+      "title": "Java Switch Fall-Through",
+      "summary": "Without `break` statements, Java's switch falls through every subsequent case and default after the first match.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "switch",
+        "control-flow"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n  public static void main(String[] args) {\n    int x = 1, y = 0;\n    switch (x) {\n      case 1: y += 1;\n      case 2: y += 2;\n      case 3: y += 3;\n      default: y += 4;\n    }\n    System.out.println(y);\n  }\n}",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "10"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "3"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "Java's switch statement falls through all subsequent cases once a match is found unless an explicit `break` is encountered. After matching case 1, execution continues unconditionally through case 2, case 3, and default. The accumulation is y = 0 + 1 + 2 + 3 + 4 = 10. The option 6 corresponds to the wrong belief that `default` is skipped during fall-through; the option 1 corresponds to assuming each case has an implicit break.",
+      "id": "267240735340",
+      "publishedAt": "2026-08-12T09:42:47.734Z"
+    },
     {
       "title": "MCP 2026-07-28 spec removes session state — stateless HTTP is now the standard",
       "summary": "Transport-level sessions are gone; servers must be fully stateless and work behind standard HTTP load balancers. The release also adds Multi Round-Trip Requests, header-based routing, cacheable list results, and a formal extensions framework — the largest revision since launch.",
