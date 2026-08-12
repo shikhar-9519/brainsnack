@@ -2,7 +2,7 @@
   "name": "brainsnack",
   "displayName": "BrainSnack",
   "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "shikhargupta",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -88,43 +88,70 @@
         "title": "BrainSnack: Show Status (Diagnose Hooks)"
       }
     ],
-    "configuration": {
-      "title": "BrainSnack",
-      "properties": {
-        "brainsnack.feedUrl": {
-          "type": "string",
-          "default": "https://shikhar-9519.github.io/brainsnack/feed.json",
-          "markdownDescription": "URL of a published `feed.json`. Defaults to the project's own feed. Point it at your own if you run the generator yourself, or leave it empty to use only the content bundled with the extension."
-        },
-        "brainsnack.autoOpen": {
-          "type": "boolean",
-          "default": true,
-          "description": "Open the BrainSnack sidebar automatically when Claude starts working. Never steals keyboard focus."
-        },
-        "brainsnack.interests": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
+    "configuration": [
+      {
+        "title": "BrainSnack",
+        "order": 1,
+        "properties": {
+          "brainsnack.autoOpen": {
+            "type": "boolean",
+            "default": true,
+            "order": 1,
+            "description": "Open the sidebar automatically when Claude starts working. Never takes your keyboard focus."
+          },
+          "brainsnack.sound.enabled": {
+            "type": "boolean",
+            "default": true,
+            "order": 2,
+            "description": "Play a sound when Claude needs your input or finishes."
+          },
+          "brainsnack.statusBar.enabled": {
+            "type": "boolean",
+            "default": true,
+            "order": 3,
+            "description": "Show what Claude is doing in the status bar."
+          }
+        }
+      },
+      {
+        "title": "Content",
+        "order": 2,
+        "properties": {
+          "brainsnack.interests": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ai_news",
+                "blog",
+                "learn",
+                "output_question"
+              ]
+            },
+            "default": [
               "ai_news",
               "blog",
               "learn",
               "output_question"
-            ]
+            ],
+            "order": 1,
+            "description": "Which kinds of card you want: AI news, blogs, learn cards, code quizzes."
           },
-          "default": [
-            "ai_news",
-            "blog",
-            "learn",
-            "output_question"
-          ],
-          "description": "Card types to include in the feed."
-        },
-        "brainsnack.tracks": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
+          "brainsnack.tracks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "frontend",
+                "node",
+                "python",
+                "java",
+                "go",
+                "system_design",
+                "misc"
+              ]
+            },
+            "default": [
               "frontend",
               "node",
               "python",
@@ -132,61 +159,67 @@
               "go",
               "system_design",
               "misc"
-            ]
+            ],
+            "order": 2,
+            "description": "Which technologies you want cards about. Narrow this to what you actually work in."
           },
-          "default": [
-            "frontend",
-            "node",
-            "python",
-            "java",
-            "go",
-            "system_design",
-            "misc"
-          ],
-          "markdownDescription": "Technology tracks to include. Applies to Learn and Output cards, the only ones that carry a track \u2014 news and blogs are always shown. Narrow this to the areas you actually work in."
-        },
-        "brainsnack.maxCards": {
-          "type": "number",
-          "default": 60,
-          "description": "Maximum number of cards kept in the feed."
-        },
-        "brainsnack.removeAnsweredAfterSeconds": {
-          "type": "number",
-          "default": 10,
-          "description": "Seconds an answered output-based question stays on screen before clearing itself. Saving it cancels the removal. Set to 0 to keep answered cards. Only applies to output questions."
-        },
-        "brainsnack.refreshMinutes": {
-          "type": "number",
-          "default": 15,
-          "description": "How often to re-fetch the feed, in minutes. Set to 0 to disable."
-        },
-        "brainsnack.sound.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Play a sound when Claude needs input or finishes."
-        },
-        "brainsnack.sound.onWaiting": {
-          "type": "string",
-          "default": "",
-          "markdownDescription": "Absolute path to a sound file played when Claude needs input. Leave empty for the platform default."
-        },
-        "brainsnack.sound.onFinished": {
-          "type": "string",
-          "default": "",
-          "markdownDescription": "Absolute path to a sound file played when Claude finishes. Leave empty for the platform default."
-        },
-        "brainsnack.statusBar.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show a spinning status bar item while Claude is working."
-        },
-        "brainsnack.hookPort": {
-          "type": "number",
-          "default": 43117,
-          "description": "Localhost port the extension listens on for Claude Code hook events. Re-run the install command after changing this."
+          "brainsnack.removeAnsweredAfterSeconds": {
+            "type": "number",
+            "default": 10,
+            "order": 3,
+            "description": "How long an answered quiz stays on screen before clearing itself. Saving it cancels that. Set to 0 to keep answered quizzes."
+          },
+          "brainsnack.maxCards": {
+            "type": "number",
+            "default": 60,
+            "order": 4,
+            "description": "How many cards to keep in the feed at once."
+          }
+        }
+      },
+      {
+        "title": "Sounds",
+        "order": 3,
+        "properties": {
+          "brainsnack.sound.onWaiting": {
+            "type": "string",
+            "default": "",
+            "order": 1,
+            "markdownDescription": "Sound file to play when Claude needs you. Leave empty for the system default. **Required on Windows and Linux**, which have no default."
+          },
+          "brainsnack.sound.onFinished": {
+            "type": "string",
+            "default": "",
+            "order": 2,
+            "markdownDescription": "Sound file to play when Claude finishes. Leave empty for the system default. **Required on Windows and Linux**, which have no default."
+          }
+        }
+      },
+      {
+        "title": "Advanced",
+        "order": 4,
+        "properties": {
+          "brainsnack.feedUrl": {
+            "type": "string",
+            "default": "https://shikhar-9519.github.io/brainsnack/feed.json",
+            "order": 1,
+            "markdownDescription": "Where cards are fetched from. Change this only if you are running your own content pipeline \u2014 see the [repository](https://github.com/shikhar-9519/brainsnack)."
+          },
+          "brainsnack.refreshMinutes": {
+            "type": "number",
+            "default": 15,
+            "order": 2,
+            "description": "How often to check for new cards, in minutes. Set to 0 to stop checking."
+          },
+          "brainsnack.hookPort": {
+            "type": "number",
+            "default": 43117,
+            "order": 3,
+            "markdownDescription": "Local port Claude Code sends status to. Change it only if something else already uses 43117, then re-run **BrainSnack: Install Claude Code Hooks**."
+          }
         }
       }
-    }
+    ]
   },
   "scripts": {
     "build": "npm run build:webview && npm run build:ext",

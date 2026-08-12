@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Settings are grouped into BrainSnack, Content, Sounds and Advanced instead of
+  one alphabetical list, and described for people using the extension rather
+  than maintaining it.
+
 ## 0.1.1
 
 - Rewrote the Marketplace listing: what the extension does and how to set it
