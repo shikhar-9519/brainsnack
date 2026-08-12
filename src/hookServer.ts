@@ -21,6 +21,12 @@ function isAgentState(value: unknown): value is AgentState {
  * Tiny localhost listener that Claude Code hooks POST to. Bound to 127.0.0.1
  * only — nothing off-machine can reach it.
  */
+export interface HookEvent {
+  state: AgentState;
+  /** Claude Code's working directory, when the payload carried one. */
+  cwd?: string;
+}
+
 export class HookServer implements vscode.Disposable {
   private server: http.Server | undefined;
 
@@ -34,6 +40,12 @@ export class HookServer implements vscode.Disposable {
   constructor(
     private readonly store: AgentStateStore,
     private readonly output: Logger,
+    /**
+     * Decides whether an event belongs to this window. Every window on the
+     * machine receives every event, so without this the wrong one reacts.
+     * A plain predicate keeps this module free of vscode imports.
+     */
+    private readonly accepts: (event: HookEvent) => boolean = () => true,
   ) {}
 
   get activePort(): number {
@@ -81,11 +93,17 @@ export class HookServer implements vscode.Disposable {
       return;
     }
 
-    if (req.method !== 'POST' || req.url !== '/state') {
+    const requested = new URL(req.url ?? '/', `http://${HOOK_HOST}`);
+
+    if (req.method !== 'POST' || requested.pathname !== '/state') {
       res.writeHead(404);
       res.end();
       return;
     }
+
+    // State moved to the query string so the body can carry Claude Code's own
+    // hook payload untouched; the old body form still works.
+    const queryState = requested.searchParams.get('state');
 
     let body = '';
     let aborted = false;
@@ -106,7 +124,9 @@ export class HookServer implements vscode.Disposable {
         return;
       }
 
-      const state = this.parseState(body);
+      const state = isAgentState(queryState)
+        ? queryState
+        : this.parseState(body);
 
       if (!state) {
         res.writeHead(400);
@@ -117,12 +137,40 @@ export class HookServer implements vscode.Disposable {
       this.eventCount += 1;
       this.lastEventAt = new Date();
 
+      const event: HookEvent = { state, cwd: this.parseCwd(body) };
+
+      if (!this.accepts(event)) {
+        this.output.log(
+          `Ignored ${state} for ${event.cwd ?? 'unknown cwd'} — not this window`,
+        );
+
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
       this.store.set(state);
       this.output.log(`Agent state -> ${state}`);
 
       res.writeHead(204);
       res.end();
     });
+  }
+
+  private parseCwd(body: string): string | undefined {
+    try {
+      const parsed: unknown = JSON.parse(body);
+
+      if (typeof parsed !== 'object' || parsed === null) {
+        return undefined;
+      }
+
+      const cwd = (parsed as { cwd?: unknown }).cwd;
+
+      return typeof cwd === 'string' ? cwd : undefined;
+    } catch {
+      return undefined;
+    }
   }
 
   private parseState(body: string): AgentState | undefined {

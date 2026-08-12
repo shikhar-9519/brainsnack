@@ -2,7 +2,7 @@
   "name": "brainsnack",
   "displayName": "BrainSnack",
   "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "publisher": "shikhargupta",
   "license": "MIT",
   "icon": "media/icon.png",

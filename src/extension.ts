@@ -1,11 +1,13 @@
 import * as vscode from 'vscode';
 import { AgentStateStore } from './agentState';
-import { Command, ConfigKey, EXTENSION_ID } from './constants';
+import { Command, ConfigKey, EXTENSION_ID, PORT_SPAN } from './constants';
 import { FeedLoader } from './feedLoader';
 import { FeedViewProvider } from './feedView';
 import { FocusPanel } from './focusPanel';
 import type { SessionDeps } from './feedSession';
 import { HookServer } from './hookServer';
+import type { HookEvent } from './hookServer';
+import { belongsToWindow } from './windowScope';
 import { Logger } from './logger';
 import { inspectHooks, installHooks, uninstallHooks } from './hookInstaller';
 import { SoundPlayer, SoundEvent } from './sound';
@@ -56,7 +58,15 @@ export async function activate(
   const agentState = new AgentStateStore();
   const statusBar = new StatusBar();
   const sound = new SoundPlayer(output);
-  const hookServer = new HookServer(agentState, output);
+  // Read at event time, not at activation: folders can be added or removed
+  // from a window while it is open.
+  const acceptsEvent = (event: HookEvent): boolean =>
+    belongsToWindow(
+      event.cwd,
+      (vscode.workspace.workspaceFolders ?? []).map(f => f.uri.fsPath),
+    );
+
+  const hookServer = new HookServer(agentState, output, acceptsEvent);
 
   const seedPath = vscode.Uri.joinPath(
     context.extensionUri,
@@ -169,7 +179,7 @@ function openFeedIfEnabled(provider: FeedViewProvider): void {
   void provider.revealWithoutStealingFocus();
 }
 
-const PORT_ATTEMPTS = 8;
+
 
 /**
  * Walks forward from the configured port until one binds. A port clash used to
@@ -183,7 +193,7 @@ async function startHookServer(
 ): Promise<void> {
   const first = config().get<number>(ConfigKey.HOOK_PORT, 43117);
 
-  for (let offset = 0; offset < PORT_ATTEMPTS; offset += 1) {
+  for (let offset = 0; offset < PORT_SPAN; offset += 1) {
     const port = first + offset;
 
     try {
@@ -200,7 +210,7 @@ async function startHookServer(
   }
 
   void vscode.window.showWarningMessage(
-    `BrainSnack could not find a free port between ${first} and ${first + PORT_ATTEMPTS - 1}. Agent detection is off; everything else still works.`,
+    `BrainSnack could not find a free port between ${first} and ${first + PORT_SPAN - 1}. Agent detection is off in this window; everything else still works.`,
   );
 }
 

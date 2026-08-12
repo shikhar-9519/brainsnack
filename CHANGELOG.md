@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+- **Multiple VS Code windows now work.** Previously the first window to start
+  claimed the only port and every event went to it, so the other windows looked
+  broken and notifications arrived in whichever window you were not using.
+  Each window now listens on its own port, hooks reach all of them, and the
+  window that has the project open is the one that reacts.
+- Re-run **BrainSnack: Install Claude Code Hooks** after updating.
+
 ## 0.1.3
 
 - Removed the Advanced settings group. The hook port now walks forward to the

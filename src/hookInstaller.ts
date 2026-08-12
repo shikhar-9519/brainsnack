@@ -1,7 +1,12 @@
 import * as fs from 'node:fs/promises';
 import * as os from 'node:os';
 import * as path from 'node:path';
-import { HOOK_HOST, HOOK_MARKER, LEGACY_HOOK_MARKERS } from './constants';
+import {
+  HOOK_HOST,
+  HOOK_MARKER,
+  LEGACY_HOOK_MARKERS,
+  PORT_SPAN,
+} from './constants';
 import { AgentState } from './types';
 
 interface HookCommand {
@@ -58,16 +63,24 @@ export function settingsPath(): string {
 }
 
 /**
- * `-m 1` and `|| true` matter: a hook that hangs or fails would stall Claude.
+ * Posts to every port a VS Code window might hold, forwarding Claude Code's own
+ * hook payload as the body so each window can read `cwd` and decide whether the
+ * event is about a project it has open.
+ *
+ * stdin is buffered first because it can only be read once, and several curls
+ * need it. `-m 1` and `|| true` matter as before: a hook that hangs or fails
+ * would stall Claude.
  */
 function buildCommand(port: number, state: AgentState): string {
-  const url = `http://${HOOK_HOST}:${port}/state`;
-  const payload = `{"state":"${state}"}`;
+  const ports = Array.from({ length: PORT_SPAN }, (_, i) => port + i).join(' ');
+
+  const url = `"http://${HOOK_HOST}:$P/state?state=${state}"`;
 
   return (
+    `D=$(cat); for P in ${ports}; do printf '%s' "$D" | ` +
     `curl -s -m 1 -X POST ${url} ` +
-    `-H 'content-type: application/json' ` +
-    `-d '${payload}' >/dev/null 2>&1 || true ${HOOK_MARKER}`
+    `-H 'content-type: application/json' --data-binary @- ` +
+    `>/dev/null 2>&1 || true; done ${HOOK_MARKER}`
   );
 }
 
@@ -179,10 +192,23 @@ export async function inspectHooks(): Promise<HookInspection> {
     events.push(event);
 
     for (const hook of ourCommands) {
-      const match = /127\.0\.0\.1:(\d+)/.exec(hook.command);
+      // The URL interpolates $P now, so the ports live in the loop header
+      // rather than the URL. Falling back to the old shape keeps Show Status
+      // honest about hooks written by an earlier version.
+      const span = /for P in ([\d ]+);/.exec(hook.command);
 
-      if (match) {
-        ports.add(Number(match[1]));
+      if (span) {
+        for (const port of span[1].trim().split(/\s+/)) {
+          ports.add(Number(port));
+        }
+
+        continue;
+      }
+
+      const single = /127\.0\.0\.1:(\d+)/.exec(hook.command);
+
+      if (single) {
+        ports.add(Number(single[1]));
       }
     }
   }

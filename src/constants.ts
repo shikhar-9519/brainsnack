@@ -46,6 +46,17 @@ export const LEGACY_HOOK_MARKERS = ['#idleflow', '#interlude'];
 export const HOOK_HOST = '127.0.0.1';
 
 /**
+ * How many consecutive ports one machine may use. Every VS Code window runs
+ * its own extension host and its own listener, so a single port meant the
+ * first window to start received every event and the rest looked broken.
+ *
+ * Hooks post to all of them; each window then decides whether the event
+ * belongs to it. Kept small because each unreachable port costs the hook a
+ * connection attempt.
+ */
+export const PORT_SPAN = 4;
+
+/**
  * Where cards come from unless overridden. Lives here rather than as a manifest
  * default because the setting is not exposed in the settings UI — an undeclared
  * property has no default, so getConfiguration() would hand back the empty
