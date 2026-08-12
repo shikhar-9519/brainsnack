@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Card } from '../../src/types';
+import { ALL_CARD_TYPES, CARD_TYPE_LABELS } from '../../src/types';
+import type { Card, CardType } from '../../src/types';
 import { AdminAction, fetchState, runAction } from './api';
 import type { AdminState } from './api';
 import { ReviewCard } from './components/ReviewCard';
@@ -175,6 +176,52 @@ function PublishHint({ count }: { count: number }) {
   );
 }
 
+const ALL_TYPES = 'all';
+
+/**
+ * Removing fifteen stale news cards from sixty-three meant hunting for them one
+ * at a time. Filtering first makes "select all" mean "all of this kind", which
+ * is how the pruning actually gets done.
+ */
+function TypeFilter({
+  active,
+  counts,
+  onSelect,
+}: {
+  active: string;
+  counts: Record<string, number>;
+  onSelect: (type: string) => void;
+}) {
+  const present = ALL_CARD_TYPES.filter(type => counts[type] > 0);
+
+  if (present.length < 2) {
+    return null;
+  }
+
+  return (
+    <nav className="filters">
+      <button
+        type="button"
+        className={active === ALL_TYPES ? 'tab tab--active' : 'tab'}
+        onClick={() => onSelect(ALL_TYPES)}
+      >
+        All {Object.values(counts).reduce((a, b) => a + b, 0)}
+      </button>
+
+      {present.map(type => (
+        <button
+          key={type}
+          type="button"
+          className={active === type ? 'tab tab--active' : 'tab'}
+          onClick={() => onSelect(type)}
+        >
+          {CARD_TYPE_LABELS[type]} {counts[type]}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
 function ErrorNotice({ message }: { message: string | undefined }) {
   if (!message) {
     return null;
@@ -187,6 +234,7 @@ export function App() {
   const [state, setState] = useState<AdminState | undefined>(undefined);
   const [tab, setTab] = useState<Tab>(Tab.QUEUE);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [typeFilter, setTypeFilter] = useState<string>(ALL_TYPES);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -203,13 +251,33 @@ export function App() {
     void load();
   }, [load]);
 
-  const cards = useMemo(() => {
+  const allCards = useMemo(() => {
     if (!state) {
       return [];
     }
 
     return tab === Tab.QUEUE ? state.queue : state.feed;
   }, [state, tab]);
+
+  const counts = useMemo(() => {
+    const tally: Record<string, number> = {};
+
+    for (const card of allCards) {
+      tally[card.type] = (tally[card.type] ?? 0) + 1;
+    }
+
+    return tally;
+  }, [allCards]);
+
+  // Select-all and the bulk actions operate on what is visible, never on the
+  // hidden remainder — otherwise filtering would be actively dangerous.
+  const cards = useMemo(
+    () =>
+      typeFilter === ALL_TYPES
+        ? allCards
+        : allCards.filter(card => card.type === typeFilter),
+    [allCards, typeFilter],
+  );
 
   function toggle(id: string) {
     setSelected(previous => {
@@ -282,6 +350,15 @@ export function App() {
           Select all
         </button>
       </nav>
+
+      <TypeFilter
+        active={typeFilter}
+        counts={counts}
+        onSelect={type => {
+          setTypeFilter(type);
+          setSelected(new Set());
+        }}
+      />
 
       <ErrorNotice message={error} />
 

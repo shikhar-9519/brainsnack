@@ -7,6 +7,35 @@ interface ReviewCardProps {
   onToggle: (id: string) => void;
 }
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/** News ages worst, so how old a card is has to be visible while pruning. */
+function ageLabel(iso: string): string {
+  const then = Date.parse(iso);
+
+  if (Number.isNaN(then)) {
+    return '';
+  }
+
+  const days = Math.floor((Date.now() - then) / DAY_MS);
+
+  if (days <= 0) {
+    return 'today';
+  }
+
+  return days === 1 ? '1 day old' : `${days} days old`;
+}
+
+function AgeBadge({ card }: { card: Card }) {
+  const label = ageLabel(card.publishedAt);
+
+  if (!label) {
+    return null;
+  }
+
+  return <span className="review__age">{label}</span>;
+}
+
 function TrackBadge({ card }: { card: Card }) {
   if (!('track' in card) || !card.track) {
     return null;
@@ -96,6 +125,8 @@ export function ReviewCard({ card, isSelected, onToggle }: ReviewCardProps) {
         <TrackBadge card={card} />
 
         <span className="review__title">{card.title}</span>
+
+        <AgeBadge card={card} />
       </label>
 
       <p className="review__summary">{card.summary}</p>
