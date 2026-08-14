@@ -1,6 +1,451 @@
 {
-  "generatedAt": "2026-08-12T18:33:41.197Z",
+  "generatedAt": "2026-08-14T05:18:36.141Z",
   "cards": [
+    {
+      "title": "OpenAI Codex reaches GA on all ChatGPT plans; GPT-5.4 removed from ChatGPT-authenticated sessions August 31",
+      "summary": "Codex Remote is now generally available with QR-based mobile pairing and speaks the new stateless MCP 2026-07-28 protocol. If your Codex integration authenticates via ChatGPT rather than a direct API key, GPT-5.4 and GPT-5.4 mini disappear on August 31 — update your model strings before then.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "codex",
+        "mcp",
+        "deprecation"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/codex/changelog",
+      "id": "ea07f54fd293",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Anthropic Compliance API extended to Claude Code and Cowork, adds automatic plugin malware scanning",
+      "summary": "Enterprise orgs can now pull unified session content and metadata for Claude Code and all Cowork clients (desktop, web, mobile, CLI) through the existing Compliance API — covering eDiscovery and audit workflows in one endpoint. A new beta automatically scans third-party skills and plugins for malicious content on upload or edit.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "anthropic",
+        "enterprise",
+        "compliance",
+        "security"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
+      "id": "f1e6cee013c7",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Microsoft August 2026 Patch Tuesday fixes 394 CVEs including 3 actively exploited zero-days",
+      "summary": "Three zero-days under active exploitation at disclosure time are among the CVEs patched across Windows, VS Code, SharePoint, Azure, and .NET this cycle. Self-hosted CI/CD on Windows Server and any enterprise VS Code deployment should treat this as an urgent patch, not a routine monthly update.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "windows",
+        "ci-cd",
+        "patching"
+      ],
+      "type": "blog",
+      "sourceName": "Microsoft",
+      "sourceUrl": "https://support.microsoft.com/en-us/servicing/dotnetframework/windows-11/25h2/august-11-2026-kb5120708-cumulative-update-for-net-framework-3-5-and-4-8-1-for-windows-11-version-25",
+      "id": "fcca92b8b054",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Claude Code back-to-back patches fix Windows Git detection, Remote Control memory leaks, and event-loop stalls",
+      "summary": "Two consecutive patch releases address a broad sweep of session and tooling bugs: Git detection failures on Windows, memory leaks in Remote Control resume, self-hosted runner reliability regressions, and event-loop stalls that caused measurable latency spikes. No API surface changes — just update the CLI and SDK to the latest version.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "intermediate",
+      "tags": [
+        "claude-code",
+        "cli",
+        "bugfix"
+      ],
+      "type": "blog",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
+      "id": "6938e68114b8",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Node.js 26.7.0 ships NSS 3.125 root certs, SQLite 3.53.4, and FFI crash fixes",
+      "summary": "Root certificates are updated to NSS 3.125 — relevant if your services do certificate pinning or run in air-gapped environments that bundle Node's cert store. Two FFI stability fixes are notable for native addon authors: a crash-on-reentrant-call and a fast-integer-range-validation bug that could silently corrupt integer results rather than throwing.",
+      "estimatedReadSeconds": 50,
+      "difficulty": "intermediate",
+      "tags": [
+        "nodejs",
+        "ffi",
+        "security",
+        "runtime"
+      ],
+      "type": "blog",
+      "sourceName": "OpenJS Foundation / Node.js",
+      "sourceUrl": "https://nodejs.org/en/blog/release/v26.7.0",
+      "id": "27fa64df5125",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "OpenAI deprecates legacy realtime and transcription model snapshots — hard removal January 20, 2027",
+      "summary": "Legacy audio, realtime, and transcription model strings are replaced by GPT-Realtime-2, GPT-Realtime-Translate, and GPT-Realtime-Whisper, all of which are GA now. Six months is a comfortable window, but scheduling the migration now avoids the model-string scramble that caught teams off guard with the Assistants API deadline.",
+      "estimatedReadSeconds": 40,
+      "difficulty": "intermediate",
+      "tags": [
+        "openai",
+        "realtime",
+        "audio",
+        "deprecation"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://developers.openai.com/api/docs/deprecations",
+      "id": "b3cb32502872",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Flex Children Won't Shrink Below Their Content Size — Until You Add `min-width: 0`",
+      "summary": "Flex items default to `min-width: auto`, which means the browser treats the item's intrinsic content size as its minimum. A child with a long word, a pre block, or a wide SVG will blow out the container rather than shrink, even with `flex: 1` applied. Setting `min-width: 0` on the child removes that floor and lets flexbox actually compress it.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "flexbox",
+        "layout"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "The flexbox spec intentionally sets `min-width: auto` on flex items so that content like text isn't silently clipped by default — a well-meaning default that becomes a trap in real layouts. The confusion is that `flex-shrink` still applies, but it can only shrink the item down to its min-width, not below it. This is why `overflow: hidden` on the child alone doesn't help: the item is still as wide as its content, just hiding what spills. Adding `min-width: 0` tells the browser the item has no intrinsic floor, so the flex algorithm can compress it freely and text truncation, scroll, or overflow handling on the child actually kicks in.",
+      "code": "/* Bug: long filename blows out a flex toolbar */\n.toolbar { display: flex; width: 400px; gap: 8px; }\n.filename {\n  flex: 1;\n  /* min-width: auto (default) — shrinks only to content width */\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  /* ellipsis never appears because item won't shrink */\n}\n\n/* Fix */\n.filename {\n  flex: 1;\n  min-width: 0; /* now shrinks below content width */\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}",
+      "id": "68ff4092ab00",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Native Event Listeners in `useEffect` Capture State at Registration — Not at Call Time",
+      "summary": "A `window.addEventListener` callback registered inside a `useEffect` with an empty dependency array forms a closure over the state values that existed when the effect ran — those values never update inside the handler. The idiomatic fix is to mirror the stateful value into a ref and read from `ref.current` inside the listener, keeping the registration stable while always seeing the latest data.",
+      "estimatedReadSeconds": 130,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "hooks",
+        "closures"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "React's re-render model replaces the entire component function scope each render, but a listener attached to `window` or a DOM node lives outside that lifecycle — it holds a reference to one specific closure forever. This is not a React bug; it's how JavaScript closures work, but it conflicts with the mental model of state being 'live'. The dependency-array escape hatch (adding state to the deps array) re-registers the listener on every change, which is often expensive and introduces race conditions with rapid updates. A ref doesn't trigger re-renders, so the effect stays mounted once and the callback reads `ref.current` synchronously at the moment of the event, which always reflects the latest render's value.",
+      "code": "function SearchOverlay() {\n  const [query, setQuery] = useState('');\n\n  // Mirror state into a ref so the stable handler sees live value\n  const queryRef = useRef(query);\n  useEffect(() => { queryRef.current = query; }, [query]);\n\n  useEffect(() => {\n    const onKeyDown = (e) => {\n      if (e.key === 'Enter') {\n        // 'query' here would always be '' (stale closure)\n        submitSearch(queryRef.current); // always current\n      }\n    };\n    window.addEventListener('keydown', onKeyDown);\n    return () => window.removeEventListener('keydown', onKeyDown);\n  }, []); // stable — no re-registration on every keystroke\n}",
+      "id": "a745a3fe9610",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "`Buffer.allocUnsafe` Skips Zeroing and Exposes Old Heap Memory",
+      "summary": "`Buffer.allocUnsafe` returns a memory segment without clearing it first, so the bytes contain whatever data previously occupied that address — prior request payloads, tokens, or session secrets. It is only safe when your code overwrites every byte before the buffer escapes the function.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "security",
+        "memory"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "`Buffer.alloc(n)` zero-fills before returning; `Buffer.allocUnsafe(n)` skips that step for throughput. The memory you receive belonged to a previous allocation and retains its old contents. Sending or logging that buffer without fully overwriting it is an information-disclosure vulnerability, not just a correctness bug. The performance difference matters only for large, short-lived scratch buffers where you control every write.",
+      "code": "// Dangerous — old heap data leaks into the response\nconst buf = Buffer.allocUnsafe(32);\nres.send(buf); // 32 bytes of uninitialized memory\n\n// Safe — zero-fills every byte before returning\nconst buf2 = Buffer.alloc(32);\nres.send(buf2);",
+      "id": "b58d5f610217",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "`logging.basicConfig` Is a Silent No-Op Once Any Handler Exists",
+      "summary": "`basicConfig` inspects the root logger for existing handlers and returns immediately if it finds any, so any library that touches the logging system before your call silently wins the configuration race. The fix is to call `basicConfig` before importing third-party code, or replace it with `logging.config.dictConfig`, which applies unconditionally.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "logging",
+        "observability"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "The root logger starts with no handlers; the first call to `basicConfig` configures it. But many libraries — and even a bare `logging.warning()` call earlier in the file — trigger lazy handler attachment. After that, every subsequent `basicConfig` call is a no-op, including yours. Because the function returns `None` either way, there is no error or warning to signal that your format, level, and output destination were ignored.",
+      "code": "import logging\nimport third_party_lib  # adds a StreamHandler to root logger on import\n\n# Silent no-op — root logger already has handlers\nlogging.basicConfig(level=logging.DEBUG, format=\"%(levelname)s %(message)s\")\n\n# Fix: configure before any import that touches logging\nlogging.basicConfig(level=logging.DEBUG)\nimport third_party_lib  # noqa: E402",
+      "id": "cede486c9593",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "`CompletableFuture.thenApply` Runs on the Thread That Calls `complete()`",
+      "summary": "Without an explicit executor, `.thenApply` callbacks execute on whichever thread completes the future — typically a Netty I/O thread or a JDBC connection-pool thread — not a thread you own or size for CPU work. Any blocking or CPU-intensive logic in that callback starves the framework thread that drives all other in-flight requests.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "concurrency",
+        "async"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "The contract is: if the future is already done when the callback is registered, the registering thread runs it; otherwise the completing thread does. In practice this means a database driver thread or an event-loop thread silently absorbs your business logic. `.thenApplyAsync(fn, executor)` with an explicit `ExecutorService` hands the callback off to a pool you control and size independently of the I/O layer.",
+      "code": "CompletableFuture<Row> future = fetchFromDb(); // completed by DB pool thread\n\n// Callback runs on the DB pool thread — blocks it for transform()'s duration\nfuture.thenApply(row -> heavyTransform(row));\n\n// Hand off to a pool sized for CPU work\nfuture.thenApplyAsync(row -> heavyTransform(row), cpuExecutor);",
+      "id": "dad9207f9266",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "`json.Unmarshal` into `interface{}` Silently Rounds Large Integers",
+      "summary": "Go's JSON decoder represents every number as `float64` when the target type is `interface{}`, and `float64` can only represent integers exactly up to 2^53 — so Snowflake IDs, nanosecond timestamps, and 64-bit database primary keys are silently rounded before your code ever sees them. Using `json.Decoder` with `UseNumber()` preserves the raw string and lets you parse it as `int64` without loss.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "json",
+        "data-integrity"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "The decoder chooses `float64` because it must pick a concrete Go type and the JSON spec treats all numbers identically. Values above 9,007,199,254,740,992 map to the nearest representable double, which can differ from the original by hundreds or thousands — enough to point to a different database row. The bug is silent: the rounded value is a valid `float64`, so no error is returned and no overflow flag is set.",
+      "code": "data := []byte(`{\"id\": 9007199254740993}`) // 2^53 + 1\nvar m map[string]interface{}\njson.Unmarshal(data, &m)\nfmt.Println(m[\"id\"]) // 9.007199254740992e+15 — wrong\n\ndec := json.NewDecoder(bytes.NewReader(data))\ndec.UseNumber()\ndec.Decode(&m)\nn, _ := m[\"id\"].(json.Number).Int64()\nfmt.Println(n) // 9007199254740993 — correct",
+      "id": "0024ab2a6dd6",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Two-Phase Commit Blocks Indefinitely When the Coordinator Crashes Mid-Protocol",
+      "summary": "Once a participant votes yes in phase one, it must hold its locks and wait for the coordinator's COMMIT or ABORT — it cannot unilaterally resolve because another participant may have already received a decision. A coordinator crash between PREPARE and the final broadcast leaves every participant blocked with no safe way out until the coordinator recovers.",
+      "estimatedReadSeconds": 115,
+      "difficulty": "advanced",
+      "tags": [
+        "distributed-systems",
+        "transactions",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The blocking problem is structural, not a bug: a yes vote is a promise to honor whatever the coordinator decides, so acting alone risks violating atomicity. Participants cannot ask peers for the decision because peers are equally ignorant. Rows locked by in-doubt transactions remain unavailable for the entire outage window. Protocols like Paxos-based commit (used in Spanner and CockroachDB) break the dependency on a single coordinator by requiring only a quorum, so a crashed node does not halt progress.",
+      "code": "Coordinator → participants: PREPARE\nParticipants → coordinator:  VOTE YES   # locks acquired\nCoordinator crashes here\n\n# Participants cannot abort — a peer may have seen COMMIT\n# Participants cannot commit — no coordinator decision received\n# Locked rows stay unavailable until coordinator node recovers",
+      "id": "fdec71fd8443",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "A Hot Key Always Routes to the Same Shard — Resharding Cannot Help",
+      "summary": "Hash-based sharding distributes keys evenly in aggregate, but a single key with outsized traffic always maps to one node; adding shards redistributes other keys but leaves the hot key on whichever shard its hash selects. The only remedies act on the key itself: read-through caching, write buffering, or artificially splitting it into N sub-keys that scatter across the ring.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "advanced",
+      "tags": [
+        "sharding",
+        "caching",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The problem is not uneven distribution — it is that a single logical entity generates unbounded load. A celebrity user, a viral product, or a trending counter is one key regardless of how many shards exist. Splitting the shard ring moves the hot key to a different node but keeps it singular. The N sub-key pattern trades read simplicity for write scalability: writers pick a random sub-key; readers fetch all N and aggregate. For counters this is exact; for caches it requires a merge step.",
+      "code": "# trending:worldcup always hashes to shard 4\n# Shard 4: 90,000 req/s  ← saturated\n# Shards 1-3: ~500 req/s  ← idle\n\n# Fix: stripe the key across N sub-keys\nINCR trending:worldcup:{randint(0, N)}\n\n# Read path: fetch all N sub-keys, sum client-side\nvalues = [GET trending:worldcup:{i} for i in range(N)]\ntotal = sum(int(v or 0) for v in values)",
+      "id": "f93963147012",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Your service needs to join data owned by two different microservices. Walk me through your options and their trade-offs.",
+      "summary": "Tests whether the candidate understands the fundamental tension between service autonomy and cross-service querying, and can reason about consistency, latency, and operational cost for each approach.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "microservices",
+        "cdc",
+        "system-design",
+        "data-joins"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "The simplest option is API composition: the calling service queries both services and joins in memory. This is easy to build but couples availability to both services and can't efficiently handle filters or pagination that span both datasets. Data replication via change data capture (CDC) copies one service's data into the other's read store as a projection; this enables local joins with fast queries but introduces replication lag and schema coupling. A shared materialized view in something like Elasticsearch lets you pre-compute the join, but adds infrastructure to operate and carries the same eventual-consistency trade-off as CDC. The right choice depends on query latency requirements, tolerable staleness, write-to-read ratio, and whether you can absorb the operational cost of a streaming pipeline. In practice most teams start with API composition and migrate to CDC only when latency or availability requirements force it.",
+      "followUps": [
+        "How would you handle the CDC consumer falling behind so the materialized view is stale by minutes instead of seconds?",
+        "What happens if Service A hard-deletes a record but Service B's projection still references it — and a user queries for it?",
+        "How would you efficiently support a cross-service filter like 'orders over $100 from users in Europe' without scanning both full datasets?"
+      ],
+      "id": "38d28ea514ef",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Explain what happens during React hydration, why a server/client mismatch is dangerous, and how you'd debug one that only appears in production.",
+      "summary": "Tests understanding of the hydration contract between server-rendered DOM and client-side React, and practical debugging skills for SSR frameworks like Next.js.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "react",
+        "ssr",
+        "hydration",
+        "debugging"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "During hydration React walks the existing server-rendered DOM and attaches event listeners and fiber state to the nodes rather than creating new ones. It assumes the DOM structure exactly matches what the client's first render would produce. When there's a mismatch — a component reads window.innerWidth or Date.now() during render — React in dev mode warns and patches the DOM, but in production it silently patches or, in React 18+, can fall back to full client rendering for the mismatched subtree, causing a content flash and negating SSR performance gains. Production-only mismatches typically stem from browser APIs, locale-dependent formatting, or non-deterministic data fetching that returns different results on server vs client. To debug, compare the raw server HTML (via curl or view-source) against what the client's first render produces with identical props, and hunt for components that branch on client-only state. The fix is to defer client-only values to useEffect so the first render is deterministic, or use suppressHydrationWarning for intentionally dynamic content like relative timestamps.",
+      "followUps": [
+        "What's the performance cost when React falls back to client rendering for an entire subtree during hydration?",
+        "How does React 18's selective hydration with Suspense boundaries change the blast radius of a mismatch?"
+      ],
+      "id": "ab557bebbc58",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Explain how Go channels work internally — what data structure backs them, what happens on a send to a full channel, and why an unbuffered channel isn't just a buffer of size zero.",
+      "summary": "Tests whether the candidate understands channel mechanics beyond the API: the hchan struct, goroutine parking via sudog queues, and the direct-send optimization that makes unbuffered channels a true synchronization primitive.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "go",
+        "channels",
+        "concurrency",
+        "runtime"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": true,
+      "body": "A channel is backed by an hchan struct containing a circular ring buffer (for buffered channels), a lock, and two wait queues — recvq and sendq — of sudog entries that represent parked goroutines. When a goroutine sends on a full buffered channel, the runtime enqueues a sudog onto sendq and calls gopark, which removes the goroutine from the scheduler's run queue until a receiver dequeues an element and wakes it via goready. An unbuffered channel has a zero-length buffer, but the critical difference is the direct-send optimization: when a receiver is already waiting in recvq, the runtime copies the value directly from the sender's stack into the receiver's stack frame without ever touching the buffer, then wakes the receiver. This means the send doesn't complete until a receiver accepts the value, making unbuffered channels a synchronization point — not merely a data pipe. This is why an unbuffered send happens-before the corresponding receive completes, a guarantee buffered channels only provide at the granularity of buffer transitions.",
+      "followUps": [
+        "What happens if you close a channel that still has goroutines blocked in sendq?",
+        "Why does a select statement with multiple ready cases choose one pseudo-randomly, and what bug does that prevent?",
+        "How does the runtime avoid the lock entirely in the fast path of a send on a buffered channel with space available?"
+      ],
+      "id": "c99de2461f41",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Generator Return vs Yield in Spread",
+      "summary": "Tests whether a generator's return value is included when spreading into an array.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "generators",
+        "iterators"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "function* gen() {\n  yield 1;\n  yield 2;\n  return 3;\n}\nconsole.log([...gen()]);",
+      "options": [
+        {
+          "label": "[ 1, 2 ]"
+        },
+        {
+          "label": "[ 1, 2, 3 ]"
+        },
+        {
+          "label": "[ 3 ]"
+        },
+        {
+          "label": "[ 1, 2, undefined ]"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "The spread operator consumes the iterator by calling next() until done is true. A return statement produces { value: 3, done: true }, but iteration consumers like spread and for-of discard the value when done is true. Only yielded values (1 and 2) are collected into the resulting array.",
+      "id": "11b6b305bf2e",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Python for-else Control Flow",
+      "summary": "Tests understanding of when Python's for-else block executes relative to break.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "control-flow",
+        "loops"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "def check(items):\n    for item in items:\n        if item == 0:\n            break\n    else:\n        return \"no zero\"\n    return \"found zero\"\n\nprint(check([1, 2, 3]))\nprint(check([1, 0, 3]))",
+      "options": [
+        {
+          "label": "no zero\nfound zero"
+        },
+        {
+          "label": "found zero\nno zero"
+        },
+        {
+          "label": "no zero\nno zero"
+        },
+        {
+          "label": "found zero\nfound zero"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Python's for-else runs the else block only when the loop completes without hitting a break. In the first call, no item is 0, so the loop finishes normally and else returns \"no zero\". In the second call, break fires on 0, skipping else and falling through to \"found zero\".",
+      "id": "5d9f6ed41b3d",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Go Nil Pointer in Non-Nil Interface",
+      "summary": "Tests whether a nil concrete pointer assigned to an interface produces a nil interface value.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "advanced",
+      "tags": [
+        "go",
+        "interfaces",
+        "nil"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\ntype Err struct{}\nfunc (e *Err) Error() string { return \"err\" }\n\nfunc f() *Err { return nil }\n\nfunc main() {\n    var e error = f()\n    if e == nil {\n        fmt.Println(\"nil\")\n    } else {\n        fmt.Println(\"not nil\")\n    }\n}",
+      "options": [
+        {
+          "label": "not nil"
+        },
+        {
+          "label": "nil"
+        },
+        {
+          "label": "panic: nil pointer dereference"
+        },
+        {
+          "label": "compilation error"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "A Go interface value is nil only when both its type and value components are nil. Here f() returns a nil *Err pointer, but assigning it to the error interface creates an interface with type=*Err and value=nil. Since the type component is non-nil, e == nil evaluates to false.",
+      "id": "069e711357a2",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
+    {
+      "title": "Java Return Inside finally Block",
+      "summary": "Tests whether a return statement in a finally block overrides a return in the try block.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "exception-handling",
+        "finally"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    static int f() {\n        try {\n            return 1;\n        } finally {\n            return 2;\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(f());\n    }\n}",
+      "options": [
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        },
+        {
+          "label": "1\n2"
+        },
+        {
+          "label": "Compilation error"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "The finally block always executes, even when the try block contains a return. When finally has its own return statement, it overwrites the pending return value from try. The JVM discards the try block's return value of 1, and the method returns 2 from the finally block instead.",
+      "id": "842bf293ff8a",
+      "publishedAt": "2026-08-13T09:39:53.159Z"
+    },
     {
       "title": "Rust 1.97.1 fixes LLVM miscompilation in release builds — rebuild anything shipped with 1.97.0",
       "summary": "An LLVM optimization pass introduced in 1.97.0 silently miscompiles certain release-mode patterns; 1.97.1 reverts it. Any binary you shipped from a 1.97.0 toolchain should be rebuilt and re-released.",
