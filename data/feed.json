@@ -1,6 +1,330 @@
 {
-  "generatedAt": "2026-08-14T05:18:36.141Z",
+  "generatedAt": "2026-08-15T11:42:19.410Z",
   "cards": [
+    {
+      "title": "Touch Event `preventDefault()` Silently Fails When the Listener Is Passive",
+      "summary": "Chrome and Firefox register `touchstart` and `touchmove` listeners as passive by default, so calling `preventDefault()` inside them is silently ignored — the browser logs a warning but never throws, making this nearly invisible in production builds where the console is closed.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "browser apis",
+        "performance",
+        "events",
+        "css"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Browsers introduced passive listeners to unblock the compositor thread: if a touch listener might call `preventDefault()`, the browser must wait for your JS to finish before scrolling, killing 60 fps. To avoid that stall, Chrome 51+ made `touchstart` and `touchmove` passive by default on `window`, `document`, and `body`. When your handler calls `preventDefault()` on a passive listener, the scroll still fires, you get a console warning ('Unable to preventDefault inside passive event listener'), and nothing else — no exception, no visible failure path in your code. You must explicitly pass `{ passive: false }` to regain the ability to cancel the event, but know that doing so re-introduces the scroll latency the browser was trying to avoid.",
+      "code": "// ❌ preventDefault() is silently ignored — scroll still fires\nwindow.addEventListener('touchmove', (e) => {\n  e.preventDefault(); // no-op; console warning only\n  renderCustomScroll(e);\n});\n\n// ✅ Opt out of passive mode to actually cancel the event\nwindow.addEventListener('touchmove', (e) => {\n  e.preventDefault(); // works now\n  renderCustomScroll(e);\n}, { passive: false });\n\n// ✅ Or keep passive and handle scroll via pointer/wheel events instead",
+      "id": "61d1bf4f1c0c",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "TypeScript's `satisfies` Operator Validates Without Widening Your Types",
+      "summary": "Annotating a value with `const x: SomeType = ...` forces TypeScript to widen the inferred type to `SomeType`, losing all literal precision. The `satisfies` operator validates the shape against the type while keeping the narrower inference — a critical difference when you downstream-use those literal types for routing, theming, or discriminated lookups.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "type system"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you write `const palette: Theme = { primary: '#6366f1' }`, `palette.primary` becomes `string`, not `'#6366f1'`, because the annotation tells TypeScript to store the value as `Theme`. This is fine until you want to derive a union of valid colour values (`typeof palette[keyof typeof palette]`) — you get `string`, not a union of your actual hex literals. `satisfies` runs the same assignability check at the declaration site but leaves the inferred type alone, so downstream `typeof` queries see the real literals. This is especially sharp in config-driven codebases where you want both safety at the point of definition and precision everywhere the config is consumed.",
+      "code": "type Theme = { primary: string; secondary: string };\n\n// ❌ Annotation widens — literals are lost\nconst t1: Theme = { primary: '#6366f1', secondary: '#ec4899' };\ntype P1 = typeof t1['primary']; // string\n\n// ✅ satisfies validates but preserves literals\nconst t2 = {\n  primary: '#6366f1',\n  secondary: '#ec4899',\n} satisfies Theme;\ntype P2 = typeof t2['primary']; // '#6366f1'\n\n// ✅ Catch typos too — this still errors:\n// const t3 = { primary: '#fff', typo: 1 } satisfies Theme;",
+      "id": "b41fb8247837",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "`scheduleAtFixedRate` Silently Cancels All Future Runs When a Task Throws",
+      "summary": "An unchecked exception thrown inside a `scheduleAtFixedRate` task permanently stops all future executions of that task with no log output and no thread termination — the only symptom is that your periodic work quietly disappears.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "concurrency",
+        "scheduling"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "The executor swallows the exception internally and marks the `ScheduledFuture` as failed; it will never reschedule the task. The thrown exception is accessible only by calling `.get()` on the returned future, which virtually no production code does. This is distinct from a thread crash — the executor and its other tasks continue running normally. Wrapping the entire task body in a `try/catch(Exception e)` is the only reliable guard.",
+      "code": "ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();\n\n// One unchecked exception stops all future runs silently:\nexec.scheduleAtFixedRate(() -> refreshCache(), 0, 30, TimeUnit.SECONDS);\n\n// Safe pattern — catch everything inside the task:\nexec.scheduleAtFixedRate(() -> {\n    try {\n        refreshCache();\n    } catch (Exception e) {\n        log.error(\"refresh failed\", e); // interval continues\n    }\n}, 0, 30, TimeUnit.SECONDS);",
+      "id": "a01afb5c2249",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Appending to a Sub-Slice Writes Into the Original's Backing Array",
+      "summary": "A sub-slice shares its backing array with the original up to the original's capacity; `append` within that capacity overwrites elements the original slice still owns, with no allocation and no error.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "slices",
+        "memory"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "Slicing a slice with `s[low:high]` produces a new header pointing at the same array, with capacity extending to the end of the original — not just to `high`. Any `append` that does not exceed that capacity writes directly into the original's memory. The original slice's length is unchanged, so it still reads those positions, now with silently modified values. The three-index slice expression `s[low:high:max]` caps the sub-slice's capacity at `max`, forcing a new backing-array allocation on the first append beyond that limit.",
+      "code": "original := []int{1, 2, 3, 4, 5}\nsub := original[0:2]       // len=2, cap=5 — shares backing array\n\nsub = append(sub, 99)      // within cap: writes to original[2], no alloc\nfmt.Println(original)      // [1 2 99 4 5] — silently overwritten\n\n// Three-index slice caps capacity, forcing alloc on next append:\nsub2 := original[0:2:2]\nsub2 = append(sub2, 99)\nfmt.Println(original)      // [1 2 99 4 5] — unchanged",
+      "id": "929bf33c0a06",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "One Non-Indexed SELECT Column Eliminates the Index-Only Scan",
+      "summary": "Every column in the SELECT list must exist in the index for the engine to avoid touching the heap; a single absent column forces a random-I/O heap fetch per matching row, erasing most of the index's benefit at scale.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "database",
+        "sql",
+        "performance",
+        "indexes"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "An index-only scan reads all projected data directly from the B-tree leaf pages, skipping the table heap entirely. The moment a query projects a column absent from the index, the planner must follow a row pointer back to the heap for each result row — converting sequential index reads into random page I/O that typically costs 10–100× more per row. In low-data or cache-warm environments this is invisible; the penalty emerges when your working set exceeds the buffer pool. PostgreSQL and SQL Server support an `INCLUDE` clause that adds non-key columns to leaf pages without widening the index key used for traversal, enabling coverage without affecting sort order or index size for inner nodes.",
+      "code": "-- orders(id, user_id, status, total, created_at)\nCREATE INDEX idx_status ON orders(user_id, status);\n\n-- Index-only scan: every projected column is in the index\nEXPLAIN SELECT user_id, status FROM orders WHERE user_id = 42;\n\n-- Heap fetch per row: 'total' is absent from the index\nEXPLAIN SELECT user_id, status, total FROM orders WHERE user_id = 42;\n\n-- Fix: add non-key covering column\nCREATE INDEX idx_status_covering\n  ON orders(user_id, status) INCLUDE (total);",
+      "id": "5e0a6558a886",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Fanout-on-Write Amplifies Writes Linearly with Follower Count",
+      "summary": "Fanout-on-write delivers O(1) feed reads by writing a copy of every post to each follower's feed row at publish time, but an account with millions of followers produces millions of inserts per post — a burst that can overwhelm write capacity.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "system_design",
+        "scaling",
+        "architecture",
+        "feeds"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The appeal of fanout-on-write is that reading a feed is a simple range scan on a pre-materialized table. The hidden cost is that write throughput must scale with the largest single account's follower count, not average follower count. A celebrity posting during a live event can issue tens of millions of queued inserts in seconds, which queues back-pressure across the entire write path. The standard mitigation is a hybrid: apply fanout-on-write for accounts below a follower threshold, and merge celebrity posts at read time (fanout-on-read) for accounts above it, capping worst-case write amplification per event at a controllable ceiling.",
+      "code": "# Fanout-on-write write cost\n@celebrity posts  ->  10_000_000 feed-row inserts  # burst danger\n@regular   posts  ->            500 feed-row inserts  # fine\n\n# Hybrid read path\ndef get_feed(user_id):\n    rows  = fetch_precomputed_rows(user_id)\n    rows += fetch_recent_posts(celebrity_ids_followed_by(user_id))\n    return sorted(rows, key=lambda r: r.created_at, reverse=True)",
+      "id": "95e86c45ba4a",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Explain how Raft achieves consensus and what happens to in-flight client writes when the leader crashes mid-term.",
+      "summary": "Tests whether the candidate understands distributed consensus beyond buzzwords — log replication, commit semantics, and the split-brain window during leader election.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "consensus",
+        "distributed-systems",
+        "raft"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "Raft elects a single leader per term using randomized election timeouts; a candidate wins by receiving votes from a majority of nodes. The leader appends client writes to its log, replicates entries to followers, and marks an entry committed only once a majority has persisted it. When the leader crashes, followers that time out start a new election by incrementing their term. Any entries on the old leader's log that were not replicated to a majority are uncommitted and can be overwritten by the new leader's log. Clients whose writes were acknowledged before majority replication see those writes vanish — so production Raft systems pair writes with client-assigned idempotency keys and require linearizable reads to go through the leader's commit index. During a network partition, a stale leader in the minority partition can accept writes, but they never reach majority quorum and are rolled back when the partition heals.",
+      "followUps": [
+        "How does Raft prevent a stale leader in a minority partition from serving linearizable reads that return data already overwritten by the new leader?",
+        "What is the practical difference between Raft's strong-leader model and Multi-Paxos, and when would you choose one over the other?",
+        "How does joint consensus work during a cluster membership change, and why can't you safely swap two nodes in a single configuration step?"
+      ],
+      "id": "1106380b5ddb",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "A component wrapped in React.memo still re-renders on every parent update. Walk me through every way memo can fail to bail out.",
+      "summary": "Tests whether the candidate understands React's shallow-comparison contract and the common patterns that silently defeat memoization.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "performance",
+        "memoization"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "React.memo performs a shallow comparison of the previous and next props, and skips rendering only if every prop is referentially equal. It fails in several common ways. First, object or array literals in JSX (`style={{color:'red'}}`) create a fresh reference every render. Second, inline arrow functions passed as callbacks are new references unless stabilized with useCallback. Third, passing JSX as children creates new React element objects each render, which always fail shallow comparison. Fourth, if the component calls useContext, any change to that context's value triggers a re-render regardless of memo. Fifth, a buggy custom comparator passed as memo's second argument can silently return false. Diagnosis starts with React DevTools Profiler's 'Why did this render?' panel, which shows exactly which props changed. The fix is usually useMemo/useCallback for unstable references — but applying them everywhere adds overhead and complexity that can outweigh the render cost.",
+      "followUps": [
+        "If you wrap every callback in useCallback and every object in useMemo, what's the cost, and when is that cure worse than the disease?",
+        "How does the React Compiler (React Forget) attempt to solve prop-stability automatically, and what patterns can it not optimize?",
+        "Why doesn't React.memo use deep comparison by default, and what would break if it did?"
+      ],
+      "id": "ca4e121300f4",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Explain how backpressure works in Node.js streams — what highWaterMark controls, what ignoring a false from write() causes, and how pipe() handles it automatically.",
+      "summary": "Tests understanding of Node's stream flow-control mechanism and why ignoring it causes unbounded memory growth under production load.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "streams",
+        "backpressure",
+        "memory"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": true,
+      "body": "Every Writable stream has a highWaterMark that defines the byte threshold of its internal buffer. When `writable.write(chunk)` pushes the buffer past that threshold, it returns `false`, signaling the producer to pause. The producer should stop writing and wait for the `'drain'` event, which fires once the buffer flushes below the mark. Ignoring the `false` return lets data accumulate faster than the consumer can process it, growing the buffer without bound until the process OOMs. `pipe()` automates this: it calls `readable.pause()` when the writable returns `false` and `readable.resume()` on `'drain'`. For Transform streams, the same mechanism applies on both sides — the readable half can back-pressure the transform's internal processing. These bugs typically hide in development where local disk and loopback I/O are fast; they surface in production when a slow downstream destination (remote socket, saturated disk) falls behind the producer's throughput.",
+      "followUps": [
+        "How does backpressure propagate through a pipeline of three or more piped streams, and what happens if a middle Transform buffers internally without respecting highWaterMark?",
+        "How does objectMode change the meaning of highWaterMark, and what traps does that create for streams processing variable-size objects?"
+      ],
+      "id": "5ffc42b6dda8",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Tuple Augmented Assignment Trap",
+      "summary": "The += operator on a list inside a tuple mutates the list via __iadd__ before the tuple assignment fails.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "python",
+        "mutability",
+        "tuples"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "t = ([1, 2],)\ntry:\n    t[0] += [3]\nexcept TypeError:\n    pass\nprint(t[0])",
+      "options": [
+        {
+          "label": "[1, 2, 3]"
+        },
+        {
+          "label": "[1, 2]"
+        },
+        {
+          "label": "[1, 2, [3]]"
+        },
+        {
+          "label": "TypeError: 'tuple' object does not support item assignment"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "The += operator desugars to t[0] = t[0].__iadd__([3]). Python first calls __iadd__, which mutates the list in place to [1, 2, 3], then attempts the assignment back to the tuple slot, raising TypeError. Since the exception is caught and the list object was already modified, print shows [1, 2, 3].",
+      "id": "c8c885b0facd",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Object.is vs Strict Equality",
+      "summary": "Object.is and === diverge on exactly two edge cases: NaN self-equality and signed zero comparison.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "equality",
+        "ieee754"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "console.log(Object.is(NaN, NaN), NaN === NaN);\nconsole.log(Object.is(0, -0), 0 === -0);",
+      "options": [
+        {
+          "label": "true false\nfalse true"
+        },
+        {
+          "label": "true true\nfalse false"
+        },
+        {
+          "label": "true false\ntrue true"
+        },
+        {
+          "label": "false false\ntrue true"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Object.is uses the SameValue algorithm, which treats NaN as equal to itself (unlike ===, which follows IEEE 754) and distinguishes +0 from -0 (unlike ===, which considers them equal). These are the only two cases where Object.is and === produce different results.",
+      "id": "2b87efb5a9f6",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Go String Length: Bytes vs Runes",
+      "summary": "Go's len() on a string counts bytes, not characters, which diverges from rune count for multi-byte UTF-8.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "utf8",
+        "strings"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    s := \"café\"\n    fmt.Println(len(s), len([]rune(s)))\n}",
+      "options": [
+        {
+          "label": "5 4"
+        },
+        {
+          "label": "4 4"
+        },
+        {
+          "label": "5 5"
+        },
+        {
+          "label": "6 4"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "In Go, len() on a string returns the byte count, not Unicode code points. The string \"café\" is 5 bytes because 'é' (U+00E9) requires 2 bytes in UTF-8, while the other three characters are single-byte ASCII. Converting to []rune yields the code point count of 4, one per visible character.",
+      "id": "380a3fdb39e0",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "Ternary Numeric Promotion",
+      "summary": "Java's ternary operator applies binary numeric promotion when both branches are boxed numeric types, silently widening the result.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "advanced",
+      "tags": [
+        "java",
+        "type-promotion",
+        "ternary"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        Object x = true ? Integer.valueOf(1) : Double.valueOf(2.0);\n        System.out.println(x);\n    }\n}",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "1.0"
+        },
+        {
+          "label": "2.0"
+        },
+        {
+          "label": "Compilation error"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "JLS §15.25.2 classifies this as a numeric conditional expression because both operands are boxed numeric types. Java unboxes Integer to int and Double to double, then applies binary numeric promotion, widening int to double. The result is 1.0, which gets autoboxed to Double when assigned to Object.",
+      "id": "60ed4442ea49",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
+    {
+      "title": "DeepSeek V4 Pro exits four-month preview; tiered pricing activates August 16",
+      "summary": "The deepseek-v4-pro endpoint is now GA with native OpenAI Responses API support, one-click Codex integration, and low/high/max reasoning control; cache-hit input costs $0.003625/M versus $0.435/M for cache misses. Peak/off-peak billing tiers go live at 16:00 UTC August 16 — any cost model built during the flat-rate preview period needs updating before then.",
+      "estimatedReadSeconds": 55,
+      "difficulty": "intermediate",
+      "tags": [
+        "deepseek",
+        "api",
+        "pricing"
+      ],
+      "type": "ai_news",
+      "sourceName": "DeepSeek",
+      "sourceUrl": "https://api-docs.deepseek.com/news/news260813/",
+      "id": "9f9788f7c66d",
+      "publishedAt": "2026-08-14T18:37:01.932Z"
+    },
     {
       "title": "OpenAI Codex reaches GA on all ChatGPT plans; GPT-5.4 removed from ChatGPT-authenticated sessions August 31",
       "summary": "Codex Remote is now generally available with QR-based mobile pairing and speaks the new stateless MCP 2026-07-28 protocol. If your Codex integration authenticates via ChatGPT rather than a direct API key, GPT-5.4 and GPT-5.4 mini disappear on August 31 — update your model strings before then.",
