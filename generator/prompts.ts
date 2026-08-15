@@ -22,31 +22,44 @@ Output contract, which overrides any shape implied below:
 `.trim();
 
 export const RESEARCH_PROMPT = `
-Search the web for notable developments in AI engineering and developer tooling
-from the last 7 days. Run several searches, not one.
+Search the web for what is genuinely interesting in AI and software from the
+last 7 days. Run several searches from different angles, not one.
 
-Worth reporting — it changes what a working developer does tomorrow:
-- Model and API releases with a real capability or pricing shift
-- Framework, language and tooling releases with breaking or notable changes
-- Engineering write-ups from teams operating at scale, with specifics in them
-- Security advisories and deprecations that force action
+The test for every item: **would a developer stop scrolling for this, and
+would they mention it to a colleague over lunch?** Not "should they know it" —
+would they actually talk about it.
 
-Not worth reporting, discard on sight:
-- Funding rounds, acquisitions, executive moves, layoffs
-- Opinion, prediction, "X is dead", "Y changed everything"
-- Listicles, tutorials, and anything a search engine would rank for "best of"
-- Benchmarks with no methodology, and vendor claims with no third-party check
+Actively look for:
+- Something that is newly possible that was not possible last month, and what
+  it means
+- Research findings that are surprising or overturn an assumption people held
+- Where the industry is moving: notable bets, who is pulling ahead, funding and
+  acquisitions that signal direction
+- Real companies reporting real outcomes from using AI — including the ones
+  that went badly, which are usually more informative
+- Things that went wrong: outages, breaches, models behaving unexpectedly,
+  expensive mistakes
+- Genuine capability or price shifts that change what is worth building
+- The occasional breaking change or serious vulnerability a developer must act
+  on — but at most two or three of these, they are not the point
 
-For each item report: headline, publishing organisation, the canonical URL, the
-publication date, and two sentences on what specifically changed and who it
-affects.
+Do not report:
+- Pure version bumps. A release number is not a story. "X 2.4.1 ships updated
+  root certificates" tells nobody anything they will repeat.
+- Marketing copy with no substance behind it, listicles, "top 10" anything
+- Benchmarks with no methodology, or vendor claims nobody independent checked
+- "X is dead", "Y changes everything", and predictions about 2030
 
-The URL must be the primary source — the actual release note, changelog or
-engineering post. Never an aggregator, newsletter or news site reporting on it
-second-hand. If you cannot find the primary URL, drop the item.
+For each item report: the headline, the publishing organisation, the canonical
+URL, the publication date, and — most importantly — two sentences on **why it
+is interesting**, not merely what happened.
 
-Return 15-20 items as plain text, newest first. Do not editorialise. More
-candidates than needed is deliberate: the next stage selects from them.
+The URL must be the primary source: the actual announcement, paper, or
+engineering post. Never an aggregator or a site reporting on it second-hand.
+Drop any item you cannot find a primary URL for.
+
+Return 15-20 items as plain text, most interesting first. More candidates than
+needed is deliberate: the next stage selects from them.
 `.trim();
 
 export function newsPrompt(
@@ -59,20 +72,28 @@ Select the ${count} best items from the research below and turn them into feed
 cards. You are selecting, not transcribing — there are deliberately more
 candidates than slots.
 
-Rank by: does a working developer need to know this today? Prefer a concrete
-capability or breaking change over an announcement. Prefer primary engineering
-detail over marketing. When two items cover the same story, keep the better
-source and drop the other.
+Rank by how interesting the item is, not how actionable. A developer reading
+this is on a short break, not triaging — they want to know what is going on in
+their field, not what to patch.
+
+Aim for a spread across the ${count}: something newly possible, something
+surprising, something about where the industry is heading, something that went
+wrong. **At most one may be a version release or security patch.** If the
+research offers nothing but release notes, return fewer cards rather than
+padding with them.
+
+When two items cover the same story, keep the better source and drop the other.
 
 Rules specific to these cards:
 - type is "ai_news" for model/product releases, "blog" for engineering write-ups.
 - sourceUrl must be copied verbatim from the research. Never invent a URL.
 - sourceName is the publication or organisation.
 - If the research does not contain a usable URL for an item, drop that item.
-- title states what changed, not the publisher's headline. "Anthropic ships
-  1M-token context on Sonnet" beats "Introducing our biggest update yet".
-- summary says what it means for the reader's own work in two sentences. Never
-  restate the title in longer words.
+- title says the interesting thing plainly. Specific beats vague, but a title
+  that is only a version number and a component list is not worth a card.
+- summary gives the substance and why it matters — the context a colleague
+  would add when telling you about it. Never restate the title in longer words,
+  and never pad with "this is significant because".
 
 Already covered (skip these):
 ${covered.join('\n') || '(nothing yet)'}
