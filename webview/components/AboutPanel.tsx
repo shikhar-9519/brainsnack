@@ -1,69 +1,16 @@
+import { useState } from 'react';
 import type { AboutInfo } from '../../src/types';
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-/** Past this, the feed is stale enough that the reader should be told. */
-const STALE_AFTER_DAYS = 4;
+import { LinkedInIcon, StarIcon } from './Icons';
 
 interface AboutPanelProps {
   about: AboutInfo;
-  cardCount: number;
-  feedGeneratedAt: string;
   onOpenExternal: (url: string) => void;
   onOpenSettings: () => void;
 }
 
-function daysSince(iso: string): number | undefined {
-  const then = Date.parse(iso);
+const STARS = [1, 2, 3, 4, 5];
 
-  if (Number.isNaN(then)) {
-    return undefined;
-  }
-
-  return Math.floor((Date.now() - then) / DAY_MS);
-}
-
-function freshnessLabel(days: number | undefined): string {
-  if (days === undefined) {
-    return 'date unknown';
-  }
-
-  if (days <= 0) {
-    return 'updated today';
-  }
-
-  if (days === 1) {
-    return 'updated yesterday';
-  }
-
-  return `updated ${days} days ago`;
-}
-
-/**
- * The failure mode this guards against is silent: generation stops, the feed
- * keeps serving, and month-old "news" reads as current. Saying how old it is
- * turns that into something the reader can see.
- */
-function StaleNotice({ days }: { days: number | undefined }) {
-  if (days === undefined || days < STALE_AFTER_DAYS) {
-    return null;
-  }
-
-  return (
-    <p className="about__warn">
-      This feed has not been updated in {days} days. Anything filed as news is
-      probably no longer news.
-    </p>
-  );
-}
-
-function LinkRow({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) {
+function LinkRow({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <button type="button" className="about__link" onClick={onClick}>
       {label}
@@ -71,15 +18,90 @@ function LinkRow({
   );
 }
 
+function SocialButton({
+  label,
+  onClick,
+  children,
+}: {
+  label: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      className="social"
+      onClick={onClick}
+      title={label}
+      aria-label={label}
+    >
+      {children}
+    </button>
+  );
+}
+
+function Star({
+  position,
+  isLit,
+  onHover,
+  onPick,
+}: {
+  position: number;
+  isLit: boolean;
+  onHover: (position: number) => void;
+  onPick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className={isLit ? 'star star--lit' : 'star'}
+      onMouseEnter={() => onHover(position)}
+      onFocus={() => onHover(position)}
+      onClick={onPick}
+      aria-label={`Rate ${position} out of 5`}
+    >
+      <StarIcon size={20} filled={isLit} />
+    </button>
+  );
+}
+
+/**
+ * The Marketplace owns the actual rating, so the stars cannot record a score —
+ * they are the invitation, not the input. Filling on hover is what makes that
+ * invitation land; a bordered button saying "Rate this extension" reads as a
+ * form control and gets ignored.
+ */
+function RateRow({ onRate }: { onRate: () => void }) {
+  const [lit, setLit] = useState(0);
+
+  return (
+    <div className="rate">
+      <p className="rate__ask">Enjoying BrainSnack?</p>
+
+      <div
+        className="rate__stars"
+        onMouseLeave={() => setLit(0)}
+        onBlur={() => setLit(0)}
+      >
+        {STARS.map(position => (
+          <Star
+            key={position}
+            position={position}
+            isLit={position <= lit}
+            onHover={setLit}
+            onPick={onRate}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function AboutPanel({
   about,
-  cardCount,
-  feedGeneratedAt,
   onOpenExternal,
   onOpenSettings,
 }: AboutPanelProps) {
-  const days = daysSince(feedGeneratedAt);
-
   return (
     <div className="about">
       <section className="about__block">
@@ -87,20 +109,16 @@ export function AboutPanel({
 
         <p className="about__name">{about.authorName}</p>
 
-        <LinkRow
-          label="LinkedIn"
+        <SocialButton
+          label="Shikhar Gupta on LinkedIn"
           onClick={() => onOpenExternal(about.authorUrl)}
-        />
+        >
+          <LinkedInIcon size={17} />
+        </SocialButton>
       </section>
 
       <section className="about__block">
-        <h2 className="about__heading">Feed</h2>
-
-        <p className="about__body">
-          {cardCount} cards · {freshnessLabel(days)}
-        </p>
-
-        <StaleNotice days={days} />
+        <RateRow onRate={() => onOpenExternal(about.reviewUrl)} />
       </section>
 
       <section className="about__block">

@@ -35,13 +35,18 @@ function buildAbout(context: vscode.ExtensionContext): AboutInfo {
 
   const repositoryUrl = (pkg.repository?.url ?? '').replace(/\.git$/, '');
 
+  const publisherId = `${pkg.publisher ?? ''}.${pkg.name ?? ''}`;
+
   return {
     version: pkg.version ?? '0.0.0',
-    publisherId: `${pkg.publisher ?? ''}.${pkg.name ?? ''}`,
+    publisherId,
     authorName: pkg.author?.name ?? '',
     authorUrl: pkg.author?.url ?? '',
     repositoryUrl,
     issuesUrl: pkg.bugs?.url ?? `${repositoryUrl}/issues`,
+    // ssr=false is what makes the #review-details anchor actually resolve;
+    // without it the page loads server-side and the fragment is ignored.
+    reviewUrl: `https://marketplace.visualstudio.com/items?itemName=${publisherId}&ssr=false#review-details`,
   };
 }
 

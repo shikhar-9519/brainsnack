@@ -123,23 +123,6 @@ body[data-surface='focus'] .about {
   font-weight: 600;
 }
 
-.about__body {
-  margin: 0;
-  font-size: var(--fs-sm);
-  color: var(--text-dim);
-}
-
-.about__warn {
-  margin: var(--s-2) 0 0;
-  padding: var(--s-2) var(--s-3);
-  font-size: var(--fs-sm);
-  line-height: var(--lh-body);
-  color: var(--accent);
-  border: 1px solid var(--accent-line);
-  border-radius: var(--r-md);
-  background: var(--accent-soft);
-}
-
 .about__link {
   display: block;
   width: 100%;
@@ -155,6 +138,60 @@ body[data-surface='focus'] .about {
 .about__link:hover {
   opacity: 0.75;
   text-decoration: underline;
+}
+
+/* Brand-mark button — takes LinkedIn's blue on hover, not ours. */
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  color: var(--text-dim);
+  background: transparent;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.social:hover {
+  color: #ffffff;
+  border-color: #0a66c2;
+  background: #0a66c2;
+}
+
+/* Rating ------------------------------------------------------------------ */
+
+.rate__ask {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+}
+
+.rate__stars {
+  display: flex;
+  gap: 2px;
+  margin-left: -6px;
+}
+
+.star {
+  display: inline-flex;
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.star--lit {
+  color: var(--accent);
+  transform: translateY(-2px) scale(1.08);
 }
 
 .about__version {
@@ -642,6 +679,67 @@ body[data-surface='focus'] .tracks {
 }
 
 /* Empty state ------------------------------------------------------------- */
+
+/* Loading ----------------------------------------------------------------- */
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  /* Borrows the card's box but none of its behaviour. */
+  animation: none;
+  pointer-events: none;
+}
+
+.skeleton__line {
+  height: 9px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--border-strong) 37%,
+    var(--surface-2) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.5s var(--ease-out) infinite;
+}
+
+.skeleton__line--meta {
+  width: 34%;
+  height: 7px;
+}
+
+.skeleton__line--title {
+  width: 84%;
+  height: 14px;
+  margin-bottom: var(--s-1);
+}
+
+.skeleton__line--short {
+  width: 58%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+/*
+ * The token overrides zero out --dur, but this animation carries its own
+ * duration, so it has to be stopped by name.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton__line {
+    animation: none;
+  }
+}
+
+/* Empty ------------------------------------------------------------------- */
 
 .empty {
   margin: var(--s-7) var(--s-2);

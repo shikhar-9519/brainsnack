@@ -16,6 +16,7 @@ import type {
   WebviewInitPayload,
 } from '../src/types';
 import { AboutPanel } from './components/AboutPanel';
+import { FeedSkeleton } from './components/FeedSkeleton';
 import { AgentBanner } from './components/AgentBanner';
 import { CardList } from './components/CardList';
 import { EmptyState } from './components/EmptyState';
@@ -71,19 +72,33 @@ function withoutKeys(
 interface FeedBodyProps {
   showingAbout: boolean;
   about: AboutInfo | undefined;
-  cardCount: number;
-  feedGeneratedAt: string;
   onOpenExternal: (url: string) => void;
   onOpenSettings: () => void;
   children: React.ReactNode;
+}
+
+/**
+ * "Nothing here" and "nothing yet" look identical to a reader, so the empty
+ * state has to wait until there is actually an answer to give.
+ */
+function LoadingGate({
+  hasLoaded,
+  children,
+}: {
+  hasLoaded: boolean;
+  children: React.ReactNode;
+}) {
+  if (!hasLoaded) {
+    return <FeedSkeleton />;
+  }
+
+  return <>{children}</>;
 }
 
 /** About replaces the feed rather than stacking on top of it. */
 function FeedBody({
   showingAbout,
   about,
-  cardCount,
-  feedGeneratedAt,
   onOpenExternal,
   onOpenSettings,
   children,
@@ -96,8 +111,6 @@ function FeedBody({
     <div className="scroll">
       <AboutPanel
         about={about}
-        cardCount={cardCount}
-        feedGeneratedAt={feedGeneratedAt}
         onOpenExternal={onOpenExternal}
         onOpenSettings={onOpenSettings}
       />
@@ -109,6 +122,7 @@ export function App() {
   const saved = restore<PersistedState>();
 
   const [cards, setCards] = useState<Card[]>([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
   const [readIds, setReadIds] = useState<Set<string>>(new Set());
   const [interests, setInterests] = useState<CardType[]>(
@@ -116,7 +130,6 @@ export function App() {
   );
   const [tracks, setTracks] = useState<Track[]>([...ALL_TRACKS]);
   const [about, setAbout] = useState<AboutInfo | undefined>(undefined);
-  const [feedGeneratedAt, setFeedGeneratedAt] = useState('');
   const [showingAbout, setShowingAbout] = useState(false);
   const [removeAfterSeconds, setRemoveAfterSeconds] = useState(10);
   const [agentState, setAgentState] = useState<AgentState>(AgentState.IDLE);
@@ -133,12 +146,12 @@ export function App() {
 
   const applyInit = useCallback((payload: WebviewInitPayload) => {
     setCards(payload.cards);
+    setHasLoaded(true);
     setSavedIds(new Set(payload.savedIds));
     setReadIds(new Set(payload.readIds));
     setInterests(payload.interests);
     setTracks(payload.tracks);
     setAbout(payload.about);
-    setFeedGeneratedAt(payload.feedGeneratedAt);
     setRemoveAfterSeconds(payload.removeAfterSeconds);
     setAgentState(payload.agentState);
   }, []);
@@ -340,8 +353,6 @@ export function App() {
       <FeedBody
         showingAbout={showingAbout}
         about={about}
-        cardCount={cards.length}
-        feedGeneratedAt={feedGeneratedAt}
         onOpenExternal={handleOpenExternal}
         onOpenSettings={() => send(InboundMessage.OPEN_SETTINGS)}
       >
@@ -360,24 +371,26 @@ export function App() {
       />
 
       <div className="scroll" ref={scrollRef} onScroll={handleScroll}>
-        <EmptyState
-          count={visibleCards.length}
-          activeTab={activeTab}
-          isNarrowed={tracks.length < ALL_TRACKS.length}
-        />
+        <LoadingGate hasLoaded={hasLoaded}>
+          <EmptyState
+            count={visibleCards.length}
+            activeTab={activeTab}
+            isNarrowed={tracks.length < ALL_TRACKS.length}
+          />
 
-        <CardList
-          cards={visibleCards}
-          savedIds={savedIds}
-          readIds={readIds}
-          revealedIds={revealedIds}
-          secondsLeft={secondsLeft}
-          totalSeconds={removeAfterSeconds}
-          onToggleSave={handleToggleSave}
-          onDismiss={handleDismiss}
-          onOpen={handleOpen}
-          onReveal={handleReveal}
-        />
+          <CardList
+            cards={visibleCards}
+            savedIds={savedIds}
+            readIds={readIds}
+            revealedIds={revealedIds}
+            secondsLeft={secondsLeft}
+            totalSeconds={removeAfterSeconds}
+            onToggleSave={handleToggleSave}
+            onDismiss={handleDismiss}
+            onOpen={handleOpen}
+            onReveal={handleReveal}
+          />
+        </LoadingGate>
         </div>
       </FeedBody>
     </div>

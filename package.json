@@ -1,8 +1,8 @@
 {
   "name": "brainsnack",
   "displayName": "BrainSnack",
-  "description": "Turn AI-agent wait time into short, useful reading \u2014 without leaving VS Code.",
-  "version": "0.1.2",
+  "description": "Turn AI-agent wait time into short, useful reading — without leaving VS Code.",
+  "version": "0.1.3",
   "publisher": "shikhargupta",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -185,13 +185,13 @@
             "type": "string",
             "default": "",
             "order": 1,
-            "markdownDescription": "Absolute path to a sound file to play when Claude needs you. Leave empty to use the macOS system sound.\n\n**Use a `.wav` file** \u2014 it is the only format that plays on macOS, Windows and Linux alike. macOS also accepts `.aiff`, `.mp3` and `.m4a`.\n\n**Required on Windows and Linux**, which have no default sound."
+            "markdownDescription": "Absolute path to a sound file to play when Claude needs you. Leave empty to use the macOS system sound.\n\n**Use a `.wav` file** — it is the only format that plays on macOS, Windows and Linux alike. macOS also accepts `.aiff`, `.mp3` and `.m4a`.\n\n**Required on Windows and Linux**, which have no default sound."
           },
           "brainsnack.sound.onFinished": {
             "type": "string",
             "default": "",
             "order": 2,
-            "markdownDescription": "Absolute path to a sound file to play when Claude finishes. Leave empty to use the macOS system sound.\n\n**Use a `.wav` file** \u2014 it is the only format that plays on macOS, Windows and Linux alike. macOS also accepts `.aiff`, `.mp3` and `.m4a`.\n\n**Required on Windows and Linux**, which have no default sound."
+            "markdownDescription": "Absolute path to a sound file to play when Claude finishes. Leave empty to use the macOS system sound.\n\n**Use a `.wav` file** — it is the only format that plays on macOS, Windows and Linux alike. macOS also accepts `.aiff`, `.mp3` and `.m4a`.\n\n**Required on Windows and Linux**, which have no default sound."
           }
         }
       }

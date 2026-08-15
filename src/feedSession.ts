@@ -43,8 +43,6 @@ export interface SessionDeps {
 export class FeedSession implements vscode.Disposable {
   private cards: Card[] = [];
 
-  private feedGeneratedAt = '';
-
   private readonly disposables: vscode.Disposable[] = [];
 
   constructor(
@@ -95,7 +93,6 @@ export class FeedSession implements vscode.Disposable {
         ALL_TRACKS,
       ),
       about: this.deps.about,
-      feedGeneratedAt: this.feedGeneratedAt,
       removeAfterSeconds: config.get<number>(ConfigKey.REMOVE_AFTER_SECONDS, 10),
       agentState: this.deps.agentState.current,
     };
@@ -203,8 +200,6 @@ export class FeedSession implements vscode.Disposable {
 
   async refresh(): Promise<void> {
     const feed = await this.deps.loader.load();
-
-    this.feedGeneratedAt = feed.generatedAt;
 
     this.cards = this.deps.loader.visibleCards(feed);
 

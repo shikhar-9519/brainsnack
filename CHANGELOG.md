@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- The feed now shows placeholder cards while it loads. It used to say you were
+  all caught up before anything had arrived.
+- Tidier About panel, with a way to rate the extension.
+
 ## 0.1.2
 
 - Fixed the icon, which was rendering as a small mark in the corner of a white

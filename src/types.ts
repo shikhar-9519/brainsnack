@@ -177,6 +177,8 @@ export interface AboutInfo {
   authorUrl: string;
   repositoryUrl: string;
   issuesUrl: string;
+  /** Deep-links straight to the review form rather than the listing. */
+  reviewUrl: string;
 }
 
 export interface WebviewInitPayload {
@@ -186,8 +188,6 @@ export interface WebviewInitPayload {
   interests: CardType[];
   tracks: Track[];
   about: AboutInfo;
-  /** When the feed was generated, so the reader can judge how fresh it is. */
-  feedGeneratedAt: string;
   /** Grace period before an answered card clears itself. 0 disables it. */
   removeAfterSeconds: number;
   agentState: AgentState;
