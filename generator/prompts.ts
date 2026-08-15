@@ -4,7 +4,12 @@ You are writing cards for BrainSnack, a VS Code sidebar a developer reads in the
 that context:
 
 - Each card must be fully consumable in the time given by estimatedReadSeconds.
-- The reader is an experienced web developer. Do not explain basics.
+- The reader has been writing code for one to four years. They use these tools
+  every day but have not met every edge case. Explain the mechanism properly and
+  never talk down to them, but do not assume they have seen it before.
+- Prefer what they will touch this week over what they might meet in a senior
+  interview. Something they use daily and half-understand beats something
+  correct but exotic.
 - No filler, no "in today's fast-paced world", no restating the title.
 - summary is one or two sentences of actual substance, not a teaser.
 - estimatedReadSeconds must be honest: 30-60 for news, 60-180 for the rest.
@@ -17,6 +22,11 @@ Output contract, which overrides any shape implied below:
 - Every field named in the request must be present on every card, including
   literal ones such as "type" and "isQuestion".
 - "difficulty" is exactly one of: beginner, intermediate, advanced.
+- Aim for a spread across a batch: about half beginner, most of the rest
+  intermediate, at most one advanced. "beginner" means an everyday thing that
+  is commonly misunderstood — why useEffect runs twice in development, what
+  git rebase actually moves, how Promise.all handles one rejection. It does not
+  mean explaining what a variable is.
 - "estimatedReadSeconds" is a number, not a string.
 - "tags" is an array of 2-4 lowercase strings.
 `.trim();
@@ -106,15 +116,18 @@ ${research}
 export function frontendTipPrompt(count: number, covered: string[]): string {
   return `
 Write ${count} frontend tips: type "learn", track "frontend", isQuestion false.
-Each one corrects a specific
-misconception or shows a non-obvious behaviour that bites people in real
-codebases — the kind of thing a senior developer learns from a production bug,
-not from the docs' first page.
+Each one explains something they use constantly but may not fully understand,
+or corrects a misconception that trips people up in ordinary work. The test is
+whether it comes up in a normal week — not whether it is obscure enough to
+impress someone.
 
 - body is 2-4 sentences explaining the mechanism, not just the rule.
 - code is a short, self-contained snippet (under 15 lines) demonstrating it.
-- Spread across React 18/19 semantics, TypeScript, CSS layout and modern
-  browser APIs. Do not make every card about React.
+- Spread across React, TypeScript, CSS layout, browser APIs and plain
+  JavaScript. Do not make every card about React.
+- Favour the everyday: why a key prop matters, what a dependency array
+  actually compares, how flex-grow decides widths, why a fetch in an effect
+  fires twice. Save the exotic corners for the occasional advanced card.
 
 Already covered (skip these):
 ${covered.join('\n') || '(nothing yet)'}
@@ -123,8 +136,8 @@ ${covered.join('\n') || '(nothing yet)'}
 
 export function backendTipPrompt(count: number, covered: string[]): string {
   return `
-Write ${count} backend tips: type "learn", isQuestion false. Same bar as the frontend
-cards: a specific mechanism a working engineer gets wrong, not general advice.
+Write ${count} backend tips: type "learn", isQuestion false. Same bar as the frontend cards: something met in ordinary work and commonly
+half-understood, not general advice and not an exotic corner.
 
 - body is 2-4 sentences explaining the mechanism, not just the rule.
 - code is a short, self-contained snippet (under 15 lines). SQL, shell or
@@ -149,21 +162,23 @@ ${covered.join('\n') || '(nothing yet)'}
 
 export function interviewPrompt(count: number, covered: string[]): string {
   return `
-Write ${count} interview questions: type "learn", isQuestion true. The kind
-actually asked at senior level — questions that probe understanding of
-mechanisms, not trivia recall. These share a feed with the tips above, so the
+Write ${count} interview questions: type "learn", isQuestion true. The kind actually
+asked of developers with one to four years' experience — questions that probe
+whether someone understands the tools they use daily, not trivia recall and not
+staff-level system design. These share a feed with the tips above, so the
 reader meets both shapes while waiting; the difference is that these withhold
 the explanation until asked.
 
 - Every card needs a "track": frontend, node, python, java, go, system_design,
-  or misc. Use "system_design" for architecture and scaling questions — that is
-  the single most asked-about area at senior level, so give it real weight.
+  or misc. Use "system_design" for architecture questions, pitched at the level
+  actually asked of a mid-level candidate — caching, database choice, why an
+  API is slow — rather than distributed consensus.
 - Distribute across tracks. A reader filters to one track, so a run that is all
   frontend leaves a backend developer with nothing.
 - title is the question as an interviewer would ask it.
 - summary states what the question is really testing.
-- body is a complete but tight answer (4-8 sentences) that would satisfy a
-  strong interviewer.
+- body is a complete but tight answer (4-8 sentences) that would satisfy an
+  interviewer, written so someone who has not met the topic still follows it.
 - followUps are 2-3 harder probes the interviewer would ask next.
 - Spread across the tracks above: browser and React internals, server-side
   runtime behaviour, databases, system design, and performance.
