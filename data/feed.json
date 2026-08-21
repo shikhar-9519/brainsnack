@@ -1,6 +1,443 @@
 {
-  "generatedAt": "2026-08-20T10:58:30.920Z",
+  "generatedAt": "2026-08-21T05:01:13.305Z",
   "cards": [
+    {
+      "title": "Stripe Buys OpenRouter for $7B — Six Weeks After a $1.3B Valuation",
+      "summary": "Model routing — the layer that picks which AI backend handles each request — just became Stripe's core product. The 5.4× markup in six weeks signals that sitting between applications and models is now considered financial infrastructure. Stripe also inherits an immediate regulatory problem: 46% of US enterprise traffic on OpenRouter currently routes to Chinese-origin models.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "industry",
+        "infrastructure",
+        "ai"
+      ],
+      "type": "ai_news",
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/",
+      "id": "15e7cb353686",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "AI Made Developer Throughput +66% — and Bugs Per Developer +54%",
+      "summary": "Faros.ai tracked 22,000 developers and found teams are merging more PRs than ever, but the defect and incident rate per merged PR has roughly tripled versus pre-AI baselines. Monthly incidents are up 57.9% across the cohort. The productivity headline is technically true; what's being produced faster is defects.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "productivity",
+        "research",
+        "engineering"
+      ],
+      "type": "blog",
+      "sourceName": "Faros.ai Research",
+      "sourceUrl": "https://www.faros.ai/research/ai-acceleration-whiplash",
+      "id": "a1dd12f72179",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "AI Agents Built a Working Zoom Zero-Click Exploit in Under 24 Hours",
+      "summary": "Using only public models, researchers constructed a complete exploit chain for a Zoom zero-click RCE vulnerability — dubbed ZOOMSDAY — in less than a day. The timeline compression is the actual story: the window between vulnerability disclosure and a working exploit that traditionally gave defenders weeks to patch is now measured in hours.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "ai",
+        "exploits"
+      ],
+      "type": "ai_news",
+      "sourceName": "eSecurity Planet",
+      "sourceUrl": "https://www.esecurityplanet.com/weekly-roundup/ai-security-failures-active-exploits-and-breaches-define-the-week-in-august-2026/",
+      "id": "a3a2cc7be3a1",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "EU AI Act Enforcement Is Live — First €47M in Fines Issued",
+      "summary": "The opening fines included €18M against an HR tech firm for deploying resume-screening AI without a conformity assessment — exactly the category of internal tooling teams have been shipping without documentation. The high-risk deadline for most other categories extends to December 2027, but this week established that enforcement is real and the targeted use case is common.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "beginner",
+      "tags": [
+        "regulation",
+        "compliance",
+        "ai"
+      ],
+      "type": "ai_news",
+      "sourceName": "Enterprise DNA",
+      "sourceUrl": "https://enterprisedna.co/resources/news/eu-ai-act-enforcement-fines-live-gpai-august-2026/",
+      "id": "88373c92526e",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Claude Had 10 Incidents in 7 Days — Including Its Own Status Page",
+      "summary": "Between August 12–19 Anthropic logged ten separate outages. On August 16 a single auth failure simultaneously took down claude.ai, Claude Code, the API, and the status page. A status page that goes dark during the incident it's supposed to describe is a specific failure mode: the first thing you reach for when something breaks is also broken.",
+      "estimatedReadSeconds": 65,
+      "difficulty": "beginner",
+      "tags": [
+        "reliability",
+        "infrastructure",
+        "tooling"
+      ],
+      "type": "ai_news",
+      "sourceName": "explainx.ai",
+      "sourceUrl": "https://explainx.ai/blog/claude-outage-authentication-august-16-2026",
+      "id": "999a593ce5ed",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "GLM-5.2 Is MIT-Licensed, 753B Parameters, and Rivals Closed Frontier Models",
+      "summary": "GLM-5.2 uses a mixture-of-experts architecture that activates only ~40B parameters per forward pass despite a 753B total weight count, keeping inference cost competitive while matching proprietary frontier benchmarks for agentic coding. The MIT license means organizations with the hardware can run it without per-token billing, usage restrictions, or legal review of vendor terms.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "intermediate",
+      "tags": [
+        "open-source",
+        "models",
+        "infrastructure"
+      ],
+      "type": "ai_news",
+      "sourceName": "HuggingFace Blog",
+      "sourceUrl": "https://huggingface.co/blog/state-of-open-models-summer-2026",
+      "id": "42b5d6552486",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "structuredClone Is the Right Way to Deep-Copy an Object",
+      "summary": "The spread operator only copies one level deep — nested objects remain shared references. structuredClone creates a true recursive copy and handles Date, Map, Set, and circular references correctly, unlike the JSON round-trip workaround.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "data",
+        "cloning"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you spread an object, any nested object is copied by reference, so mutating it still mutates the original. The common fix — JSON.parse(JSON.stringify(obj)) — silently drops undefined values, converts Date objects to strings, and throws on circular references or functions. structuredClone, available in all modern browsers and Node 17+, recursively clones plain data structures, Dates, Maps, Sets, and circular refs without any of those surprises. The one real limit: it won't clone functions or class instances with methods, so it's for data, not arbitrary objects.",
+      "code": "const original = {\n  name: 'Alice',\n  prefs: { theme: 'dark' },\n  created: new Date(),\n};\n\n// Shallow — prefs is still a shared reference\nconst shallow = { ...original };\nshallow.prefs.theme = 'light'; // also mutates original.prefs!\n\n// Deep — fully independent copy\nconst deep = structuredClone(original);\ndeep.prefs.theme = 'light'; // original.prefs.theme stays 'dark'\nconsole.log(deep.created instanceof Date); // true — not a string",
+      "id": "980179733587",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "`width: 100%` and `width: auto` Are Not the Same on Block Elements",
+      "summary": "`width: auto` fills available space after subtracting the element's own margin, border, and padding. `width: 100%` sets the content box to the full parent width and then adds those values on top, which commonly causes horizontal overflow.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "css",
+        "layout",
+        "box-model"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "A block element's default `width: auto` means the browser computes a size that fills the containing block while respecting the element's own margin, border, and padding — they come out of the available space. Setting `width: 100%` instead forces the *content* box to equal the parent's width, and margin, border, and padding are stacked on top of that, pushing the total beyond the container. This is a frequent source of unexpected horizontal scrollbars, especially when you add padding or a border to something and suddenly the layout breaks. If you need padding and still want the element to fill its parent without overflow, use `box-sizing: border-box` so the padding is absorbed inside the declared width.",
+      "code": "/* Parent is 300px wide */\n\n.auto {\n  width: auto;      /* content = 300 - 32px padding = 268px, total = 300px ✓ */\n  padding: 16px;\n}\n\n.full {\n  width: 100%;      /* content = 300px, total = 300 + 32px padding = 332px ✗ */\n  padding: 16px;\n}\n\n.full-fixed {\n  width: 100%;      /* content = 300px, total = 300px ✓ */\n  padding: 16px;\n  box-sizing: border-box;\n}",
+      "id": "85acb16ff50e",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Node's `http.Agent` Is a Socket Pool — `maxSockets` Caps Concurrency and `keepAlive` Skips the Handshake",
+      "summary": "Every outbound HTTP call in Node goes through an Agent that owns the socket pool for a host. Understanding it lets you tune connection reuse and prevent one slow upstream from exhausting your sockets.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "http",
+        "networking",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "Every outbound HTTP call flows through an `Agent`, which owns the socket pool for a given host. With `keepAlive: true` the agent parks a socket in a free-list after the response ends and hands it to the next request, eliminating the TCP (and TLS) handshake round-trip. `maxSockets` caps how many connections the pool opens concurrently to one host; requests beyond that limit queue rather than open new sockets. Creating one agent per upstream service — instead of sharing the global default — lets you set different limits for a fast CDN versus a slow third-party API.",
+      "code": "const https = require(\"https\");\n\nconst agent = new https.Agent({\n  keepAlive: true,\n  maxSockets: 25,      // queue beyond 25; don't open more\n  maxFreeSockets: 10,  // park up to 10 idle sockets between requests\n});\n\nhttps.get(\n  { hostname: \"api.example.com\", path: \"/data\", agent },\n  (res) => { /* handle */ }\n);\n// Next call to same host reuses the socket — no new handshake.",
+      "id": "a5a6c2394ad7",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Python Logger Propagation Walks Up to the Root — Two Handlers on the Same Path Print One Message Twice",
+      "summary": "Propagation is on by default, so a log record passes through every ancestor's handlers on its way up. Attach handlers to both a child and the root logger and you get duplicate output with no error to explain why.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "logging",
+        "debugging"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "Every Python logger sits in a dot-separated hierarchy: `app.db` is a child of `app`, which is a child of the root logger. When a logger emits a record it passes it up the chain to every ancestor's handlers unless `propagate` is set to `False`. If you attach a `StreamHandler` to `app.db` and the root logger also has a handler — which `basicConfig` adds — one `logger.warning()` call produces two output lines. Setting `logger.propagate = False` severs the chain at that point so the record goes no further.",
+      "code": "import logging\n\nlogging.basicConfig(level=logging.WARNING)  # attaches a handler to root\n\ndb_log = logging.getLogger(\"app.db\")\ndb_log.addHandler(logging.StreamHandler())  # second handler on the child\n# db_log.propagate = False  # uncomment to suppress the duplicate\n\ndb_log.warning(\"slow query\")  # prints TWICE without propagate=False",
+      "id": "5c75695250ea",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "`Optional.orElse` Evaluates Its Argument Even When a Value Is Present — Use `orElseGet` for Expensive Fallbacks",
+      "summary": "`orElse(x)` receives an already-computed value, so whatever produces x runs unconditionally. `orElseGet(() -> x)` is lazy and only invokes the lambda when the Optional is empty.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "beginner",
+      "tags": [
+        "java",
+        "optional",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "`Optional.orElse(value)` takes a plain value, which Java evaluates before the method is even called — regardless of whether the Optional contains something. If that value comes from a database query or an object allocation, you pay the cost on every call even on a cache hit. `orElseGet(supplier)` accepts a `Supplier<T>` instead; the lambda body runs only when the Optional is actually empty. The difference is invisible for cheap literals but measurable when the fallback does real work.",
+      "code": "Optional<User> cached = cache.get(userId);\n\n// BAD: db.findById runs even when the cache hit is present\nUser u1 = cached.orElse(db.findById(userId));\n\n// GOOD: lambda runs only when cached is empty\nUser u2 = cached.orElseGet(() -> db.findById(userId));",
+      "id": "13558bbf57f3",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "`http.DefaultClient` Has No Timeout — One Hung Remote Server Stalls a Goroutine Indefinitely",
+      "summary": "The zero value of `http.Client.Timeout` means no timeout at all, so `http.Get` and friends can block forever if a server accepts the connection but never finishes the response.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "http",
+        "reliability"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "The zero value of `Timeout` in `http.Client` is 0, which the standard library treats as unlimited — not a sane default. When you call `http.Get()` you're using `http.DefaultClient`, which carries that zero value, so a server that stalls mid-response will block your goroutine with no deadline. The fix is a package-level `http.Client` with an explicit `Timeout`, or a `context.WithTimeout` passed into `http.NewRequestWithContext`. Both cancel the in-flight request and surface a `DeadlineExceeded` error instead of blocking forever.",
+      "code": "var apiClient = &http.Client{\n    Timeout: 5 * time.Second, // covers connect + headers + full body read\n}\n\nfunc fetchUser(id string) (*User, error) {\n    resp, err := apiClient.Get(\"https://api.example.com/users/\" + id)\n    if err != nil {\n        return nil, err // wraps context.DeadlineExceeded on timeout\n    }\n    defer resp.Body.Close()\n    // decode...\n    return user, nil\n}",
+      "id": "cec90a3a7570",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Consistent Hashing Places Nodes and Keys on a Ring — Adding a Node Remaps Only 1/N of the Keys",
+      "summary": "A naive modulo hash remaps nearly every key when you resize the cluster. Consistent hashing uses a fixed ring so a topology change touches only the keys between the new node and its predecessor.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "system_design",
+        "caching",
+        "distributed-systems"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "With `key % N` sharding, changing N from 3 to 4 reassigns roughly 75 % of keys — a thundering herd for any cache or data store behind those keys. Consistent hashing maps both nodes and keys onto a fixed circular integer space; each key is owned by the first node clockwise from its hash. Adding a node splits exactly one arc, so only the keys in that arc move; every other key is unaffected. Virtual nodes — multiple ring positions per physical server — smooth out uneven distribution in small clusters where few real positions would create hotspots.",
+      "code": "import hashlib, bisect\n\nring, sorted_positions = {}, []\n\ndef add_node(name, replicas=100):\n    for i in range(replicas):\n        h = int(hashlib.md5(f\"{name}-{i}\".encode()).hexdigest(), 16)\n        ring[h] = name\n        bisect.insort(sorted_positions, h)\n\ndef get_node(key):\n    h = int(hashlib.md5(key.encode()).hexdigest(), 16)\n    idx = bisect.bisect(sorted_positions, h) % len(sorted_positions)\n    return ring[sorted_positions[idx]]  # first node clockwise",
+      "id": "1d3142e328a2",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "An Optimistic Lock Is a `version` Column — Zero Rows Updated Means Another Writer Got There First",
+      "summary": "Optimistic locking avoids holding a row lock between read and write. It detects conflicts at commit time via a version number, letting concurrent readers proceed freely at the cost of occasional retries on conflict.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "system_design",
+        "database",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "Pessimistic locking holds a database lock from the moment you read until you commit, which serializes concurrent writers and limits throughput. Optimistic locking skips that read lock: you fetch the row along with a `version` integer, do your business logic, then issue `UPDATE ... WHERE id = ? AND version = ?`. If another transaction committed first it will have incremented `version`, your `WHERE` clause matches nothing, and `rows_affected` comes back 0 — that is your conflict signal to re-read, merge, and retry. The pattern shines when conflicts are rare; under heavy contention the retry storm can make it worse than pessimistic locking.",
+      "code": "-- 1. Read row and capture version\nSELECT id, balance, version FROM accounts WHERE id = 42;\n-- → balance = 1000, version = 7\n\n-- 2. Conditional write\nUPDATE accounts\n   SET balance = 900,\n       version = version + 1\n WHERE id      = 42\n   AND version = 7;\n\n-- rows_affected = 1 → success\n-- rows_affected = 0 → conflict; re-read and retry",
+      "id": "e7700e7e3a8d",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "If you call setState three times in a row inside a click handler, how many re-renders happen?",
+      "summary": "Tests whether the candidate understands React's automatic state batching and when updates are actually flushed to the DOM.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "react",
+        "state",
+        "batching"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "React batches state updates that happen inside event handlers, so calling setState three times results in a single re-render with all three updates applied. Before React 18, batching only happened inside React event handlers — updates inside setTimeout, Promises, or native event listeners each triggered a separate re-render. React 18 introduced automatic batching, which batches updates from all origins by default. The key insight is that React doesn't process state changes synchronously; it queues them and flushes once the current execution context finishes. If you genuinely need the DOM to update between two state changes — for example to measure an element's size — you can wrap one call in flushSync from react-dom, but that's rare. Understanding batching matters because unnecessary re-renders waste work and can cause visible layout jank in complex trees.",
+      "followUps": [
+        "What if one of those setState calls depends on the value set by the previous one — do you get stale state, and how do you fix it?",
+        "How would you force a synchronous DOM update between two state changes, and why is that almost always a code smell?"
+      ],
+      "id": "4697dee09539",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "What's the difference between a buffered and an unbuffered channel in Go, and when would you choose each?",
+      "summary": "Tests whether the candidate understands channel synchronization semantics beyond basic send and receive syntax.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "channels",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": true,
+      "body": "An unbuffered channel created with make(chan int) blocks the sender until a receiver is ready, creating a synchronization point where both goroutines rendezvous. A buffered channel created with make(chan int, 10) lets the sender continue until the buffer is full, decoupling the timing of sends and receives. Use an unbuffered channel when you need a guarantee that the receiver has the value before the sender proceeds — like handing off a work item with implicit acknowledgment. Use a buffered channel when the producer and consumer run at different speeds and you want to absorb short bursts without blocking the sender. A common mistake is using a large buffer to paper over a slow consumer; eventually the buffer fills and you block anyway, but now with higher memory usage and delayed backpressure. The buffer size is a design decision about how much latency mismatch you're willing to absorb before the producer slows down.",
+      "followUps": [
+        "What happens if you send on a channel and no goroutine will ever receive from it?",
+        "When would you use a channel of empty struct instead of a channel of bool, and why?",
+        "How does a select block with a default case change channel blocking behavior?"
+      ],
+      "id": "4caf32324258",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "How would you add rate limiting to an API, and what trade-offs come with different approaches?",
+      "summary": "Tests whether the candidate can reason about throttling strategies, their failure modes, and where enforcement belongs in a real deployment.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "rate-limiting",
+        "system-design",
+        "api"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "The simplest approach is a fixed-window counter: count requests per user per time window in a store like Redis and reject once the limit is hit. The problem is boundary bursts — a user can send the full limit at second 59 and again at second 61, doubling the effective rate across the boundary. A sliding-window log fixes this by tracking individual request timestamps, but it uses more memory per user. The token-bucket algorithm is the most common production choice: each user gets a bucket that refills at a steady rate, and each request removes a token, which naturally allows short bursts while enforcing an average rate. In a distributed system you need a shared store for the counters, which adds latency to every request. A local in-memory rate limiter is faster but lets a user exceed the global limit by hitting different instances. The choice depends on whether you are protecting against abuse, where approximate counts are fine, or enforcing a billing contract, where exactness matters.",
+      "followUps": [
+        "Where in the request lifecycle would you enforce the rate limit — load balancer, API gateway, or application code — and what changes with each choice?",
+        "How would you handle rate limiting fairly when multiple end-users share a single API key?"
+      ],
+      "id": "38a6836c555f",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Bool Arithmetic in Python",
+      "summary": "Python's bool is a subclass of int, so True and False participate in arithmetic as 1 and 0 respectively.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "types",
+        "bool"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "result = []\nresult.append(True + True)\nresult.append(True * 3)\nresult.append(isinstance(True, int))\nprint(result)",
+      "options": [
+        {
+          "label": "[2, 3, True]"
+        },
+        {
+          "label": "[True, True, True]"
+        },
+        {
+          "label": "[2, 3, False]"
+        },
+        {
+          "label": "TypeError"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "In Python, bool is a subclass of int — True is literally 1 and False is literally 0. Arithmetic on bools returns int results, so True + True evaluates to 2 and True * 3 evaluates to 3. Because bool inherits from int, isinstance(True, int) returns True.",
+      "id": "d533b987136f",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "The in Operator on Arrays",
+      "summary": "JavaScript's `in` operator checks whether a key (index) exists as a property, not whether a value is present in the array.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "arrays",
+        "operators"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "const arr = [10, 20, 30];\nconsole.log(2 in arr);\nconsole.log(30 in arr);",
+      "options": [
+        {
+          "label": "true\ntrue"
+        },
+        {
+          "label": "true\nfalse"
+        },
+        {
+          "label": "false\ntrue"
+        },
+        {
+          "label": "false\nfalse"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The `in` operator tests whether the left operand is a property name of the right operand object. Arrays have property names \"0\", \"1\", \"2\" corresponding to their indices. So `2 in arr` is true because index 2 exists, but `30 in arr` is false because there is no index 30 — it does not search for the value 30.",
+      "id": "ac168f274622",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Simultaneous Assignment in Go",
+      "summary": "In a multi-variable assignment, Go evaluates all expressions on the right-hand side before any assignment happens.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "assignment",
+        "evaluation-order"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tx, y := 1, 2\n\tx, y = y, x+y\n\tfmt.Println(x, y)\n}",
+      "options": [
+        {
+          "label": "2 3"
+        },
+        {
+          "label": "2 4"
+        },
+        {
+          "label": "1 3"
+        },
+        {
+          "label": "3 2"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Go evaluates the entire right-hand side of a multi-assignment before performing any writes. At the time of evaluation, y is 2 and x+y is 1+2 = 3. Only after both values are computed does it assign x = 2 and y = 3. A common mistake is thinking x updates first, making x+y become 2+2 = 4.",
+      "id": "1fcb63653004",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
+    {
+      "title": "Array Covariance in Java",
+      "summary": "Java allows assigning a String[] to an Object[] variable at compile time, but inserting a non-String element throws an ArrayStoreException at runtime.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "arrays",
+        "type-safety"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        Object[] arr = new String[3];\n        arr[0] = \"hello\";\n        arr[1] = 42;\n        System.out.println(\"done\");\n    }\n}",
+      "options": [
+        {
+          "label": "done"
+        },
+        {
+          "label": "Compilation error at arr[1] = 42"
+        },
+        {
+          "label": "Compilation error at Object[] arr = new String[3]"
+        },
+        {
+          "label": "ArrayStoreException at runtime"
+        }
+      ],
+      "correctOptionIndex": 3,
+      "explanation": "Java arrays are covariant: a String[] is treated as a subtype of Object[], so the assignment on line 3 compiles and runs fine. The compiler also allows arr[1] = 42 because arr's declared type is Object[]. However, at runtime the JVM knows the actual array is a String[], so storing an Integer into it throws an ArrayStoreException. This is a classic example of why covariant mutable containers are unsafe.",
+      "id": "33bc1cca7eaf",
+      "publishedAt": "2026-08-20T11:09:30.025Z"
+    },
     {
       "title": "AI Code Fails Security Checks 44% of the Time — and Coding-Specialized Models Are Slightly Worse",
       "summary": "Veracode tested 100+ models across real static analysis and found security pass rates stuck at 56%, unchanged from a year ago. The counterintuitive finding: coding-specialized models score 51%, slightly below general-purpose ones at 52% — suggesting that optimization for confident, compilable output trades away security awareness. GPT-5.5 leads all models at 68%, which matters if your team is choosing a model for security-sensitive generation.",
