@@ -1,6 +1,445 @@
 {
-  "generatedAt": "2026-08-25T08:18:40.227Z",
+  "generatedAt": "2026-08-26T06:59:36.242Z",
   "cards": [
+    {
+      "title": "Hidden HTML Comments Are Hijacking CI Secrets From Claude Code, Copilot, and Gemini",
+      "summary": "The payload sits inside <!-- --> comments that GitHub renders invisibly to humans but AI agents read as trusted context. Because GitHub Actions fires automatically on pull_request events, the attack triggers the moment a PR is opened — no user interaction required. Anthropic rated it CVSS 9.4 Critical; the $100 bounty it paid suggests this slipped through without much prior scrutiny.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "prompt-injection",
+        "ci-cd",
+        "ai-agents"
+      ],
+      "type": "blog",
+      "sourceName": "SecurityWeek",
+      "sourceUrl": "https://www.securityweek.com/claude-code-gemini-cli-github-copilot-agents-vulnerable-to-prompt-injection-via-comments/",
+      "id": "7e1fafb143c8",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Alibaba Releases a 2.4-Trillion-Parameter Open-Weight Model That Beats GPT-5.6 on an Agent Benchmark",
+      "summary": "Qwen3.8-Max uses a mixture-of-experts design with 95B active parameters and a 1M-token context window; it scores 86.1 vs 83.2 for GPT-5.6 Sol on OSWorld-Verified and the full weights are on Hugging Face. For teams that self-host or fine-tune, this is now the open-source ceiling — and it arrived less than two weeks after the closed-model comparison point.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "open-source",
+        "llm",
+        "alibaba"
+      ],
+      "type": "ai_news",
+      "sourceName": "DataCamp",
+      "sourceUrl": "https://www.datacamp.com/blog/qwen3-8-max",
+      "id": "01d366a114a2",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "AI Is Cutting Junior Developer Hiring, Not Headcount — Employment in the 22–25 Bracket Is Down 20%",
+      "summary": "Federal Reserve data shows overall software engineering employment still growing, but 3 percentage points per year below trend, entirely through slower hiring rather than layoffs. The drop concentrates at entry level while developers over 30 in high-AI-exposure roles are up 6–12%. The mechanism: AI accelerates the roughly 9% of the job that is writing code, leaving 91% intact, so the industry needs fewer people at the bottom of the skill gradient rather than fewer engineers overall.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "industry",
+        "hiring",
+        "ai-impact"
+      ],
+      "type": "blog",
+      "sourceName": "Northeast Times",
+      "sourceUrl": "https://northeasttimes.com/2026/08/13/ai-is-hollowing-out-the-middle-class-of-software-engineering/",
+      "id": "8f7977b46d7b",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "OpenAI Cut GPT-5.6 Luna's Price 80% Three Weeks After Launch — $1.00 to $0.20 per Million Input Tokens",
+      "summary": "Price-cutting this fast and deep this early in a model's life suggests OpenAI was watching usage numbers and reacting to competitive pressure almost in real time. Across tiers, cost-per-intelligence-unit has dropped roughly 50% in a single quarter — a pace that makes the economics of any AI product designed six months ago worth revisiting from scratch.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "pricing",
+        "openai",
+        "industry"
+      ],
+      "type": "ai_news",
+      "sourceName": "VentureBeat",
+      "sourceUrl": "https://venturebeat.com/technology/ai-price-wars-openai-cuts-gpt-5-6-luna-prices-by-80-as-model-competition-shifts-toward-cost/",
+      "id": "cedcbf692154",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "117 AI-Designed Drug Candidates Are in Human Trials and More Than Half Have Cleared Phase I",
+      "summary": "An ASCO 2026 analysis counted 117 AI-enabled assets across 63 companies in interventional human trials, with 51.3% having passed the Phase I safety filter — historically the point where most candidates fail first contact with human biology. Isomorphic Labs is now running oncology trials. The story has crossed from pipeline speculation to a statistically meaningful survival rate.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "biotech",
+        "ai-impact",
+        "research"
+      ],
+      "type": "blog",
+      "sourceName": "IntuitionLabs",
+      "sourceUrl": "https://intuitionlabs.ai/articles/ai-discovered-drugs-clinical-trials-2026",
+      "id": "220b4cdb4f01",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "The Same Symlink Trust Bug Was Found Independently in Six Major AI Coding Agents",
+      "summary": "Amazon Q Developer, Claude Code, Augment, Cursor, Windsurf, and Google Antigravity all trusted symlinked paths they should not have — the same class of filesystem flaw discovered independently across every major coding agent. Median time from report to patch was 85 days; two vendors are still unpatched 128 days after disclosure. The pattern suggests the entire category was built without a shared security model for local filesystem access.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "coding-agents",
+        "vulnerability"
+      ],
+      "type": "blog",
+      "sourceName": "eSecurity Planet",
+      "sourceUrl": "https://www.esecurityplanet.com/weekly-roundup/ai-security-failures-active-exploits-and-breaches-define-the-week-in-august-2026/",
+      "id": "b93459023f83",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Flexbox Stretches Children to Fill the Cross Axis by Default",
+      "summary": "align-items defaults to stretch, so every flex child grows to match the container's cross-axis size without you asking. A single child can opt out with align-self without changing its siblings.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "beginner",
+      "tags": [
+        "css",
+        "flexbox",
+        "layout"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you write display: flex, align-items: stretch is already active. In a row container that means every child expands to the container's full height — which is why a short sidebar mysteriously matches a tall content column. The same rule applies on the column axis when direction is column. You can override a single child with align-self: flex-start, which sizes it to its own content instead of the container.",
+      "code": "/* All three children become as tall as the tallest one */\n.row {\n  display: flex; /* align-items: stretch is implicit */\n}\n\n/* Stop one child from stretching without touching the others */\n.badge {\n  align-self: flex-start;\n}\n\n/* Opt everyone out at the container level */\n.row-natural {\n  display: flex;\n  align-items: flex-start;\n}",
+      "id": "7faaa25a1742",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "requestAnimationFrame Syncs to the Display Refresh — setTimeout(fn, 16) Does Not",
+      "summary": "requestAnimationFrame schedules your callback to run immediately before the browser's next paint, locked to the display's actual refresh rate. A fixed setTimeout delay drifts independently of the paint cycle and causes jank that rAF avoids for free.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "browser",
+        "animation",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "The browser paints on a schedule driven by the display hardware — usually 60 Hz or 120 Hz. rAF inserts your callback into that schedule so it fires once per frame, right before pixels are committed. setTimeout(fn, 16) sounds equivalent but fires independently: it can run mid-frame, pile up while the tab is backgrounded, or drift over time. The rAF callback receives a DOMHighResTimeStamp so you can compute elapsed milliseconds and keep motion frame-rate-independent, instead of hardcoding a pixel delta that runs too fast on a 120 Hz screen.",
+      "code": "let start = null;\n\nfunction animate(timestamp) {\n  if (!start) start = timestamp;\n  const elapsed = timestamp - start; // ms since animation began\n\n  // 100px per second — correct at any refresh rate\n  el.style.transform = `translateX(${elapsed * 0.1}px)`;\n\n  if (elapsed < 1000) {\n    requestAnimationFrame(animate);\n  }\n}\n\nrequestAnimationFrame(animate);",
+      "id": "6af4020bc368",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "A Cancelled Parent Context Cancels All Children — Timeouts Propagate Down the Tree",
+      "summary": "When you derive a child context with a longer timeout than its parent, the parent's tighter deadline wins. This is how a single request-level timeout automatically reins in every downstream call.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "concurrency",
+        "context"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "Every context created with `context.WithTimeout` or `context.WithCancel` is a node in a tree. When a parent's deadline fires — or you call its cancel function — the runtime closes the `Done()` channel on every descendant simultaneously. If you create a child with a 10-second timeout from a parent that only has 2 seconds left, the child's effective deadline is 2 seconds. This cascade is what makes it safe to pass `ctx` into database calls and HTTP clients: you never need to cancel them individually.",
+      "code": "ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)\ndefer cancel()\n\n// 10s requested, but parent has 2s left — parent wins\nchildCtx, childCancel := context.WithTimeout(ctx, 10*time.Second)\ndefer childCancel()\n\ndeadline, _ := childCtx.Deadline()\nfmt.Println(deadline) // ~2 seconds from now, not 10",
+      "id": "8afb8f30f975",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "`asyncio.gather` Runs Coroutines Concurrently — Awaiting Them in Sequence Does Not",
+      "summary": "Three consecutive `await` calls take as long as all three waits summed. `asyncio.gather` overlaps them on the event loop so the total time is roughly the slowest one.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "asyncio",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "asyncio is single-threaded, but it can overlap I/O by suspending coroutines at each `await` and resuming them when results arrive. When you `await` calls one after another, you suspend and resume each one in turn — there is no overlap. `asyncio.gather` schedules all coroutines onto the loop at once and returns only after the last one resolves, turning three 1-second database queries into roughly 1 second of wall time. If any coroutine raises, gather cancels the remaining ones and re-raises by default.",
+      "code": "import asyncio\nimport httpx\n\nasync def fetch(client, url):\n    r = await client.get(url)\n    return r.status_code\n\nasync def main():\n    async with httpx.AsyncClient() as client:\n        # ~1 second total, not ~3\n        a, b, c = await asyncio.gather(\n            fetch(client, \"https://example.com\"),\n            fetch(client, \"https://example.org\"),\n            fetch(client, \"https://example.net\"),\n        )",
+      "id": "51bbeb5decba",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "`thenApply` Wraps the Result; `thenCompose` Flattens It — Mix Them Up and You Get a Future Inside a Future",
+      "summary": "`thenApply` is map: it transforms the value. `thenCompose` is flatMap: it chains into another async operation. Using `thenApply` when your function returns a `CompletableFuture` nests one future inside another, which you then have to unwrap manually.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "async",
+        "completablefuture"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "A `CompletableFuture<T>` already holds an asynchronous value. If your transformation function also returns a `CompletableFuture<U>`, calling `thenApply` wraps it into `CompletableFuture<CompletableFuture<U>>` — a future whose value is another future you still have to join. `thenCompose` unwraps that outer shell, so the chain stays flat and you can keep adding `.thenCompose` stages without nesting. The naming mirrors `Stream.map` vs `Stream.flatMap` intentionally.",
+      "code": "CompletableFuture<String> userId = lookupUserId(email);\n\n// Wrong — type is CF<CF<Order>>, need .join() again\nCompletableFuture<CompletableFuture<Order>> nested =\n    userId.thenApply(id -> fetchOrder(id));\n\n// Right — type is CF<Order>, chain stays flat\nCompletableFuture<Order> flat =\n    userId.thenCompose(id -> fetchOrder(id))\n          .thenCompose(order -> enrichOrder(order));",
+      "id": "7b62a99fb923",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "`stream.pipeline` Wires Up Error Cleanup; Bare `.pipe()` Leaves Streams Open When One Fails",
+      "summary": "A stream error mid-pipe does not automatically destroy the other streams in the chain. `stream.pipeline` does — it cross-wires error and close handlers so a failure at any stage tears down everything cleanly.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "node",
+        "streams",
+        "error-handling"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "`.pipe()` forwards data from a readable to a writable, but it only adds a listener for the `end` event, not `error`. If the readable errors, the writable stays open and its file descriptor leaks. `stream.pipeline` (and its promise wrapper in `stream/promises`) attaches `error` and `close` handlers to every stage in the chain, calls `destroy()` on all of them if any one fails, and fires your callback exactly once. This is why Node's own documentation replaced `.pipe()` examples from Node 10 onward.",
+      "code": "const { pipeline } = require('stream/promises');\nconst fs = require('fs');\nconst zlib = require('zlib');\n\nawait pipeline(\n  fs.createReadStream('access.log'),\n  zlib.createGzip(),\n  fs.createWriteStream('access.log.gz')\n);\n// On any error: all three streams destroyed, no leaked handles",
+      "id": "36082f05a4a3",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Each Database Connection Is a Server Process — Pools Cap That Cost",
+      "summary": "Opening a new connection per request creates a server-side process on every call and exhausts `max_connections` under load. A pool keeps a fixed set alive and lends them out, so the handshake cost is paid once.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "beginner",
+      "tags": [
+        "system_design",
+        "database",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "In PostgreSQL, accepting a connection forks a backend process; in MySQL it spawns a thread. Either way, a TCP handshake, authentication round-trip, and OS-level allocation happen before your query runs. A web server handling 200 concurrent requests cannot open 200 connections without overwhelming the database. A pool holds a bounded set of pre-authenticated connections; a handler borrows one, runs its query, and returns it. Pool size should be tuned to the database server's core count — not your application's concurrency — because the database itself serializes on CPU.",
+      "code": "// Node + pg\nconst { Pool } = require('pg');\n\nconst pool = new Pool({\n  max: 10,               // ~= DB server core count, not request concurrency\n  idleTimeoutMillis: 30_000,\n  connectionTimeoutMillis: 2_000,\n});\n\nconst { rows } = await pool.query(\n  'SELECT * FROM orders WHERE id = $1', [id]\n);\n// connection returned to pool automatically after query",
+      "id": "5aeaa18a1cef",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "A Composite Index Is Only Usable from Its Leftmost Column — Column Order Is Not Arbitrary",
+      "summary": "An index on `(status, created_at)` sorts by status first, then by date within each status. Querying on `created_at` alone skips the leading sort key, so the planner ignores the index and scans the table instead.",
+      "estimatedReadSeconds": 115,
+      "difficulty": "intermediate",
+      "tags": [
+        "system_design",
+        "database",
+        "indexing"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "A composite index is a sorted structure where rows are ordered by the first column, then the second within ties, and so on. To seek into that structure, the query engine needs to know the value of every leading column — otherwise it has no starting point. A filter on only the second column would require scanning every bucket of the first column, making the index no better than a full table scan. The rule is: every column you want to filter independently needs to be the leading column in at least one index.",
+      "code": "CREATE INDEX idx_orders ON orders (status, created_at);\n\n-- Uses the index: status is leftmost\nSELECT * FROM orders\n  WHERE status = 'pending'\n  ORDER BY created_at;\n\n-- Skips status — planner does a seq scan instead\nSELECT * FROM orders\n  WHERE created_at > NOW() - INTERVAL '1 day';\n\n-- Fix: a dedicated index for date-only queries\nCREATE INDEX idx_orders_created ON orders (created_at);",
+      "id": "ac912e066d5b",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "If you schedule a setTimeout(fn, 0) and a Promise.resolve().then(fn), which callback runs first and why?",
+      "summary": "Tests whether you understand the event loop's two queues — microtasks (promises) and tasks (timers) — and why microtasks always drain first.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "event-loop",
+        "async"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "The promise callback runs first. The browser's event loop maintains two queues: the microtask queue (used by promises, MutationObserver, and queueMicrotask) and the task queue (used by setTimeout, setInterval, and I/O callbacks). After each task finishes executing, the engine drains the entire microtask queue before picking up the next task. So even though both are scheduled \"immediately,\" the promise's .then enters the microtask queue while setTimeout enters the task queue. The current synchronous code completes, all microtasks drain, and only then does the event loop pick up the timer callback. This ordering is why a long chain of microtasks can starve timers and block rendering — the microtask queue keeps draining before the browser gets a chance to paint or run the next task.",
+      "followUps": [
+        "What happens if a microtask schedules another microtask — when does the new one run?",
+        "How does requestAnimationFrame fit into this ordering relative to microtasks and regular tasks?",
+        "Can an infinite chain of microtasks hang the page even though each individual callback is fast?"
+      ],
+      "id": "f655b0cf1761",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Why can't you speed up CPU-bound work in Python by adding more threads?",
+      "summary": "Tests whether you understand the Global Interpreter Lock and when to reach for multiprocessing instead of threading.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "concurrency",
+        "gil"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": true,
+      "body": "CPython's Global Interpreter Lock (GIL) allows only one thread to execute Python bytecode at a time. When work is CPU-bound — hashing, parsing, number crunching — adding threads does not run computations in parallel; each thread simply takes turns holding the GIL. Threading still helps for I/O-bound work (HTTP requests, file reads) because threads release the GIL while waiting on the OS, letting other threads proceed. For true CPU parallelism you use the multiprocessing module, which spawns separate processes each with its own interpreter and its own GIL. The trade-off is that inter-process communication via pipes or queues is more expensive than sharing memory between threads. Libraries like NumPy sidestep the issue by dropping into C code that releases the GIL before doing heavy math, so multiple NumPy threads can run in parallel despite the lock. Free-threaded builds are experimental in 3.13+, but in most production code today the rule is: threads for I/O, processes for CPU.",
+      "followUps": [
+        "If the GIL blocks CPU parallelism, why does NumPy still benefit from multiple threads?",
+        "What are the trade-offs between multiprocessing.Pool and concurrent.futures.ProcessPoolExecutor?"
+      ],
+      "id": "c4526a58f60e",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Your API returns a list of orders each with the customer's name. It's fast with 10 orders but slow with 1,000. What's likely happening?",
+      "summary": "Tests whether you can identify the N+1 query problem and propose solutions like eager loading or batched fetching.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "databases",
+        "performance",
+        "api"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "This is almost certainly the N+1 query problem. The code fetches N orders in one query, then for each order runs a separate query to look up the customer — that's 1 + N database round-trips. With 10 orders the extra latency is invisible; with 1,000 it's 1,001 queries and the response crawls. The fix is eager loading: a JOIN or an IN clause that fetches all related customers in one or two queries instead of one per row. In an ORM this usually means one annotation or method call — joinedload in SQLAlchemy, .includes in ActiveRecord, a fetch join in JPA. You can also collect all customer IDs and issue a single WHERE id IN (...) query manually. Detecting N+1 in production requires query-count logging or an APM tool; the code itself looks perfectly reasonable until you watch the query log scroll.",
+      "followUps": [
+        "How would you detect N+1 queries in a production service that's already running?",
+        "When would you prefer a separate batched IN query over a JOIN for eager loading?",
+        "How does GraphQL's DataLoader solve N+1 differently from ORM eager loading?"
+      ],
+      "id": "1d1d708dfc58",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Python 3 round() on Half Values",
+      "summary": "Python 3's built-in round() uses banker's rounding (round half to even), which surprises developers who expect .5 to always round up.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "rounding",
+        "builtins"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "print(round(0.5))\nprint(round(1.5))\nprint(round(2.5))",
+      "options": [
+        {
+          "label": "0\n2\n2"
+        },
+        {
+          "label": "1\n2\n3"
+        },
+        {
+          "label": "0\n2\n3"
+        },
+        {
+          "label": "1\n2\n2"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Python 3 uses banker's rounding, also called round-half-to-even. When a value is exactly halfway between two integers, it rounds to the nearest even number. So 0.5 rounds to 0 (even), 1.5 rounds to 2 (even), and 2.5 also rounds to 2 (even). This minimizes cumulative rounding bias in statistical calculations.",
+      "id": "275d05dd31ab",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Destructuring Defaults: null vs undefined",
+      "summary": "Destructuring default values only activate when the property is undefined, not when it is null — a distinction that catches developers who treat the two as interchangeable.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "destructuring",
+        "defaults"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "const { a = 1, b = 2 } = { a: undefined, b: null };\nconsole.log(a, b);",
+      "options": [
+        {
+          "label": "1 null"
+        },
+        {
+          "label": "1 2"
+        },
+        {
+          "label": "undefined null"
+        },
+        {
+          "label": "undefined 2"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Destructuring defaults trigger only when the value is strictly undefined. Since a is explicitly undefined, its default of 1 applies. But b is null, which is a defined value, so the default of 2 does not kick in. This matches how default function parameters work — null is considered a deliberate value, while undefined signals absence.",
+      "id": "2cc6b31bd7ce",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Deferred Argument Evaluation in Go",
+      "summary": "Go's defer statement evaluates its function arguments immediately at the defer line, even though the call itself is delayed until the surrounding function returns.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "defer",
+        "evaluation"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    x := 0\n    defer fmt.Println(x)\n    x = 1\n    fmt.Println(x)\n}",
+      "options": [
+        {
+          "label": "1\n0"
+        },
+        {
+          "label": "1\n1"
+        },
+        {
+          "label": "0\n1"
+        },
+        {
+          "label": "0\n0"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "When Go encounters a defer statement, it evaluates the arguments to the deferred function call right then — not when the function actually executes. At the defer line, x is 0, so that value is captured. The non-deferred Println runs first and prints 1 (the updated value). Then on function return, the deferred call runs and prints the previously captured 0.",
+      "id": "06c0683ce701",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
+    {
+      "title": "Java's Bitwise OR Skips No Side",
+      "summary": "Java's single-pipe | operator evaluates both operands even when used with boolean expressions, unlike || which short-circuits after the first true.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "operators",
+        "short-circuit"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        int x = 5;\n        if (x > 3 | ++x > 6) {\n            System.out.println(x);\n        }\n    }\n}",
+      "options": [
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "No output"
+        },
+        {
+          "label": "Compilation error"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "The single | is a non-short-circuiting operator in Java. Even though the left side (5 > 3) is already true, the right side is still evaluated, so ++x runs and x becomes 6. The result is true | false, which is true, so the if block executes and prints 6. With || instead, the right side would be skipped, x would stay 5, and 5 would be printed.",
+      "id": "86c266815898",
+      "publishedAt": "2026-08-26T06:28:46.002Z"
+    },
     {
       "title": "A VS Code Retry Bug Turned a Traffic Spike Into an 8-Hour GitHub Outage",
       "summary": "A latent retry loop in VS Code's Copilot Token Service client amplified a routine slowdown into roughly 10× normal request volume, overwhelming GitHub's Central US load balancers before autoscaling could respond. The deeper cause: AI coding agents have pushed GitHub's commit and PR volume to levels its infrastructure was never designed for, so the blast radius of any retry storm is now far larger.",
