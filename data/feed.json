@@ -1,6 +1,446 @@
 {
-  "generatedAt": "2026-09-01T09:34:07.048Z",
+  "generatedAt": "2026-09-07T05:47:10.756Z",
   "cards": [
+    {
+      "title": "OpenAI Halted Its Largest Frontier RL Run After the Model Crossed Its Own Red Line",
+      "summary": "An unreleased model internally hit the 'Critical' cybersecurity capability threshold defined in OpenAI's Preparedness Framework — the first confirmed case of a lab stopping a training run because of a capability level reached, not a PR crisis. Altman acknowledged 'various degrees of misalignment' in models that were never shipped.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai-safety",
+        "openai",
+        "alignment"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "id": "f1bec7f4817c",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "OpenAI Cut Cursor's Model Access After SpaceX's Acquisition — 4M Daily Users Have Until November to Migrate",
+      "summary": "This is the first time a major model provider has invoked a change-of-control clause to terminate a widely-used developer tool. Most developers never read that clause in provider terms of service, and the episode establishes that an M&A deal you had no input on can remove the AI layer from your entire workflow.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "developer-tools",
+        "openai",
+        "supply-chain"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
+      "id": "04950642e165",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "Anthropic Wants to Do for Robot Arms and Lab Equipment What MCP Did for APIs",
+      "summary": "The Model Hardware Standard gives any model a standard reference file describing a physical device's inputs, outputs, and safety limits — the same plug-in-and-go story MCP told for software. Launch partners include Danaher, Tecan, Universal Robots, and Raspberry Pi, making this the first credible model-agnostic standard for AI physical-world control.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "mcp",
+        "robotics",
+        "anthropic",
+        "standards"
+      ],
+      "type": "ai_news",
+      "sourceName": "Anthropic",
+      "sourceUrl": "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "id": "b142608e7ff3",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "Claude Agents Found Alignment Fixes 15,000× More Efficient Than Existing Procedures — in 60 Hours",
+      "summary": "Over 60 hours, Claude agents explored 50+ solutions across 10 categories of alignment failures and beat production benchmarks without degrading capabilities elsewhere. Earlier this year, the same agents closed 97% of a performance gap that two human researchers only closed 23% of in the same window — the recursive acceleration seen in software development is now being applied to AI safety itself.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "advanced",
+      "tags": [
+        "alignment",
+        "ai-safety",
+        "agents",
+        "anthropic"
+      ],
+      "type": "blog",
+      "sourceName": "Anthropic Research",
+      "sourceUrl": "https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures",
+      "id": "d0fe4732aae8",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "The Intelligence Ceiling You're Hitting in Production Is Often Your Harness Code, Not the Model",
+      "summary": "GPT-5.6 Sol jumped from 13.3% to 38.3% on a hard reasoning benchmark with zero change to model weights — only the harness changed: reasoning retained across turns, histories compacted. The implication is that a large share of 'model limitations' developers report are actually architectural choices in how they call and structure the conversation.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "agents",
+        "prompting",
+        "openai",
+        "benchmarks"
+      ],
+      "type": "blog",
+      "sourceName": "OpenAI Deployment Safety Hub",
+      "sourceUrl": "https://deploymentsafety.openai.com/gpt-5-6-august-update",
+      "id": "0bdbad222d6c",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "An AI-Designed Universal Coronavirus Vaccine Antigen No Human Specified Just Cleared Phase 1",
+      "summary": "The AI engineered a component that triggered immune responses not just to SARS-CoV-2 but to related bat coronaviruses that have never infected humans — patterns in cross-species viral evolution no one gave it as a design brief. If Phase 2 holds, it becomes the clearest documented case of AI discovering genuinely novel biomedical solutions rather than optimizing known ones.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "ai-research",
+        "biology",
+        "discovery"
+      ],
+      "type": "blog",
+      "sourceName": "University of Cambridge",
+      "sourceUrl": "https://cam.ac.uk/research/news/new-universal-vaccine-technology-could-protect-us-from-future-virus-outbreaks",
+      "id": "8973342b73da",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "fetch Only Rejects on Network Failure — Not on 4xx or 500",
+      "summary": "The fetch promise resolves for any completed HTTP response, including 404 and 500. You must inspect response.ok or response.status yourself to surface server errors.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "browser-apis",
+        "fetch"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Unlike Axios or older XHR wrappers, fetch considers a request successful as long as the server sent back a response — no matter what status code it carries. The promise only rejects when the request can't complete at all: no network, DNS failure, or CORS block. That means a 500 response silently reaches your .then() as a resolved promise with a Response object. The fix is a manual check on response.ok (true for 2xx) before calling response.json(), and throwing an error you can actually catch downstream.",
+      "code": "async function getData(url) {\n  const res = await fetch(url);\n\n  // ❌ res is resolved even for 404 / 500\n  // calling res.json() here hides the error\n\n  if (!res.ok) {\n    throw new Error(`HTTP ${res.status} — ${res.statusText}`);\n  }\n\n  return res.json(); // safe to parse now\n}",
+      "id": "b11a6d621b59",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "`overflow: hidden` Clears Floats Because It Creates a Block Formatting Context",
+      "summary": "Setting overflow to anything except visible turns a block into a Block Formatting Context — an isolated layout region where floats are contained and margins don't bleed outward. The float-clearing is a side effect of that isolation, not a direct feature.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "css",
+        "layout"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "A Block Formatting Context (BFC) is a self-contained layout region: floats inside it can't escape, and vertical margins inside it won't collapse with margins outside. When you set overflow: hidden on a parent, you're triggering a BFC, which forces the parent to account for floated children when calculating its own height — that's why the parent 'wraps' the float instead of collapsing. The cleaner modern alternative is display: flow-root, which creates a BFC explicitly without the risk of accidentally clipping content. display: flex and display: grid also create BFCs, which is part of why they don't suffer the classic float and margin-collapse problems at all.",
+      "code": "/* Parent collapses — floated child isn't in normal flow */\n.parent { background: lightblue; }\n.child  { float: left; width: 80px; height: 80px; }\n\n/* Fix A — classic, but clips overflow */\n.parent { overflow: hidden; }\n\n/* Fix B — explicit BFC, no clipping side-effect */\n.parent { display: flow-root; }\n\n/* Both work because both create a Block Formatting Context */",
+      "id": "283ba5a472cd",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "`util.promisify` Wraps Callback APIs — It Checks for a Custom Symbol First",
+      "summary": "`util.promisify` converts any function that follows Node's `(err, result)` callback convention into one that returns a Promise. If the function exposes a `util.promisify.custom` symbol, that hand-written implementation is used instead.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "node",
+        "promises",
+        "async"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "Node's callback convention expects the last argument to be a function called with `(error, result)`. `util.promisify` wraps that into a Promise — rejecting on a truthy first argument, resolving with the second. Some APIs like `fs.exists` don't follow the convention, so they expose a `[util.promisify.custom]` symbol pointing to a correct Promise implementation. Passing something that matches neither shape will appear to work but resolve with `undefined`, so check the docs before promisifying unfamiliar APIs.",
+      "code": "const { promisify } = require('util');\nconst fs = require('fs');\n\n// fs.readFile follows (err, data) — promisify handles it automatically\nconst readFile = promisify(fs.readFile);\nconst data = await readFile('config.json', 'utf8');\n\n// For APIs that don't follow the convention, define the symbol:\nmyLegacyFn[util.promisify.custom] = () =>\n  new Promise(resolve => myLegacyFn(resolve));",
+      "id": "3b96b11355cf",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "`lru_cache` Keys Every Call by Its Arguments — They Must Be Hashable",
+      "summary": "`functools.lru_cache` stores return values keyed by a tuple of all arguments. Passing a list, dict, or any other unhashable type raises `TypeError` immediately rather than silently bypassing the cache.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "caching",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "Every call builds a cache key from its positional and keyword arguments using Python's normal hashing rules. If any argument is unhashable — a list, dict, or custom object without `__hash__` — it raises `TypeError` at call time. The cache lives on the function object itself, so it persists for the process lifetime and is shared across all callers. Call `.cache_clear()` in tests or you will get cross-test pollution from a previous call's memoized result.",
+      "code": "from functools import lru_cache\n\n@lru_cache(maxsize=128)\ndef get_user(user_id: int) -> dict:\n    return db.fetch(user_id)\n\nget_user(42)    # cached on the second call\nget_user([42])  # TypeError: unhashable type: 'list'\n\n# In tests, always reset between cases:\nget_user.cache_clear()",
+      "id": "47ff332cb66c",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "`Optional.orElse()` Always Evaluates Its Argument — `orElseGet()` Is Lazy",
+      "summary": "`orElse(value)` computes `value` unconditionally, even when the Optional already contains something. `orElseGet(supplier)` calls the supplier only when the Optional is empty.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "java",
+        "optional",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "`orElse` accepts a plain value, which means Java evaluates the expression before the method even checks whether the Optional is present — the result is already computed and passed in. If that expression is a database call or object construction, it runs every time regardless of a cache hit. `orElseGet` takes a `Supplier<T>` lambda that is invoked only when the Optional is actually empty, making it the right choice for any fallback that has cost or side effects.",
+      "code": "Optional<User> cached = cache.get(id);\n\n// BAD: fetchFromDB() runs even when cached is present\nUser u1 = cached.orElse(fetchFromDB(id));\n\n// GOOD: fetchFromDB() only runs on a cache miss\nUser u2 = cached.orElseGet(() -> fetchFromDB(id));",
+      "id": "bb983756e7b9",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "A nil Slice and an Empty Slice Both Have Length Zero — But JSON Marshaling Treats Them Differently",
+      "summary": "`var s []string` gives a nil slice that marshals to JSON `null`. `s := []string{}` gives an empty slice that marshals to `[]`. APIs that return `null` instead of `[]` routinely break JavaScript clients that call `.map()` or `.length`.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "json",
+        "api"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "A Go slice is three words: a pointer, a length, and a capacity. A nil slice has a nil pointer; an empty slice has a non-nil pointer to a zero-length array. Both behave identically for `len`, `range`, and `append`, but `encoding/json` checks the pointer: nil means `null`, non-nil means a JSON array. Always return `make([]T, 0)` or `[]T{}` from API handlers so callers consistently receive an array, even when there are no results.",
+      "code": "var nilSlice []string     // nil pointer\nemptySlice := []string{} // non-nil, zero length\n\nb1, _ := json.Marshal(nilSlice)   // \"null\"\nb2, _ := json.Marshal(emptySlice) // \"[]\"\n\n// Safe default in API handlers:\nresults := make([]string, 0)\njson.Marshal(results) // always \"[]\"",
+      "id": "11f5eaa71c94",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "A Token Bucket Allows Bursts Up to Its Capacity — Sustained Rate Is the Refill Speed",
+      "summary": "The token bucket algorithm refills capacity at a steady rate and spends one token per request. A full bucket absorbs bursts; an empty bucket rejects or queues. The fixed-window alternative (Redis INCR + TTL) is simpler but allows a double-burst at every window boundary.",
+      "estimatedReadSeconds": 115,
+      "difficulty": "intermediate",
+      "tags": [
+        "rate-limiting",
+        "api",
+        "distributed-systems"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "Tokens accrue continuously up to a maximum bucket size; each incoming request removes one token. Because tokens accumulate while a caller is idle, a bucket of capacity 100 refilling at 10/s can serve 100 requests in quick succession before dropping to the sustained rate. A fixed-window counter resets all at once, so a caller can exhaust the limit at the end of one window and the start of the next — effectively doubling the allowed rate for a short period. The token bucket avoids this because credits are spent as they are consumed, not reset en masse.",
+      "code": "-- Redis Lua script: atomic token bucket check\nlocal tokens = tonumber(redis.call('GET', KEYS[1])) or tonumber(ARGV[1])\nif tokens < 1 then\n  return 0  -- reject\nend\nredis.call('SET', KEYS[1], tokens - 1)\nredis.call('EXPIRE', KEYS[1], ARGV[2])\nreturn 1  -- allow\n-- Refill: a scheduled job adds min(capacity, tokens + rate*elapsed)",
+      "id": "f3ae6c4f5dcb",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "Consistent Hashing Remaps Only ~1/N Keys When a Node Joins or Leaves",
+      "summary": "Modulo-based sharding reassigns almost every key when the node count changes. Consistent hashing places both nodes and keys on a hash ring so that only the keys between the departing node and its predecessor need to move.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "distributed-systems",
+        "caching",
+        "sharding"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "With `key % N` sharding, changing N produces a different result for nearly every key — a cache warms entirely from scratch. Consistent hashing maps both keys and nodes onto a circular 0–2³² ring using the same hash function; each key is owned by the nearest node clockwise. Adding a node steals keys only from one neighbor; removing a node gives its keys to the next one — roughly 1/N of all keys move regardless of ring size. Virtual nodes (multiple ring positions per physical server) smooth out uneven load when the ring is small, and are used by both Redis Cluster and Cassandra.",
+      "code": "Ring positions (hash values 0 – 2^32):\n\n  [NodeA @100]   [NodeB @400]   [NodeC @750]\n\n  key hash 250  →  NodeB (nearest clockwise)\n  key hash 900  →  NodeA (wraps around the ring)\n\nAdd NodeD @300:\n  keys between 100–300 move from NodeB → NodeD\n  all other keys stay put  (~1/N total remapped)",
+      "id": "d756102adc1b",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "Why does React care about the `key` prop on list items, and what breaks if you use the array index?",
+      "summary": "Tests whether the candidate understands React's reconciliation algorithm and why stable element identity matters for both correctness and performance.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "react",
+        "reconciliation",
+        "dom"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "React uses `key` to match elements between the previous render and the next one. When a list re-renders, React pairs up old and new keys to decide which DOM nodes to create, update, or destroy. If you use the array index as the key and insert an item at the top, every index shifts — React thinks every item changed and re-renders the entire list. Worse, component state (input values, checkbox state, animation progress) is tied to the key, so index-based keys cause state to migrate to the wrong item after a reorder or deletion. A stable unique identifier like a database ID lets React correctly track which items moved and which are new. The performance cost is real but secondary — the correctness bug (state attached to the wrong row) is what actually ships broken UIs.",
+      "followUps": [
+        "What happens to a component's internal state when you change its key to a completely new value?",
+        "Can you use `key` outside of lists? Give an example of when that would be useful.",
+        "If every item in the list is a pure display component with no state, does the index-as-key problem still matter?"
+      ],
+      "id": "4423580ba96a",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "In Java, `Integer a = 127; Integer b = 127;` makes `a == b` true, but change 127 to 128 and it's false. Why?",
+      "summary": "Tests understanding of reference vs. value equality, autoboxing, and the JVM's Integer cache — a real-world source of subtle bugs.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "equality",
+        "autoboxing"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": true,
+      "body": "The `==` operator on objects compares references — whether two variables point to the same object in heap memory. `.equals()` compares logical value. Java's `Integer.valueOf()` caches objects for values –128 through 127, so autoboxing `Integer a = 127` returns the same cached instance every time, and `==` is true. At 128 the cache ends: autoboxing creates two separate `Integer` objects with identical values but different addresses, so `==` returns false. This bites people because autoboxing hides the `valueOf()` call entirely — the code looks like a primitive comparison. The fix is simple: always use `.equals()` for boxed types, or unbox to `int` when you only need value equality. The cache range is specified by the JLS but the upper bound can be raised with `-XX:AutoBoxCacheMax`.",
+      "followUps": [
+        "Does `new Integer(127) == new Integer(127)` return true or false, and why is it different from autoboxing?",
+        "String has a similar concept — the intern pool. How does `String.intern()` interact with `==`?",
+        "Where in production code have you seen reference-equality bugs with boxed types?"
+      ],
+      "id": "2fd6ee5d26e3",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "You launch ten goroutines in a loop, but `main` returns before any of them finish. What happens, and how do you fix it?",
+      "summary": "Tests whether the candidate understands that goroutine lifetime is tied to the process, not to any parent, and knows the standard synchronization patterns.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "goroutines",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": true,
+      "body": "When `main` returns, the Go runtime tears down the entire process immediately — every goroutine is killed with no deferred functions run and no cleanup. Unlike OS threads in some languages there is no implicit join; goroutines have no parent-child relationship the runtime tracks. The standard fix is `sync.WaitGroup`: call `wg.Add(1)` before each launch, `defer wg.Done()` inside the goroutine, and `wg.Wait()` in main. A channel works too — have each goroutine send on a done channel and read N times. Choosing between them is mostly ergonomic: WaitGroup is simpler when you only need to wait, channels are better when you also need results or errors. The real danger of forgetting to wait isn't just lost output — it's half-written files, uncommitted database transactions, and network connections abandoned without a close.",
+      "followUps": [
+        "How would you cancel those goroutines early if the program receives a shutdown signal?",
+        "What is `errgroup.Group` and how does it improve on a bare WaitGroup?",
+        "A goroutine blocks forever on a channel nobody writes to. Is that a memory leak?"
+      ],
+      "id": "9cce295d5105",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "The typeof Operator's Quirks",
+      "summary": "typeof returns surprising results for null and NaN because of a legacy implementation bug and IEEE 754's type definition.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "typeof",
+        "coercion"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "console.log(typeof null);\nconsole.log(typeof undefined);\nconsole.log(typeof NaN);",
+      "options": [
+        {
+          "label": "object\nundefined\nnumber"
+        },
+        {
+          "label": "null\nundefined\nnumber"
+        },
+        {
+          "label": "object\nundefined\nNaN"
+        },
+        {
+          "label": "null\nundefined\nNaN"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "typeof null returns \"object\" due to a bug in JavaScript's original implementation — null's internal type tag matched the object tag, and fixing it would break too much existing code. typeof NaN returns \"number\" because NaN is defined by IEEE 754 as a special floating-point value. It's Not-a-Number, but its type is still number.",
+      "id": "00170e97925c",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "Return Inside a finally Block",
+      "summary": "A return statement in a finally block silently overrides the return value from the try block, because the JLS gives finally's completion reason priority.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "finally",
+        "control-flow"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    static int test() {\n        try {\n            return 1;\n        } finally {\n            return 2;\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(test());\n    }\n}",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "Compilation error"
+        },
+        {
+          "label": "Runtime exception"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The finally block always executes, even when try contains a return statement. When finally has its own return, the JLS specifies that finally's completion reason takes priority — it silently discards try's pending return value. The method returns 2. Most linters flag this pattern because the silent override is easy to miss.",
+      "id": "c8151f500718",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "nil Slice vs Empty Slice",
+      "summary": "A declared-but-unassigned slice is nil while an empty literal is non-nil, yet both have length 0 and work identically with len, append, and range.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "slices",
+        "nil"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var a []int\n    b := []int{}\n    fmt.Println(a == nil, b == nil)\n    fmt.Println(len(a), len(b))\n}",
+      "options": [
+        {
+          "label": "true true\n0 0"
+        },
+        {
+          "label": "true false\n0 0"
+        },
+        {
+          "label": "false false\n0 0"
+        },
+        {
+          "label": "true false\npanic: runtime error"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "var a []int gives a nil slice — the zero value for a slice type has a nil internal pointer. []int{} creates an initialized empty slice with a non-nil pointer to a zero-length underlying array. Both have length and capacity 0, and len() is safe to call on a nil slice. The distinction surfaces in nil comparisons and JSON marshaling, where nil marshals to null and an empty slice marshals to [].",
+      "id": "a4a184c245f2",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
+    {
+      "title": "or and and Return Operands, Not Booleans",
+      "summary": "Python's or and and short-circuit and return the deciding operand's actual value rather than converting it to True or False.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "short-circuit",
+        "operators"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "x = \"\" or 0 or 42\ny = \"hi\" and 0 and \"bye\"\nprint(x, y)",
+      "options": [
+        {
+          "label": "42 0"
+        },
+        {
+          "label": "True False"
+        },
+        {
+          "label": "42 bye"
+        },
+        {
+          "label": "42 hi"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Python's or returns the first truthy operand it finds, or the last operand if all are falsy. and returns the first falsy operand, or the last operand if all are truthy. Neither operator converts the result to bool — they return the actual value. So \"\" and 0 are skipped by or until it hits 42, while and stops at 0 because it's the first falsy value after \"hi\".",
+      "id": "915b0e7119e7",
+      "publishedAt": "2026-09-02T05:40:34.746Z"
+    },
     {
       "title": "Aurora Ransomware Used Cursor Agent as Its Live Reasoning Engine Inside Victim Networks",
       "summary": "Six weeks of recovered operator logs show an Aurora affiliate prompting Cursor Agent — backed by claude-4.5-sonnet-thinking — in Russian to work through NTLM relay chains and Active Directory certificate attacks against live enterprise networks in real time. This is the first documented case of a commercial AI coding assistant acting as the primary exploitation reasoning engine during an active intrusion, not for offline payload generation but for interactive attack planning on already-compromised hosts.",
