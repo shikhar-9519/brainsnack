@@ -1,6 +1,444 @@
 {
-  "generatedAt": "2026-10-27T11:42:08.760Z",
+  "generatedAt": "2026-10-29T11:42:44.931Z",
   "cards": [
+    {
+      "title": "AI Disproved the Exponential Time Hypothesis — Then Proved Two More Open Problems the Same Week",
+      "summary": "OpenAI published machine-checked Lean proofs disproving ETH (a 1999 conjecture that underpins hundreds of 'X is hard assuming ETH' results in complexity theory), proved the Kakeya conjecture in all dimensions (humans got to 3D in 2025), and produced a proof of Yang-Mills existence — a Clay Millennium Prize problem. Anthropic simultaneously published a paper claiming Claude reached the same ETH conclusion independently. None are peer-reviewed yet, but the proofs are on GitHub now, which is a qualitatively different kind of claim than a benchmark score.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai-research",
+        "mathematics",
+        "frontier-models"
+      ],
+      "type": "ai_news",
+      "sourceName": "technology.org",
+      "sourceUrl": "https://www.technology.org/2026/10/28/openai-exponential-time-hypothesis-disproof-lean-kakeya/",
+      "id": "ba25160b3e86",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Google Burned $9B More Than It Made in One Quarter — Entirely Because of AI Infrastructure",
+      "summary": "Alphabet posted negative free cash flow for the first time since its 2004 IPO, spending $51.4 billion on capex in Q3 2026 (up 114% year-over-year) even as Cloud revenue doubled to $30.7 billion. The company has signalled $200B in capex for 2026 and $300B for 2027. This is the clearest single data point yet on what the AI infrastructure arms race actually costs at scale — and Alphabet stock dropped 10% on the news, meaning markets are now explicitly pricing the gap between AI spending and AI returns.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "industry",
+        "infrastructure",
+        "ai-investment"
+      ],
+      "type": "blog",
+      "sourceName": "Fortune",
+      "sourceUrl": "https://fortune.com/2026/10/28/alphabet-google-stock-drops-cloud-revenue-doubles-free-cash-flow-negative/",
+      "id": "652981d40f58",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "All Five Current Claude Models Failed at Once — Leaving Teams With No Fallback",
+      "summary": "On October 25, Claude Mythos 5.1, Fable 5.1, Opus 5.5, Sonnet 5.5, and Haiku 5.5 all returned elevated errors simultaneously for about 30 minutes. The standard resilience pattern — fail over to a smaller model — broke because there was no current Claude model left to fall to. Teams that had designed multi-model redundancy assuming independent failure modes discovered they had a single shared failure surface. The incident is a concrete design note for anyone building production systems on a single provider's model family.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "beginner",
+      "tags": [
+        "reliability",
+        "claude",
+        "production"
+      ],
+      "type": "blog",
+      "sourceName": "Host-Tracker",
+      "sourceUrl": "https://www.host-tracker.com/en/is-claude-down/incidents/2026-10-25-0614",
+      "id": "0b3f33db5bef",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Chrome DevTools for Agents 1.0: AI Coding Tools Can Now Drive Your Browser Runtime Directly",
+      "summary": "Agents including Claude Code, Codex, and Cursor can now connect to Chrome via MCP to inspect the DOM, capture V8 heap snapshots, run Lighthouse audits, step through JavaScript at instruction level, and emulate device features — all without a human touching the browser. Combined with the fine-grained JS execution controls shipping alongside it, an agent can now write, deploy, profile, and fix a web app in a single loop. One early adopter reported cutting manual performance analysis time by 96–98%.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "developer-tools",
+        "agents",
+        "browser"
+      ],
+      "type": "blog",
+      "sourceName": "Chrome DevTools",
+      "sourceUrl": "https://developer.chrome.com/blog/devtools-for-agents-v1",
+      "id": "f05e42fde47b",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "China Ordered Meta to Unwind Its Completed Acquisition of Manus AI",
+      "summary": "Beijing blocked Meta's $2B acquisition of Manus AI after the deal had already closed, forcing an unwind. Manus immediately raised $500M independently under Tencent, Boyu Capital, and IDG Capital, and is now heading toward a $4B valuation — double its pre-acquisition price. Geopolitical control over AI company ownership had been a theoretical concern; it is now actively reshaping live deals. Any startup with significant user bases in both China and the US has a new risk factor to price.",
+      "estimatedReadSeconds": 65,
+      "difficulty": "beginner",
+      "tags": [
+        "geopolitics",
+        "ai-industry",
+        "acquisitions"
+      ],
+      "type": "ai_news",
+      "sourceName": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2026/10/08/manus-fund-raise-meta-muse-tencent.html",
+      "id": "869d1fbfdd36",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Google Is Shipping Agents to All One Billion Gemini Users Before Year-End",
+      "summary": "On the Q3 earnings call, Pichai confirmed that AI agents — capable of making reservations, filling documents, and setting appointments autonomously — will reach every Gemini app user this year, operating as a unified layer across Chrome, Android, Workspace, Search, and Gemini. This is the transition point where 'agent' stops being a developer abstraction and becomes the default interface for a billion people. It also means agent-initiated web traffic and API calls are about to increase by orders of magnitude.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "intermediate",
+      "tags": [
+        "agents",
+        "google",
+        "product"
+      ],
+      "type": "ai_news",
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
+      "id": "fdb447250f71",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Flex Children Refuse to Shrink Below Their Content Width by Default",
+      "summary": "Flexbox enforces a hidden floor of `min-width: auto` on every flex child, which means a child containing long text or a wide element will overflow its container rather than shrink. Adding `min-width: 0` removes that floor and lets the flex algorithm do its job.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "css",
+        "flexbox",
+        "layout"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Flexbox calculates how much a child can shrink, but the spec says `min-width` defaults to `auto` — meaning 'at least as wide as my content'. The shrink algorithm respects this floor, so the child simply refuses to go narrower than its longest word or widest image even when there's no room. Setting `min-width: 0` on the child (not the container) tells the browser the floor is zero, making `flex-shrink` actually effective. This is the root cause of nearly every 'why is my text overflowing the flex container' bug.",
+      "code": "/* Without fix — long title blows out the card layout */\n.card {\n  display: flex;\n}\n.card__text {\n  /* min-width: auto is implicit — text won't wrap */\n}\n\n/* With fix */\n.card__text {\n  min-width: 0;       /* lets flex-shrink work */\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}",
+      "id": "e0243f776ad1",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "console.log of an Object Shows Its Current State, Not Its State at Log Time",
+      "summary": "Logging an object with `console.log` passes a live reference to the console. When you expand it in DevTools, you see the object as it exists at that moment — which may be long after the line executed and the object changed.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "debugging",
+        "browser"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "JavaScript objects are reference types. When you call `console.log(obj)`, the console stores a pointer to the same object in memory, not a snapshot. If code keeps mutating that object after the log line, expanding the log in DevTools will show the mutated values — making it look like your state was wrong at a point when it was actually fine. This is especially deceptive in React because state updates can happen between the log call and the moment you click the triangle to expand it. To see the actual value at log time, either spread it (`console.log({...obj})`) or use `JSON.stringify`.",
+      "code": "const user = { name: 'Alice', score: 0 };\n\nconsole.log(user);       // logs a live reference\nuser.score = 42;          // mutate after the log\n\n// Expand in DevTools now — you'll see score: 42\n// even though score was 0 when the line ran\n\n// Fix: snapshot it\nconsole.log({ ...user }); // { name: 'Alice', score: 0 }\nconsole.log(JSON.stringify(user)); // always a string snapshot",
+      "id": "7b74a932cb94",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "process.nextTick Fires Before Any I/O — setImmediate Fires After",
+      "summary": "process.nextTick queues a callback that runs before the event loop moves to its next phase at all, while setImmediate fires in the check phase after I/O callbacks have had their turn. Mixing them up silently starves pending I/O.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "node",
+        "event-loop",
+        "async"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "The Node.js event loop has named phases — timers, pending I/O callbacks, poll, check, close — and process.nextTick sits in a special queue that drains completely before the loop is allowed to advance. That means a recursive nextTick call will block I/O forever, while a recursive setImmediate will not, because setImmediate re-queues itself into a future check phase. Promise microtasks share the nextTick queue's priority, so they also run before setImmediate.",
+      "code": "setImmediate(() => console.log('setImmediate'));\nprocess.nextTick(() => console.log('nextTick'));\nPromise.resolve().then(() => console.log('microtask'));\n\n// Printed order:\n// nextTick\n// microtask\n// setImmediate",
+      "id": "23f89490c4f4",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "The GIL Lets Only One Thread Execute Python Bytecode at a Time",
+      "summary": "CPython's Global Interpreter Lock means CPU-bound threads don't actually run in parallel — they take turns. I/O-bound threads are fine because the GIL is released during blocking syscalls.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "concurrency",
+        "threading"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "The GIL is a mutex inside the CPython interpreter that protects its reference-counting garbage collector; without it, two threads decrementing the same object's refcount simultaneously would corrupt memory. When a thread blocks on a network read or file write, it releases the GIL so another thread can run Python code — which is why threading works well for web scraping or database queries. For CPU-heavy work like parsing, hashing, or numerical loops, threads genuinely serialize; switch to multiprocessing or ProcessPoolExecutor to get one OS process per core, each with its own interpreter and GIL.",
+      "code": "from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor\n\ndef crunch(n):\n    return sum(i * i for i in range(n))\n\n# Threads: GIL serializes CPU work — no speedup\nwith ThreadPoolExecutor(max_workers=4) as ex:\n    results = list(ex.map(crunch, [5_000_000] * 4))\n\n# Processes: each gets its own interpreter — true parallelism\nwith ProcessPoolExecutor(max_workers=4) as ex:\n    results = list(ex.map(crunch, [5_000_000] * 4))",
+      "id": "dc1f5dc13a86",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "String Concatenation With + in a Loop Creates a New Object Every Iteration",
+      "summary": "Java strings are immutable, so every + allocates a new String that copies everything accumulated so far. In a loop of n iterations that's O(n²) bytes copied; StringBuilder.append() stays O(n) because it writes into a resizable char buffer.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "java",
+        "strings",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "The Java compiler does optimize a single concatenation expression like \"hello \" + name + \"!\" into a single StringBuilder call, but it cannot do the same across loop iterations — each pass through the loop produces a fresh String on the heap. StringBuilder maintains an internal char array and doubles its capacity when full, so individual appends are amortized O(1). The distinction matters most in hot paths like building JSON responses, log lines, or SQL fragments at runtime.",
+      "code": "// Slow: O(n²) — new String allocated every iteration\nString result = \"\";\nfor (String token : tokens) {\n    result += token + \",\";\n}\n\n// Fast: O(n) amortized — one buffer, one final allocation\nStringBuilder sb = new StringBuilder();\nfor (String token : tokens) {\n    sb.append(token).append(',');\n}\nString result = sb.toString();",
+      "id": "0927a9e50b5a",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "defer Evaluates Its Arguments Immediately — the Function Body Runs Later",
+      "summary": "Go evaluates and freezes a deferred call's arguments at the defer statement, not when the function actually executes. A closure captures outer variables by reference, so it sees their value at call time instead.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "defer",
+        "closures"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "When the runtime hits a defer line, it snapshots the argument values right then and pushes the call onto a per-function LIFO stack. The stack unwinds when the surrounding function returns — last deferred runs first, which is what makes unlock-after-lock and close-after-open work naturally. A closure deferred with no explicit arguments sidesteps the snapshot and reads variables at execution time, which is a frequent source of bugs when the variable changes between defer and return.",
+      "code": "func example() {\n    x := 1\n\n    // argument evaluated NOW: always prints 1\n    defer fmt.Println(\"snapshot:\", x)\n\n    // closure reads x when it runs: prints 3\n    defer func() { fmt.Println(\"closure:\", x) }()\n\n    x = 2\n    x = 3\n}\n// Output (LIFO):\n// closure: 3\n// snapshot: 1",
+      "id": "2e98251a6ceb",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "A Connection Pool Reuses Open Database Sessions — Opening One Per Request Pays the Handshake Cost Every Time",
+      "summary": "Establishing a database connection involves a TCP handshake, optional TLS negotiation, and an authentication round-trip — easily 10–50 ms. A pool keeps a fixed set of open connections that requests borrow and return, making that cost a one-time startup expense.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "database",
+        "connection-pooling",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "Pool exhaustion and pool oversizing are mirror-image failure modes: too few connections and requests queue waiting for one to free up; too many and the database server hits its own connection limit and starts refusing. A practical starting point is to set max pool size close to the database's max_connections divided by the number of application replicas. You also need a recycle or max-lifetime setting shorter than the database's idle-connection timeout, otherwise the pool hands out a socket the server has already closed.",
+      "code": "# SQLAlchemy (Python) pool knobs — same concepts apply in every client\nengine = create_engine(\n    \"postgresql://user:pass@db/app\",\n    pool_size=10,       # connections kept open permanently\n    max_overflow=5,     # extra connections allowed under burst load\n    pool_timeout=30,    # seconds to wait before raising QueuePool full\n    pool_recycle=1800,  # retire connections older than 30 minutes\n)",
+      "id": "77a1e30f45f7",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Databases Write to a Log Before Touching Data Pages — That's How Crashes Don't Corrupt Them",
+      "summary": "A write-ahead log (WAL) records every intended change to durable storage before applying it to the actual data pages, so a crash always leaves enough information to reconstruct a consistent state. Sequential log appends are fast on any storage medium, which is why WAL adds durability without making every write a random I/O.",
+      "estimatedReadSeconds": 115,
+      "difficulty": "intermediate",
+      "tags": [
+        "database",
+        "durability",
+        "storage"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "Without WAL, a crash mid-write could leave a data page half-updated with no way to decide whether to roll it forward or back. By flushing the log entry first, the database can replay all committed records on restart and discard anything incomplete — this is what atomicity and durability mean in practice. PostgreSQL's WAL also drives logical replication and point-in-time recovery: replicas and backup tools stream the same log, applying changes in order, which is why replication lag and WAL retention are the same tuning surface.",
+      "code": "-- PostgreSQL: inspect WAL configuration\nSHOW wal_level;           -- minimal | replica | logical\nSHOW synchronous_commit;  -- off=fast, on=fsync log before ACK\n\n-- Current write position\nSELECT pg_current_wal_lsn();\n\n-- How far behind are replicas?\nSELECT client_addr, write_lag, replay_lag\nFROM   pg_stat_replication;",
+      "id": "f1da09b4d2c5",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "You have a link inside a clickable card. Clicking the link triggers both navigation and the card's click handler. You add preventDefault() to the link's handler but the card's handler still fires. What should you have used?",
+      "summary": "Tests whether the candidate distinguishes canceling the browser's default action (preventDefault) from stopping the event from reaching ancestor handlers (stopPropagation).",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "dom",
+        "events",
+        "javascript"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "preventDefault() cancels the browser's default behavior for that event — following a link, submitting a form — but the event still bubbles up the DOM tree to ancestor elements. stopPropagation() is what prevents the event from reaching the card's click handler. In this scenario you likely want both: stopPropagation() so the card handler doesn't fire, and possibly preventDefault() if you're handling navigation yourself. A common mistake is treating them as interchangeable when they control two completely separate concerns: what the browser does with the event (default action) versus where the event travels (propagation). There's also stopImmediatePropagation(), which goes further — it prevents other listeners on the same element from firing, not just ancestors. Understanding these three methods means understanding that a DOM event carries both a default action and a propagation path, and each can be controlled independently.",
+      "followUps": [
+        "What is the difference between stopPropagation and stopImmediatePropagation, and when would you reach for the latter?",
+        "If you call preventDefault on a touchstart event inside a listener marked as passive, what happens and why?",
+        "How does the capturing phase change which handler gets the event first, and how would you use it here?"
+      ],
+      "id": "46c6b2d13796",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "You write a generator that opens a file, yields lines, and closes the file in a finally block. The caller breaks out of the for-loop after 10 lines. Does the file get closed?",
+      "summary": "Tests whether the candidate understands generator finalization — that Python injects GeneratorExit at the yield point when a generator is garbage-collected, triggering finally blocks.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "generators",
+        "resource-management"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": true,
+      "body": "Yes, the file gets closed, but the mechanism matters. When the caller breaks out of the loop, the generator object's reference count drops to zero in CPython, so the runtime calls the generator's .close() method. This injects a GeneratorExit exception at the suspended yield point, which triggers the finally block and runs your cleanup code. That's why finally-based cleanup in generators works reliably in CPython. In other implementations like PyPy, garbage collection isn't reference-counted, so finalization timing is nondeterministic and the file might stay open longer than expected. For guaranteed cleanup regardless of runtime, wrap generator consumption in contextlib.closing() or design the generator as a context manager. This same GeneratorExit-into-finally behavior is exactly what makes contextlib.contextmanager work — it relies on finally executing after the single yield.",
+      "followUps": [
+        "What happens if you catch GeneratorExit inside the generator and attempt to yield again?",
+        "How does contextlib.contextmanager leverage this mechanism to turn a single-yield generator into a context manager?",
+        "In PyPy or another non-refcounted runtime, how would you guarantee prompt file cleanup?"
+      ],
+      "id": "c1b427b9ab13",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Your app stores user-uploaded images on the web server's local filesystem. You need to add a second server behind a load balancer. What breaks, and how do you fix it?",
+      "summary": "Tests whether the candidate recognizes that local disk is server-specific state that doesn't survive horizontal scaling and can propose externalized storage with appropriate trade-offs.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "scaling",
+        "storage",
+        "architecture"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "When a user uploads an image to server A and a subsequent request hits server B, the file isn't there — the load balancer doesn't guarantee the same user hits the same server. The core issue is that local disk is per-server state, and horizontal scaling requires state to be shared or externalized. The standard fix is moving files to a shared object store like S3, GCS, or MinIO. You store a reference (key or URL) in the database and serve files from the object store directly or through a CDN. This also solves durability — object stores replicate automatically, while a dead server's local disk may be gone. One alternative is sticky sessions, pinning a user to one server, but that causes uneven load and means losing a server loses those users' files entirely. Putting a CDN in front of the object store adds caching at the edge, reducing latency and bandwidth costs for frequently accessed images.",
+      "followUps": [
+        "Would you upload directly from the browser to S3 using a presigned URL or proxy through your server? What are the trade-offs of each?",
+        "What happens if the upload to S3 succeeds but the subsequent database write for the file metadata fails?",
+        "Users now need thumbnails in three sizes. Where does that processing happen, and when does it run?"
+      ],
+      "id": "37e63d3d8390",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "zip with Unequal Lengths",
+      "summary": "zip() silently truncates to the shortest input rather than padding with None or raising an error.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "iterators",
+        "builtins"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "a = [1, 2, 3]\nb = [4, 5]\nresult = list(zip(a, b))\nprint(result)",
+      "options": [
+        {
+          "label": "[(1, 4), (2, 5)]"
+        },
+        {
+          "label": "[(1, 4), (2, 5), (3, None)]"
+        },
+        {
+          "label": "[(1, 4), (2, 5), (3,)]"
+        },
+        {
+          "label": "ValueError: iterables have different lengths"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "zip() stops as soon as the shortest iterable is exhausted, silently discarding extra elements from longer ones. If you want None-padding for missing values, use itertools.zip_longest(). Python 3.10 added a strict=True parameter that raises ValueError on length mismatch when you need that guarantee.",
+      "id": "738721cc9dd4",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Spreading a Generator's Return Value",
+      "summary": "Spread and for...of discard a generator's return value because they stop collecting once done is true.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "generators",
+        "iterators"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "function* gen() {\n  yield 1;\n  yield 2;\n  return 3;\n}\nconsole.log([...gen()]);",
+      "options": [
+        {
+          "label": "[1, 2, 3]"
+        },
+        {
+          "label": "[1, 2]"
+        },
+        {
+          "label": "[1, 2, undefined]"
+        },
+        {
+          "label": "[3]"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The spread operator consumes an iterator by calling .next() until done is true. When done becomes true, the accompanying value is discarded — it is not included in the result. The return value of a generator (3 paired with done: true) is therefore invisible to spread, for...of, and Array.from. You can only capture it by calling .next() manually and reading the value property.",
+      "id": "06a9b92810f9",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "Ternary Promotes char to int",
+      "summary": "Java's ternary operator promotes char to int when the other branch is a non-constant int variable, printing the numeric code point instead of the character.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "type-promotion",
+        "ternary"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n  public static void main(String[] args) {\n    char c = 'A';\n    int i = 0;\n    System.out.println(true ? c : i);\n    System.out.println(false ? c : i);\n  }\n}",
+      "options": [
+        {
+          "label": "A\n0"
+        },
+        {
+          "label": "65\n0"
+        },
+        {
+          "label": "A\nA"
+        },
+        {
+          "label": "65\n65"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "When a ternary expression mixes char and int, Java applies binary numeric promotion if the int operand is not a compile-time constant representable as a char. Since i is a variable (not final), both branches are promoted to int. The first expression yields 65 (the code point of 'A') and the second yields 0. If i were declared as final int i = 0, the result type would be char and the first line would print 'A'.",
+      "id": "8cde1da5f349",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
+    {
+      "title": "iota Repeats the Expression, Not the Value",
+      "summary": "Omitting the expression in a Go const block repeats the last expression with the incremented iota, not the last computed value.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "iota",
+        "constants"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nconst (\n  A = iota\n  B\n  C = iota * 2\n  D\n)\n\nfunc main() {\n  fmt.Println(A, B, C, D)\n}",
+      "options": [
+        {
+          "label": "0 1 4 6"
+        },
+        {
+          "label": "0 1 4 5"
+        },
+        {
+          "label": "0 1 2 3"
+        },
+        {
+          "label": "0 1 4 8"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "In a const block, iota increments by one for each constant specification (0, 1, 2, 3…). When you omit the expression, Go repeats the previous expression — not the previous value. After C = iota * 2, D implicitly uses iota * 2 with iota equal to 3, giving 6. The wrong answer 5 assumes D is simply C + 1, and 8 assumes D doubles C.",
+      "id": "8f142b50cbbd",
+      "publishedAt": "2026-10-29T11:30:06.742Z"
+    },
     {
       "title": "Anthropic's IPO Filing Reveals $417 Billion in Committed Compute Obligations",
       "summary": "The S-1 makes explicit what was previously rumoured: frontier AI is now an infrastructure play requiring nation-scale capital. The $417B committed to compute suppliers over two decades exceeds most countries' annual defence budgets. The filing also shows Anthropic lost money on most Claude products until this year — the first honest public look at unit economics for a frontier lab.",
