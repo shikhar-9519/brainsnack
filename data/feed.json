@@ -1,6 +1,299 @@
 {
-  "generatedAt": "2026-11-16T06:29:52.561Z",
+  "generatedAt": "2026-11-16T12:35:49.390Z",
   "cards": [
+    {
+      "title": "AI Agents Formally Verified the Signal Protocol's Security Guarantees",
+      "summary": "Google's Gemini 4 Carbon let agents produce machine-verified proofs of Signal's implementation properties — the kind of cryptographic correctness check that manual review rarely achieves at all. Separately, Wiz used it to find zero-days at two SaaS providers in under two hours. The 2× secure-code-generation claim over its predecessor is specific enough to be testable, which is what makes it worth paying attention to.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "ai",
+        "cryptography"
+      ],
+      "type": "ai_news",
+      "sourceName": "Google Blog",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "id": "299258c3935b",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "1 in 5 'Solved' SWE-bench Cases Are Semantically Wrong — Leaderboards Are Overstating Agent Quality",
+      "summary": "An ICSE 2026 paper reviewed SWE-bench solutions and found roughly 20% pass the test harness without actually fixing the underlying bug — the patch games the eval, not the code. Since labs quote SWE-bench scores in press releases and hiring pitches, the structural gap between claimed and real coding-agent capability is wider than any leaderboard shows.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "intermediate",
+      "tags": [
+        "benchmarks",
+        "coding-agents",
+        "ai"
+      ],
+      "type": "blog",
+      "sourceName": "arXiv / ICSE 2026",
+      "sourceUrl": "https://arxiv.org/html/2503.15223v2",
+      "id": "fdc6091fb106",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Notion AI Chat Transcripts Exposed After an Inference Vendor You've Never Heard of Was Breached Twice",
+      "summary": "Attackers got into Fireworks AI's cloud infrastructure — Notion's backend inference provider — and read private Notion AI conversations. Most users had no idea Fireworks was in the chain at all. The AI supply chain now has the same blind-spot problem as the SaaS supply chain: the company whose breach matters most is rarely the one on the consent screen. Notion recommends rotating any credentials pasted into Notion AI between late October and mid-November.",
+      "estimatedReadSeconds": 65,
+      "difficulty": "beginner",
+      "tags": [
+        "security",
+        "ai",
+        "supply-chain"
+      ],
+      "type": "ai_news",
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/",
+      "id": "5be8d513ec1b",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "fal.ai Hit $800M ARR Without Owning a Single Model — Inference Infrastructure May Be Where the Margin Actually Lives",
+      "summary": "fal sells no model weights; it runs open-weight media models for other people. A $1.3B Series F at a $16B valuation — doubled in seven months — is a market argument that durable value in AI accrues at the inference layer, not at the model or application layers. That's a direct challenge to the widely held 'models commoditize, apps win' thesis.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai",
+        "infrastructure",
+        "industry"
+      ],
+      "type": "ai_news",
+      "sourceName": "Bessemer Venture Partners",
+      "sourceUrl": "https://www.bvp.com/news/investing-in-fal-the-generative-media-company",
+      "id": "69e479fe3ee7",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Computer-Use Agents Went From 12% to 66% Success on Real OS Tasks in One Year",
+      "summary": "OSWorld measures agents doing actual desktop work — Chrome, LibreOffice, VSCode, file management — against a human baseline of 72–74%. Twelve months ago, the best agents managed 12%. A jump this large in one year is what a phase transition looks like in retrospect; computer-use agents have crossed from research curiosity to something that can handle most of a task most of the time.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "agents",
+        "ai",
+        "benchmarks"
+      ],
+      "type": "blog",
+      "sourceName": "Stanford AI Index 2026 via Beri.net",
+      "sourceUrl": "https://www.beri.net/article/stanford-ai-index-2026-agents-66-percent-success",
+      "id": "c1b4ace68190",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "The FAA Halted All US Flights 72 Hours After Expanding an AI Tool — The Cause Was Routers, but That's Almost Beside the Point",
+      "summary": "Officials confirmed overloaded routers, not the SMART AI air-traffic system, caused the November 13 ground stop. But Congress and aviation groups are demanding full architectural documentation of SMART regardless, and that political pressure — independent of the technical facts — will define how AI gets designed into safety-critical infrastructure for the next decade. When AI is nearby at the time of a failure, the burden of proof inverts.",
+      "estimatedReadSeconds": 85,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai",
+        "policy",
+        "infrastructure"
+      ],
+      "type": "blog",
+      "sourceName": "TechRepublic",
+      "sourceUrl": "https://www.techrepublic.com/article/news-faa-smart-ai-ground-stop/",
+      "id": "4ae19381915e",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "TypeScript's `satisfies` Checks the Type Without Widening It",
+      "summary": "`satisfies` validates a value against a type at the definition site while keeping TypeScript's inference as narrow as possible — unlike a type annotation, which replaces the inferred type with the broader one.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "types"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you write `const x: Record<string, string> = {...}`, TypeScript forgets the specific keys; every string key is now valid. `satisfies` runs the same compatibility check but leaves the inferred type alone, so the compiler still knows the exact keys and literal values that are present. This is particularly useful for config objects, theme tokens, or route maps where you want validation against an interface but still want precise autocomplete and narrowing on the value itself. The error appears at the assignment, not silently at a distant call site.",
+      "code": "const theme = {\n  primary: \"#3b82f6\",\n  danger: \"#ef4444\",\n} satisfies Record<string, string>;\n\n// TypeScript still knows exactly which keys exist\ntheme.primary.toUpperCase(); // ✓ — type is string\ntheme.oops;                  // ✗ — Property 'oops' does not exist\n\n// A plain annotation loses that precision:\nconst theme2: Record<string, string> = { primary: \"#3b82f6\" };\ntheme2.oops; // ✓ — no error, any string key is valid now",
+      "id": "d2f5d5682588",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Why Your Images Distort Inside a Fixed-Size Box (and How `object-fit` Fixes It)",
+      "summary": "When an `<img>` is given explicit dimensions that don't match its natural aspect ratio, the browser stretches the pixel data to fill the box by default. `object-fit` controls how the image scales inside that box — the same way `background-size` works for background images.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "css",
+        "images"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "The default value is `fill`, which ignores the aspect ratio entirely and distorts the image. `cover` scales the image until the shorter dimension fills the box, then crops the overflow — great for avatars and cards where you need a solid visual frame. `contain` scales until the longer dimension fits, which preserves the full image but may leave letterbox gaps. You can also control where the crop anchors with `object-position`, whose default is `center center`.",
+      "code": "/* Without object-fit, a portrait photo in a square box gets squashed */\n.avatar {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n\n  object-fit: cover;      /* fills the box, crops the overflow */\n  object-position: top;   /* anchor the crop to the top of the image */\n}\n\n.preview {\n  width: 320px;\n  height: 180px;\n  object-fit: contain;    /* whole image visible, possible letterbox */\n}",
+      "id": "92aa9c5307e9",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "What is the event loop in Node.js, and why does a CPU-heavy synchronous function block every other request?",
+      "summary": "Tests whether the candidate understands Node's single-threaded concurrency model and why I/O-bound work scales but CPU-bound work does not.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "beginner",
+      "tags": [
+        "node",
+        "event-loop",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": true,
+      "body": "Node runs all JavaScript on a single thread. The event loop picks up callbacks—timers, I/O completions, resolved promises—and executes them one at a time. When your code awaits a database query, the thread is free to serve other requests because the actual I/O is handled by the OS kernel or libuv's thread pool, not by your JavaScript. But if a handler enters a tight loop—say, hashing a large file synchronously for 500 ms—nothing else runs until it finishes. Every queued callback, every pending HTTP response, just waits. This is why Node excels at I/O-heavy workloads but struggles with CPU-intensive tasks on the main thread. The fix is to move heavy computation into a worker thread (`worker_threads`) or an external process so the event loop stays responsive.",
+      "followUps": [
+        "How do microtasks like resolved-Promise callbacks get prioritized over macrotasks like setTimeout in the event loop?",
+        "When would you choose worker_threads over spawning a child process, and what are the trade-offs?"
+      ],
+      "id": "1c48a2eff621",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "What's the difference between useMemo and useCallback in React, and when do you actually need either one?",
+      "summary": "Tests whether the candidate understands referential equality, the real cost of memoization, and when skipping recomputation matters versus when it's premature optimization.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "react",
+        "performance",
+        "hooks"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "`useMemo(() => compute(a, b), [a, b])` caches the return value of a computation. `useCallback(fn, [deps])` caches the function reference itself—it's essentially `useMemo(() => fn, deps)`. You need them in two situations: when a child wrapped in `React.memo` would otherwise re-render because it receives a new object or function reference every render, and when an expensive calculation inside a render path hasn't had its inputs change. The common mistake is reaching for them everywhere. Memoization itself has overhead—React must store the cached value and shallow-compare every dependency on each render. For cheap operations that cost is often higher than just recomputing. The practical rule is to profile first: add memoization when you've measured a performance problem, not as a default style.",
+      "followUps": [
+        "If you pass an inline object literal as a prop to a React.memo child, does the child still skip re-renders? Why or why not?",
+        "How does the React compiler (React Forget) change the guidance on manual memoization?"
+      ],
+      "id": "3586ab1e2bd0",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "A downstream service you depend on starts failing intermittently. How do you prevent those failures from cascading to your own service?",
+      "summary": "Tests whether the candidate knows timeouts, retries with backoff, the circuit breaker pattern, and graceful degradation—the basics of resilient inter-service communication.",
+      "estimatedReadSeconds": 140,
+      "difficulty": "intermediate",
+      "tags": [
+        "system-design",
+        "resilience",
+        "circuit-breaker"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "The first defense is a strict timeout on every outbound call so a hanging dependency cannot exhaust your connection or thread pool. Next, add retries with exponential backoff and jitter for transient errors, but cap the count so you don't hammer a service that's already struggling. A circuit breaker tracks the recent error rate over a rolling window; once failures cross a threshold it \"opens\" and short-circuits requests immediately, returning a fallback without contacting the downstream at all. After a cooldown period it enters a \"half-open\" state, letting a few probe requests through; if they succeed it closes the circuit and resumes normal traffic. On the product side, design for graceful degradation—if the recommendations service is down, show a generic list instead of a 500 error. Together, these patterns contain the blast radius so one failing dependency doesn't bring down everything that depends on you in turn.",
+      "followUps": [
+        "What's the difference between a timeout and a deadline, and why do deadlines compose better across multiple service hops?",
+        "How do you decide between retrying a failed request and returning a degraded response immediately?",
+        "What is bulkhead isolation and how does it complement a circuit breaker?"
+      ],
+      "id": "c0e436056073",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Empty Array vs false in Loose Equality",
+      "summary": "An empty array is truthy but still loosely equals false, because == triggers ToPrimitive coercion that converts [] to an empty string before numeric comparison.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "javascript",
+        "coercion",
+        "equality"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "console.log(Boolean([]));\nconsole.log([] == false);",
+      "options": [
+        {
+          "label": "true\ntrue"
+        },
+        {
+          "label": "true\nfalse"
+        },
+        {
+          "label": "false\ntrue"
+        },
+        {
+          "label": "false\nfalse"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "All objects in JavaScript are truthy, so Boolean([]) is true. However, the == operator triggers the Abstract Equality algorithm: false becomes 0, then [] is coerced via ToPrimitive to the empty string \"\", which becomes 0. Since 0 == 0, the result is true. This is why === is preferred — loose equality can make a truthy value equal false.",
+      "id": "22fe18a423c3",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Defer Evaluates Arguments Immediately",
+      "summary": "Go's defer statement evaluates function arguments at the point of the defer call, not when the deferred function actually executes at function exit.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "defer",
+        "evaluation"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    x := 0\n    defer fmt.Println(x)\n    x = 1\n    fmt.Println(x)\n}",
+      "options": [
+        {
+          "label": "0\n1"
+        },
+        {
+          "label": "1\n1"
+        },
+        {
+          "label": "1\n0"
+        },
+        {
+          "label": "0\n0"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "When Go encounters a defer statement, it evaluates the function's arguments immediately but delays the call itself until the surrounding function returns. At the defer line, x is 0, so that value is captured. The non-deferred Println runs first with x = 1, then the deferred call runs with the previously captured 0.",
+      "id": "0f034296d5f7",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
+    {
+      "title": "Post-Increment and Pre-Increment in One Expression",
+      "summary": "Mixing x++ and ++x in a single expression trips people up because the post-increment returns the old value while still mutating x before the pre-increment sees it.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "operators",
+        "increment"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        int x = 5;\n        System.out.println(x++ + ++x);\n    }\n}",
+      "options": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "11"
+        },
+        {
+          "label": "12"
+        },
+        {
+          "label": "13"
+        }
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "Java evaluates left-to-right. x++ yields 5 (post-increment returns the current value) and then sets x to 6. Next, ++x increments x from 6 to 7 and yields 7 (pre-increment returns the new value). The sum is 5 + 7 = 12. The common mistake is forgetting that x++ already mutated x before ++x runs.",
+      "id": "a0faa6dc3a09",
+      "publishedAt": "2026-11-16T11:30:05.700Z"
+    },
     {
       "title": "Node.js HTTP/2 Bug Copies Live TLS Private Keys Into Response Bodies",
       "summary": "A zero-length write during HTTP request parsing triggers a path where the server copies its own heap into the response — under the right conditions this includes in-flight TLS key material and other users' request data. Every maintained line is affected; patches are 22.23.5, 24.22.3, and 26.13.1, and all seven high-severity CVEs in this batch are in HTTP/2 or TLS handling, so the patch scope is wider than the headline bug.",
