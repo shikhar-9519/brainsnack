@@ -1,6 +1,203 @@
 {
-  "generatedAt": "2026-11-16T12:35:49.390Z",
+  "generatedAt": "2026-11-17T13:02:55.333Z",
   "cards": [
+    {
+      "title": "Microsoft's Outage Introduced a Term Worth Keeping: 'Comprehension Debt'",
+      "summary": "The November M365 outage postmortem argues the blast radius was amplified by AI-generated networking code that engineers could read but couldn't reason about under pressure. The root cause wasn't AI running live — it was code nobody fully understood when things went wrong. 'Comprehension debt' is proposed as the precise failure mode: code that passes review because it looks correct but collapses mental models at exactly the moment you need them.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai",
+        "engineering",
+        "code-review"
+      ],
+      "type": "blog",
+      "sourceName": "TraverxAI",
+      "sourceUrl": "https://traverxai.in/Blogs/microsoft-outage-ai-comprehension-debt",
+      "id": "2990fe8267a1",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "Anthropic Now Bills a 900K-Token Request at the Same Rate as a 9K-Token One",
+      "summary": "Long context used to carry a meaningful per-token premium; that multiplier is gone. Combined with prompt-caching discounts of up to 90%, the economics of feeding an entire codebase or a large document corpus into a single prompt have shifted enough that use cases which were uneconomic six months ago are now routine. The pricing page now says this explicitly rather than burying it in a table.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "llm",
+        "pricing",
+        "context-window"
+      ],
+      "type": "ai_news",
+      "sourceName": "CompareAI",
+      "sourceUrl": "https://compareai.today/blog/ai-api-pricing-november-2026",
+      "id": "ea61ec822e3f",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "Mistral Bought a Formal Verification Startup — Arguing Better Models Won't Fix AI Code Trust",
+      "summary": "SkipLabs, founded by former Meta compiler engineers, builds type systems and verification tooling specifically for AI-generated code. Mistral's stated goal is a native validation loop where code is generated, type-checked, tested, and corrected before it reaches a developer. It's the first major model lab to make a public bet that the trust problem lives in the harness around generation, not in the generator itself — a meaningful architectural signal for where agent pipelines are heading.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "agents",
+        "verification",
+        "industry"
+      ],
+      "type": "ai_news",
+      "sourceName": "Maddyness UK",
+      "sourceUrl": "https://www.maddyness.com/uk/2026/11/05/mistral-completes-its-fifth-acquisition-since-the-start-of-the-year",
+      "id": "f34db4364b1c",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "A Malicious MCP Server Plus One Click Now Gives an Attacker Code Execution in VSCode",
+      "summary": "CVE-2026-120779 requires only two things: the victim connects to a malicious MCP server (easy if your team uses community or third-party servers), and clicks a crafted link. No other interaction needed for local code execution. Fixed in VSCode 1.145.3. MCP is now standard plumbing for AI coding tools, which makes this attack surface much larger than a typical editor CVE.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "security",
+        "mcp",
+        "vscode"
+      ],
+      "type": "blog",
+      "sourceName": "Rapid7",
+      "sourceUrl": "https://www.rapid7.com/blog/post/patch-tuesday-november-2026-em/",
+      "id": "90649152b5c7",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "Shopify's Agents Complete 30% of Daily Development Tasks Before Any Human Opens the Ticket",
+      "summary": "This is a production workflow stat, not a lab result. At Shopify's commit volume, 30% autonomous task completion means agents have already written, reviewed, and closed a significant fraction of daily work before a developer sees it. Canva reports something parallel: AI agents now do 50% of initial code-review passes before a human reviewer opens the PR. 'AI-assisted development' has quietly shifted from autocomplete to first-pass automation.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "agents",
+        "productivity",
+        "industry"
+      ],
+      "type": "blog",
+      "sourceName": "DEV Community",
+      "sourceUrl": "https://dev.to/jenueldev/the-state-of-ai-in-software-development-in-2026-agents-productivity-and-the-verification-4jf8",
+      "id": "b83170732a75",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "Amazon Attached a Dollar Figure to AI Migration Work: $260M and 4,500 Developer-Years on One Project",
+      "summary": "Most productivity claims from AI coding tools are survey-based feelings. This one attaches Amazon's name to a specific dollar figure and a headcount equivalent on a single identifiable migration project. The methodology may be imperfect, but someone ran the numbers seriously enough to publish them — and the ROI is concentrated in bulk migration work, not net-new feature development. That distinction matters for where teams should actually aim agent tooling first.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "intermediate",
+      "tags": [
+        "agents",
+        "productivity",
+        "roi"
+      ],
+      "type": "blog",
+      "sourceName": "McKinsey",
+      "sourceUrl": "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-ai-revolution-in-software-development",
+      "id": "7710d34d5f1d",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "event.target vs event.currentTarget — They're Not the Same Element",
+      "summary": "event.target is the element that actually received the interaction. event.currentTarget is the element the listener is attached to. They diverge the moment you click a child element inside the one you're listening on.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "dom",
+        "events"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "When you attach a click listener to a button that contains an icon or span, clicking the icon sets e.target to that icon — not the button. e.currentTarget, by contrast, is always the element where addEventListener was called, no matter how deep in the subtree the click landed. This matters any time you read classList, dataset, or id off the event: grabbing e.target in a delegated listener or a component with nested markup will silently give you the wrong element. Use e.currentTarget when you want 'the thing I put the handler on' and e.target only when you specifically care about 'the thing the user directly touched'.",
+      "code": "const btn = document.querySelector('.save-btn');\n\nbtn.addEventListener('click', (e) => {\n  // User clicks the <svg> icon inside the button\n  console.log(e.target);        // <svg> — the exact element hit\n  console.log(e.currentTarget); // <button class=\"save-btn\"> — always\n\n  // Common bug: toggling state on the wrong element\n  e.target.classList.toggle('active');        // ❌ toggles the icon\n  e.currentTarget.classList.toggle('active'); // ✅ toggles the button\n});",
+      "id": "c18ce36ea585",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "TypeScript interface vs type — They're Not Interchangeable",
+      "summary": "Both describe object shapes, but interface supports declaration merging (two declarations of the same name combine into one) while type aliases do not. type can express things interface simply cannot: unions, tuples, and mapped primitive aliases.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "types"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "Declaration merging means you can write interface User twice in the same project and TypeScript silently combines the two into one type — this is how library authors let consumers add fields (augmentation). A type alias with the same name twice is a compile error. On the other side, type wins whenever the shape isn't a plain object: union types like string | number, tuple types, or conditional types must use type. The practical rule most teams land on: use interface for the public shapes of objects and classes, use type for everything else — unions, utility compositions, and aliases you don't want merged.",
+      "code": "// interface: declarations merge automatically\ninterface Config { debug: boolean }\ninterface Config { timeout: number }\n// Result: Config has both debug and timeout ✅\n\n// type alias: second declaration is an error\ntype Config = { debug: boolean }\n// type Config = { timeout: number } // ❌ Duplicate identifier\n\n// Things only `type` can express:\ntype ID = string | number\ntype Pair<T> = [T, T]\ntype Nullable<T> = T extends object ? T | null : never",
+      "id": "636b938e2afd",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "A <script> tag in your <head> makes the page go blank until it loads. What exactly is happening, and how do async and defer fix it?",
+      "summary": "Tests whether the candidate understands that script tags block HTML parsing by default, and how async and defer change the download-and-execute timeline.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "beginner",
+      "tags": [
+        "html",
+        "browser",
+        "performance"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "When the browser's HTML parser hits a <script src=\"...\"> tag, it pauses parsing entirely — it fetches the script, executes it, then resumes building the DOM. That's why a large script in the <head> causes a blank page flash. The `defer` attribute tells the browser to download the script in parallel with parsing but wait to execute it until the entire HTML document is parsed, preserving the order scripts appear in the markup. The `async` attribute also downloads in parallel, but executes the moment the download finishes, regardless of parse progress or script order. Because async scripts run in download-completion order rather than document order, they're safe for independent scripts like analytics but break when one script depends on another. For your app bundle, `defer` is almost always correct: it preserves execution order and never blocks rendering.",
+      "followUps": [
+        "If two defer scripts appear in order and the second depends on the first, is execution order guaranteed? What about two async scripts?",
+        "What happens if you put both async and defer on the same script tag?",
+        "How does placing a script at the end of <body> compare to using defer in the <head>?"
+      ],
+      "id": "9c9ca2acc746",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "What's the difference between a list comprehension and a generator expression, and when does choosing wrong actually cost you?",
+      "summary": "Tests understanding of eager vs. lazy evaluation, memory implications, and the single-iteration constraint of generators.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "generators",
+        "memory"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": true,
+      "body": "A list comprehension like `[x for x in items]` materializes the entire result into memory at once. A generator expression `(x for x in items)` produces values lazily, one at a time, only when the consumer asks. For small collections the difference is trivial, but when items is a million-row database cursor the list version loads every row into RAM while the generator streams them. The trade-off is that a generator is single-pass — iterate it once and it's exhausted, so a second loop over it silently yields nothing. Generators also cannot be indexed, sliced, or measured with `len()`. Use a generator when you're feeding results directly into a single consumer like `sum()`, `any()`, or a `for` loop and don't need the data again. Use a list when you need random access, need the length, or will iterate multiple times.",
+      "followUps": [
+        "What happens if you pass a generator expression to len()? What about to list()?",
+        "How does the yield keyword inside a function relate to generator expressions?",
+        "If you iterate a generator halfway and then stop, what happens to the remaining elements and any resources they hold?"
+      ],
+      "id": "1ef370efdd66",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
+    {
+      "title": "Your table has 50 million rows and searching by keyword with LIKE '%term%' is unacceptably slow. What do you reach for?",
+      "summary": "Tests whether the candidate knows why a leading wildcard defeats a B-tree index and understands that keyword search at scale requires an inverted index.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "databases",
+        "search",
+        "system-design"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": true,
+      "body": "A B-tree index on a text column helps with prefix matches (`LIKE 'term%'`) because it can seek to the right spot in sorted order, but a leading wildcard (`LIKE '%term%'`) forces a full table scan since the search term can appear anywhere in the string. For real keyword search you need an inverted index — a structure that maps every distinct word to the set of rows containing it, turning a scan into a lookup. Most relational databases have built-in support: PostgreSQL offers `tsvector`/`tsquery` backed by a GIN index, and MySQL provides FULLTEXT indexes. When you outgrow those — because you need fuzzy matching, relevance tuning, faceted filters, or sub-second queries across billions of tokens — a dedicated search engine like Elasticsearch or Typesense maintains its own inverted index outside the database. The cost is operational complexity and a sync pipeline to keep the index consistent with your source of truth. A pragmatic approach is to start with your database's native full-text search and graduate to a separate engine only when its feature set falls short.",
+      "followUps": [
+        "How would you keep an Elasticsearch index in sync with the primary database, and what consistency guarantees do you give up?",
+        "If users need to search across fields in multiple joined tables — say product name, description, and reviews — how does that change your approach?",
+        "When would you choose PostgreSQL's GIN index over a GiST index for full-text search?"
+      ],
+      "id": "cbae2770888a",
+      "publishedAt": "2026-11-17T11:30:05.345Z"
+    },
     {
       "title": "AI Agents Formally Verified the Signal Protocol's Security Guarantees",
       "summary": "Google's Gemini 4 Carbon let agents produce machine-verified proofs of Signal's implementation properties — the kind of cryptographic correctness check that manual review rarely achieves at all. Separately, Wiz used it to find zero-days at two SaaS providers in under two hours. The 2× secure-code-generation claim over its predecessor is specific enough to be testable, which is what makes it worth paying attention to.",
