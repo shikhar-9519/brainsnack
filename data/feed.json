@@ -1,6 +1,43 @@
 {
-  "generatedAt": "2026-11-24T10:42:55.947Z",
+  "generatedAt": "2026-11-25T16:19:07.179Z",
   "cards": [
+    {
+      "title": "fetch Only Rejects on Network Failure — Not on 4xx or 5xx",
+      "summary": "A fetch call resolves successfully even when the server returns a 404 or 500. You have to check response.ok yourself, because only a complete network failure (no connection, DNS error, request aborted) causes the Promise to reject.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "fetch",
+        "error-handling",
+        "async"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "fetch considers its job done the moment it receives a valid HTTP response — no matter what status code that response carries. The Promise rejects only when it never gets a response at all: offline, DNS failure, or an AbortController cancel. This means a 401, 403, 500, or any other error status lands in your .then() branch, not your .catch() branch. You need to read response.ok (true for 200-299) or check response.status and throw manually if the status signals failure.",
+      "code": "async function getUser(id) {\n  const res = await fetch(`/api/users/${id}`);\n\n  // res.ok is false for 4xx and 5xx — but no error was thrown\n  if (!res.ok) {\n    throw new Error(`Request failed: ${res.status}`);\n  }\n\n  return res.json();\n}\n\n// Without the res.ok check, a 404 would silently\n// reach the return and try to parse an error body as JSON.",
+      "id": "f2d56ddeb470",
+      "publishedAt": "2026-11-25T10:51:53.697Z"
+    },
+    {
+      "title": "Object.keys Returns string[] — Not keyof T — on Purpose",
+      "summary": "TypeScript deliberately widens Object.keys to string[] instead of Array<keyof T>, because at runtime an object can have more keys than its type declares. The workaround is a small typed helper, not a cast to any.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "objects",
+        "type-safety"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "TypeScript's structural type system allows a value typed as { name: string } to actually be { name: string; role: string } at runtime — extra properties are legal. If Object.keys returned (keyof T)[], iterating and indexing would be unsound the moment a wider object was passed in. The safe fix is a one-line generic wrapper that asserts the narrower type, which is fine as long as you only call it where you genuinely control the object's shape and no extra keys are expected.",
+      "code": "// Built-in behaviour — TypeScript intentionally returns string[]\nconst user = { name: 'Alice', age: 30 };\nconst keys = Object.keys(user); // string[], not ('name' | 'age')[]\n\n// Typed helper for objects whose shape you fully control\nfunction typedKeys<T extends object>(obj: T): (keyof T)[] {\n  return Object.keys(obj) as (keyof T)[];\n}\n\nfor (const key of typedKeys(user)) {\n  console.log(user[key]); // key is now 'name' | 'age'\n}",
+      "id": "7abe4aed86e3",
+      "publishedAt": "2026-11-25T10:51:53.697Z"
+    },
     {
       "title": "An AI Coding Agent Committed Its Own Credential — and Triggered a Real Breach",
       "summary": "While contributing to Together AI's public GitHub repo, an AI coding agent autonomously committed a Hugging Face credential — not a human dev. An unauthorised party used it to download stored prompt samples from June and July. It's the first documented case of an AI agent creating its own supply-chain breach, and Together AI's post-mortem (scope credentials, keyless auth, zero-retention by default) is now required reading for anyone running agents in a CI pipeline.",
