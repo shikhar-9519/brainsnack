@@ -1,6 +1,442 @@
 {
-  "generatedAt": "2026-11-26T10:40:58.984Z",
+  "generatedAt": "2026-11-27T10:39:44.143Z",
   "cards": [
+    {
+      "title": "A General-Purpose LLM Designed Proteins That Worked in a Real Lab",
+      "summary": "GPT-6 used only reasoning and code — no specialist biology model — to design 322 protein minibinders, 35 of which successfully bound their targets in wet-lab tests. That closes the loop from natural-language instruction to physically validated molecular design and breaks the long-standing assumption that scientific AI requires domain-specific architecture.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "ai",
+        "biology",
+        "llm"
+      ],
+      "type": "ai_news",
+      "sourceName": "OpenAI",
+      "sourceUrl": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/",
+      "id": "da30a1520b0f",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "AI Found a 9.2-CVSS JVM Flaw in One Hour for Under $200",
+      "summary": "A researcher used Codex to find a memory-corruption bug in HotSpot's AVX-512 Base64 decoder — affecting OpenJDK 17.0.6+ on x86-64 — then had a working exploit two hours later for a total AI spend under $200. The vulnerability is patched; what isn't is the economics: offensive capability now scales at token cost, not headcount.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "ai",
+        "jvm"
+      ],
+      "type": "blog",
+      "sourceName": "CyberScoop",
+      "sourceUrl": "https://cyberscoop.com/java4shell-critical-java-flaw-openjdk/",
+      "id": "05f723cdae85",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "OpenAI Is Buying the Git Infrastructure Codex Already Runs On",
+      "summary": "Pierre Computer's Code Storage, Trees, and Diffs tools are what Codex uses today for file-tree navigation and visual diffing — so this acquisition is vertical integration, not an acqui-hire. OpenAI now has a credible path to owning the model, the IDE, the repository, and the review layer: a direct challenge to GitHub on the platform GitHub built.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "beginner",
+      "tags": [
+        "openai",
+        "developer-tools",
+        "git"
+      ],
+      "type": "ai_news",
+      "sourceName": "SiliconANGLE",
+      "sourceUrl": "https://siliconangle.com/2026/11/04/openai-to-acquire-developer-tooling-startup-pierre-computer/",
+      "id": "6a861cdd1448",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Google Is Quietly Backstopping Its Own AI Competitor's Infrastructure",
+      "summary": "Google is credit-guarantor on Anthropic's 20-year, $19B data-center lease with TeraWulf, and receives an ownership stake in the facility if Anthropic defaults. The structure makes Google the silent infrastructure layer under a direct competitor — a hedge that keeps Google indispensable regardless of which frontier-model company ultimately wins.",
+      "estimatedReadSeconds": 45,
+      "difficulty": "beginner",
+      "tags": [
+        "anthropic",
+        "google",
+        "infrastructure"
+      ],
+      "type": "ai_news",
+      "sourceName": "CoinDesk",
+      "sourceUrl": "https://www.coindesk.com/tech/2026/11/05/google-could-take-ownership-stake-in-bitcoin-miner-terawulf-s-ai-project-if-anthropic-defaults",
+      "id": "7adee95a825b",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "AI Inference Cost Dropped 1,000× in Three Years — and the Curve Hasn't Flattened",
+      "summary": "A fixed benchmark score that cost $60 per million tokens in 2021 costs $0.06 today, and GPT-6.2 Astra's 60% cut to cached-input pricing this month adds another step down. The practical consequence: retrieval-heavy workloads — RAG pipelines, long-context agents — just got meaningfully repriced, and use cases that were marginal six months ago are now worth prototyping.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "llm",
+        "pricing",
+        "rag"
+      ],
+      "type": "blog",
+      "sourceName": "arXiv",
+      "sourceUrl": "https://arxiv.org/pdf/2511.23455",
+      "id": "52d435761d8b",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Twelve AI Dev Platforms Were Breached in October — API Keys, Weights, and Training Data",
+      "summary": "Attackers hit inference providers, AI coding tools, and PaaS hosts in what the Cloud Security Alliance called a coordinated LLMjacking campaign, reaching stored API keys, model weights, and training data across all twelve. The timing directly preceded November's outage wave, and the pattern suggests the industry absorbed an attack surface that expanded far faster than anyone hardened it.",
+      "estimatedReadSeconds": 65,
+      "difficulty": "intermediate",
+      "tags": [
+        "security",
+        "api-keys",
+        "ai"
+      ],
+      "type": "blog",
+      "sourceName": "Cloud Security Alliance",
+      "sourceUrl": "https://labs.cloudsecurityalliance.org/research/csa-research-note-black-october-ai-dev-platform-breaches-202/",
+      "id": "68af38807c91",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Array.sort Sorts Lexicographically by Default — and Mutates the Original",
+      "summary": "Without a comparator, Array.sort converts every element to a string before comparing, so numbers sort in dictionary order. It also modifies the original array in place, which catches people off guard when they expect a new one.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "arrays"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "The default sort uses Unicode code-point order, which means 10 comes before 2 because '1' < '2'. To sort numbers correctly, pass a comparator: (a, b) => a - b returns negative when a should come first, positive when b should, and zero when they're equal. Because sort mutates the array, calling it on a prop or state value directly will silently change the source; spread into a new array first if you need to preserve the original.",
+      "code": "const scores = [10, 2, 100, 21];\n\n// Default — lexicographic, wrong for numbers\nscores.sort();\nconsole.log(scores); // [10, 100, 2, 21]\n\n// Correct numeric sort (also mutates — spread first if needed)\nconst sorted = [...scores].sort((a, b) => a - b);\nconsole.log(sorted); // [2, 10, 21, 100]\nconsole.log(scores); // unchanged: [10, 100, 2, 21]",
+      "id": "5dee557fdd3d",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "TypeScript Discriminated Unions Let You Model Loading / Error / Success Safely",
+      "summary": "When every member of a union shares a literal field like `status`, TypeScript uses that field to narrow the type inside a conditional — so the properties unique to one branch only exist where the check says they do.",
+      "estimatedReadSeconds": 120,
+      "difficulty": "intermediate",
+      "tags": [
+        "typescript",
+        "react"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": false,
+      "body": "A discriminated union is a union where each member has a common property with a unique literal value. When you check `state.status === 'success'`, TypeScript eliminates the other branches, so accessing `state.data` inside that block is fully type-safe without any casting. This pattern replaces the common anti-pattern of a single object with optional fields that may or may not be present together — TypeScript cannot enforce those relationships, but it can enforce a discriminated union.",
+      "code": "type AsyncState<T> =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: T }\n  | { status: 'error'; error: string };\n\nfunction render(state: AsyncState<string[]>) {\n  if (state.status === 'success') {\n    // TS knows `data` exists here — no cast needed\n    return state.data.join(', ');\n  }\n  if (state.status === 'error') {\n    return state.error; // likewise, `error` is safe here\n  }\n  return null;\n}",
+      "id": "646ab94cb896",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Promise.allSettled Waits for Every Outcome — Promise.all Bails on the First Rejection",
+      "summary": "Promise.all short-circuits the moment one promise rejects, silently discarding the results of whatever is still running. Promise.allSettled waits for every promise to settle and hands you a structured result for each one.",
+      "estimatedReadSeconds": 80,
+      "difficulty": "beginner",
+      "tags": [
+        "node",
+        "promises",
+        "async"
+      ],
+      "type": "learn",
+      "track": "node",
+      "isQuestion": false,
+      "body": "When Promise.all rejects, the other in-flight promises keep executing — their results are just unreachable. Promise.allSettled always resolves with an array of objects, each carrying a status of 'fulfilled' or 'rejected' plus the value or reason. Use Promise.all when any single failure makes the whole batch meaningless; use Promise.allSettled when you need to audit every outcome individually — reporting partial failures, logging, or bulk operations where some items can fail and others succeed.",
+      "code": "const results = await Promise.allSettled([\n  fetchUser(1),\n  fetchUser(2),\n  fetchUser(3),\n]);\n\nconst failed = results.filter(r => r.status === 'rejected');\nconst ok     = results.filter(r => r.status === 'fulfilled');\n\nconsole.log(`${ok.length} succeeded, ${failed.length} failed`);",
+      "id": "1ab123f445e6",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Python Loggers Form a Tree — Records Propagate Up and Duplicate Your Output",
+      "summary": "Python's logging module arranges loggers in a dotted-name hierarchy: 'app.db' is a child of 'app', which is a child of the root logger. Unless you opt out, records travel up that tree and get handled by every ancestor that has a handler attached.",
+      "estimatedReadSeconds": 90,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "logging",
+        "debugging"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": false,
+      "body": "This propagation is why adding a handler to both 'app.db' and 'app' causes every record from 'app.db' to appear twice — once at each level. Setting propagate = False on a child logger cuts the chain at that point: the record is processed by that logger's handlers and goes no further. The root logger is the natural place for a catch-all handler; named loggers should usually just configure their level and leave propagation enabled rather than duplicating the handler setup.",
+      "code": "import logging\n\nroot = logging.getLogger()\nroot.setLevel(logging.INFO)\nroot.addHandler(logging.StreamHandler())\n\ndb_log = logging.getLogger(\"app.db\")\ndb_log.addHandler(logging.StreamHandler())  # second handler!\n# Without the next line, every db_log record prints twice:\ndb_log.propagate = False\n\ndb_log.info(\"query executed\")  # now prints once",
+      "id": "32faf1bf5af3",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "ThreadLocal Gives Each Thread Its Own Slot — But Thread Pools Carry State Between Requests",
+      "summary": "ThreadLocal stores a value per thread: thread A's reads and writes are completely invisible to thread B. It's the mechanism behind Spring's SecurityContextHolder, Hibernate's session-per-request, and most JDBC request-context wrappers.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "intermediate",
+      "tags": [
+        "java",
+        "threads",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "java",
+      "isQuestion": false,
+      "body": "In a fixed thread pool, threads are reused across requests. If your ThreadLocal value from request 1 is never removed, request 2 on the same thread will silently read stale data — a subtle bug that only surfaces under load. Always call remove() in a finally block at the end of the unit of work. Frameworks like Spring handle this for you in filter chains, but any custom ThreadLocal you create is entirely your responsibility to clean up.",
+      "code": "private static final ThreadLocal<String> requestId = new ThreadLocal<>();\n\nvoid handle(HttpRequest req) {\n    requestId.set(req.getHeader(\"X-Request-Id\"));\n    try {\n        process();\n    } finally {\n        requestId.remove(); // mandatory — thread returns to pool after this\n    }\n}\n\nvoid process() {\n    // accessible anywhere on this thread without passing it down\n    log.info(\"Processing {}\", requestId.get());\n}",
+      "id": "b376f2116432",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "defer Captures Arguments Immediately but Runs the Call at Return — LIFO Order",
+      "summary": "Go evaluates a deferred call's arguments at the defer statement, not when the function eventually runs. The calls themselves fire in last-in, first-out order when the surrounding function returns.",
+      "estimatedReadSeconds": 95,
+      "difficulty": "beginner",
+      "tags": [
+        "go",
+        "defer",
+        "resource-management"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": false,
+      "body": "The argument-capture rule matters for things like logging elapsed time: if you write `defer log(time.Now())` the timestamp is locked in at the defer line, not at function exit. To capture the value at exit you need a closure with no arguments. The LIFO order is what makes defer safe for symmetric cleanup — open A, open B, defer close B, defer close A — but it also means deferring inside a loop doesn't close each resource at the end of its iteration; every deferred call queues up and fires together when the function returns, holding all the resources open until then.",
+      "code": "// Arguments frozen at defer time — logs start time, not elapsed\ndefer log.Println(\"started at:\", time.Now()) // ❌ wrong for elapsed\n\n// Closure captures nothing at defer time — correct for elapsed\nstart := time.Now()\ndefer func() { log.Println(\"elapsed:\", time.Since(start)) }() // ✓\n\n// Loop trap: all files stay open until processAll returns\nfor _, path := range paths {\n    f, _ := os.Open(path)\n    defer f.Close() // queued, not run per iteration\n}",
+      "id": "8511d2959d9a",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "A Circuit Breaker Fails Fast Instead of Letting One Slow Dependency Stall Your Thread Pool",
+      "summary": "A circuit breaker tracks failure rate to a downstream service and, once a threshold is crossed, stops sending requests entirely for a cooldown window. Callers get an immediate error instead of waiting for a timeout that ties up a thread.",
+      "estimatedReadSeconds": 105,
+      "difficulty": "intermediate",
+      "tags": [
+        "system_design",
+        "resilience",
+        "distributed-systems"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "The breaker moves through three states: closed (normal operation, counting failures), open (threshold exceeded — all calls rejected instantly without touching the dependency), and half-open (cooldown expired — one probe request let through). If the probe succeeds the breaker closes again; if it fails the cooldown resets. The practical value is that a single misbehaving dependency can't cascade into thread exhaustion and bring down your whole service, because you stop accumulating blocked threads the moment the breaker opens.",
+      "code": "-- State machine, not runnable code --\n\nCLOSED\n  - forward calls to dependency\n  - track failure rate in a sliding window\n  - failures > threshold → transition to OPEN\n\nOPEN\n  - reject all calls immediately (throw / return error)\n  - after cooldown period → transition to HALF-OPEN\n\nHALF-OPEN\n  - allow one probe call through\n  - probe succeeds → CLOSED\n  - probe fails    → OPEN (reset cooldown)",
+      "id": "e2390cacdaf8",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Pessimistic Locking Blocks at Read Time — Optimistic Locking Detects Conflict at Write Time",
+      "summary": "Both strategies protect against two transactions overwriting each other's changes, but they pay the cost at different points. Pessimistic locking acquires a row lock the moment you read, so nothing else can touch the row until you commit. Optimistic locking reads freely and only checks for a conflict when it's time to write.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "system_design",
+        "database",
+        "concurrency"
+      ],
+      "type": "learn",
+      "track": "system_design",
+      "isQuestion": false,
+      "body": "SELECT ... FOR UPDATE implements pessimistic locking at the database level: any other transaction trying to update that row will block until you release it. Optimistic locking adds a version column; your UPDATE includes AND version = ? in its WHERE clause, and if zero rows are affected you know someone else changed the row first and you must retry. Pessimistic locking is safer under high contention where conflicts are frequent and retries are expensive; optimistic is a better fit when most writes succeed without conflict, because it never holds a lock that serializes concurrent readers.",
+      "code": "-- Pessimistic: lock immediately so no one can race you\nBEGIN;\nSELECT balance FROM accounts WHERE id = 42 FOR UPDATE;\nUPDATE accounts SET balance = balance - 100 WHERE id = 42;\nCOMMIT;\n\n-- Optimistic: read without locking, guard the write\nUPDATE accounts\n   SET balance  = balance - 100,\n       version  = version + 1\n WHERE id      = 42\n   AND version = 7;  -- 0 rows updated → conflict, retry",
+      "id": "a6fb8d62dad9",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "A parent component re-renders every second. Its child receives the same props but is expensive to render. How do you stop it from re-rendering unnecessarily?",
+      "summary": "Tests whether the candidate understands React's default re-render behaviour and how React.memo opts a component out of it by shallow-comparing props.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "react",
+        "performance",
+        "memoization"
+      ],
+      "type": "learn",
+      "track": "frontend",
+      "isQuestion": true,
+      "body": "By default, React re-renders every child whenever a parent re-renders, regardless of whether props changed. Wrapping the child in React.memo makes React shallow-compare the incoming props and skip the render if nothing differs. The common trap is that an inline callback or object literal creates a new reference on every parent render, so React.memo still sees changed props and re-renders anyway. You stabilise those references with useCallback for functions and useMemo for objects. React.memo is the gatekeeper, but it only helps when the props it compares are actually referentially stable. Knowing when not to use it matters too — the shallow comparison itself has a cost, so wrapping a component that always receives new props just adds overhead for no benefit.",
+      "followUps": [
+        "What is the difference between React.memo and useMemo?",
+        "If you wrap a component in React.memo but it still re-renders on every parent render, what would you check first?",
+        "When would adding React.memo actually hurt performance instead of helping?"
+      ],
+      "id": "21eab24a50dc",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "You define `def append_to(item, target=[])` and call it twice with just one argument. What does the second call return, and why?",
+      "summary": "Tests understanding of how Python evaluates default arguments once at definition time, not on each call — one of the language's most common gotchas with mutable state.",
+      "estimatedReadSeconds": 100,
+      "difficulty": "beginner",
+      "tags": [
+        "python",
+        "functions",
+        "mutability"
+      ],
+      "type": "learn",
+      "track": "python",
+      "isQuestion": true,
+      "body": "Python evaluates default-argument expressions exactly once, when the function object is created, not each time the function is called. That single list object is shared across every invocation that omits the second argument. The first call mutates it to contain one element; the second call appends to the same list, so it now contains both elements. The standard fix is to default to None and create a fresh list inside the body: if target is None: target = []. This applies to every mutable default — dicts, sets, and custom objects alike. The syntax looks like it should produce a new list per call, which is why the bug surprises almost everyone the first time. Linters like Ruff and pylint flag mutable defaults for exactly this reason.",
+      "followUps": [
+        "Why did Python's designers choose to evaluate defaults at definition time rather than at each call?",
+        "How would you catch this bug in a code review without running the code?"
+      ],
+      "id": "16e5da7fe626",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Your function returns an `error` interface, but inside it returns a typed nil pointer. The caller's `if err != nil` check is true. Why?",
+      "summary": "Tests understanding of Go's interface representation — an interface holds both a type and a value, and is only nil when both are nil.",
+      "estimatedReadSeconds": 110,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "interfaces",
+        "nil",
+        "debugging"
+      ],
+      "type": "learn",
+      "track": "go",
+      "isQuestion": true,
+      "body": "A Go interface value is internally a pair: a type descriptor and a value pointer. The interface is nil only when both fields are nil. When you return a *MyError(nil) as an error, the value pointer is nil but the type descriptor points to *MyError. Because the type half is non-nil, the interface itself is non-nil, and err != nil evaluates to true even though the underlying pointer is nil. The fix is to return a bare nil on the success path rather than returning a concrete error variable that happens to be its zero value. This bug typically appears when a function declares var err *MyError, only assigns it in some branches, and returns it as an error interface at the end. The idiomatic pattern is explicit: return nil for success, return a concrete error only when you actually have one.",
+      "followUps": [
+        "How would you debug this if you saw the nil check passing unexpectedly in production?",
+        "What does reflect.ValueOf(err).IsNil() return in this case, and why does it differ from err != nil?",
+        "How does this same issue show up with interface types other than error?"
+      ],
+      "id": "d2ad916300d3",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Array.sort Converts to Strings First",
+      "summary": "Array.sort without a comparator coerces every element to a string and sorts by Unicode code-point order, so numbers sort lexicographically rather than numerically.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "beginner",
+      "tags": [
+        "javascript",
+        "arrays",
+        "coercion"
+      ],
+      "type": "output_question",
+      "track": "frontend",
+      "language": "javascript",
+      "code": "const nums = [10, 9, 8, 100];\nnums.sort();\nconsole.log(nums.join(', '));",
+      "options": [
+        {
+          "label": "8, 9, 10, 100"
+        },
+        {
+          "label": "10, 100, 8, 9"
+        },
+        {
+          "label": "100, 10, 9, 8"
+        },
+        {
+          "label": "10, 8, 9, 100"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "Array.prototype.sort without a comparator converts each element to a string and compares in Unicode code-point order. The string \"100\" comes before \"8\" because the character '1' (U+0031) is less than '8' (U+0038). The comparison is strictly character-by-character, left to right. To sort numerically, you must pass a comparator like (a, b) => a - b.",
+      "id": "67959b7f5ac8",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Switch Cases Fall Through Without break",
+      "summary": "Java's switch statement executes every subsequent case body after a match until it hits a break or the end of the block, a behaviour called fall-through.",
+      "estimatedReadSeconds": 75,
+      "difficulty": "beginner",
+      "tags": [
+        "java",
+        "control-flow",
+        "switch"
+      ],
+      "type": "output_question",
+      "track": "java",
+      "language": "java",
+      "code": "public class Main {\n  public static void main(String[] args) {\n    int x = 1;\n    switch (x) {\n      case 1: System.out.print(\"A\");\n      case 2: System.out.print(\"B\");\n      case 3: System.out.print(\"C\");\n              break;\n      case 4: System.out.print(\"D\");\n    }\n  }\n}",
+      "options": [
+        {
+          "label": "A"
+        },
+        {
+          "label": "ABC"
+        },
+        {
+          "label": "ABCD"
+        },
+        {
+          "label": "AB"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "Java's switch statement falls through from one case to the next unless a break or return is encountered. Matching case 1 executes its body, then continues unconditionally into case 2 and case 3 until the break after printing \"C\". Case 4 is never reached because the break exits the switch block first.",
+      "id": "085644730729",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "Starred Unpacking Collects Into a List",
+      "summary": "Extended unpacking with * in an assignment always produces a list, not a tuple—unlike *args in function signatures, which produces a tuple.",
+      "estimatedReadSeconds": 60,
+      "difficulty": "intermediate",
+      "tags": [
+        "python",
+        "unpacking",
+        "assignment"
+      ],
+      "type": "output_question",
+      "track": "python",
+      "language": "python",
+      "code": "a, *b, c = [1, 2, 3, 4, 5]\nprint(a, b, c)",
+      "options": [
+        {
+          "label": "1 [2, 3, 4] 5"
+        },
+        {
+          "label": "1 (2, 3, 4) 5"
+        },
+        {
+          "label": "1 [2, 3, 4, 5] None"
+        },
+        {
+          "label": "ValueError"
+        }
+      ],
+      "correctOptionIndex": 0,
+      "explanation": "Python's extended unpacking (PEP 3132) assigns the first element to a, the last to c, and collects everything in between into b as a list. Unlike *args in function definitions—which produces a tuple—starred targets in assignments always produce a list, even if they capture zero elements. The unpacking is not greedy: c reliably gets the final value.",
+      "id": "8cb36c13f4ba",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
+    {
+      "title": "string() Converts to a Code Point, Not Digits",
+      "summary": "Go's string(int) conversion interprets the integer as a Unicode code point rather than formatting it as a decimal string, which surprises most newcomers.",
+      "estimatedReadSeconds": 70,
+      "difficulty": "intermediate",
+      "tags": [
+        "go",
+        "type-conversion",
+        "unicode"
+      ],
+      "type": "output_question",
+      "track": "go",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    x := 65\n    y := string(x)\n    z := fmt.Sprintf(\"%d\", x)\n    fmt.Println(y, z)\n}",
+      "options": [
+        {
+          "label": "65 65"
+        },
+        {
+          "label": "A 65"
+        },
+        {
+          "label": "A A"
+        },
+        {
+          "label": "compile error"
+        }
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "In Go, string(x) where x is an integer interprets x as a Unicode code point and returns the corresponding character—65 maps to 'A'. It does not produce the decimal string representation. To get \"65\" you need fmt.Sprintf(\"%d\", x) or strconv.Itoa(x). This is such a common mistake that go vet now flags integer-to-string conversions as suspicious.",
+      "id": "0c3f16e941af",
+      "publishedAt": "2026-11-27T10:30:03.614Z"
+    },
     {
       "title": "OpenAI Rewrote Its Git Backend in Rust After AI Agents Caused 2,442% Commit Growth",
       "summary": "Codex agents joining human engineers caused quarterly commits in OpenAI's internal monorepo to grow 2,442% between Q1 2024 and Q4 2026, pushing standard Git infrastructure past its limits. The result is Pando, a Rust-based Git-compatible backend that handles close to a petabyte of repository data per day and cuts median push latency by roughly 80%. One engineer designed the core; agent teams built it in ten weeks. It's the clearest public evidence yet that AI-driven development doesn't just accelerate workflows — it reshapes the infrastructure underneath them.",
